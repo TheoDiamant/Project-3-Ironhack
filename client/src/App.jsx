@@ -10,6 +10,9 @@ import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
 
+import ProductsListPage from "./pages/ProductsListPage/ProductsListPage";
+import AddProduct from "./pages/AddProduct/AddProduct.jsx"
+
 function App() {
   return (
     <div className="App">
@@ -43,6 +46,10 @@ function App() {
             </IsAnon>
           }
         />
+
+        <Route path="/products" element={<ProductsListPage />}/>
+
+        <Route path="/new-product" element={<AddProduct />} />
       </Routes>
     </div>
   );

@@ -1,9 +1,15 @@
 import "./HomePage.css";
 
+import LatestProducts from "../../components/LatestProducts/LatestProducts"
+
 function HomePage() {
   return (
     <div>
-      <h1>Home page</h1>
+      <div className="firstSection"> 
+        <h1>First Section</h1>
+      </div>
+
+      <LatestProducts />
     </div>
   );
 }
