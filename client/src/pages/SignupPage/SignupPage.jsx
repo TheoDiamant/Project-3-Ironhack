@@ -46,10 +46,11 @@ function SignupPage() {
   };
 
   return (
+
     <div className="SignupPage">
-      <h1>Sign Up</h1>
 
       <form onSubmit={handleSignupSubmit}>
+      <h1>Sign Up</h1>
         <label>Email:</label>
         <input type="email" name="email" value={email} onChange={handleEmail} />
 

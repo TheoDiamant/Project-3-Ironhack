@@ -46,9 +46,9 @@ function LoginPage() {
 
   return (
     <div className="LoginPage">
-      <h1>Login</h1>
 
       <form onSubmit={handleLoginSubmit}>
+      <h1>Login</h1>
         <label>Email:</label>
         <input type="email" name="email" value={email} onChange={handleEmail} />
 
