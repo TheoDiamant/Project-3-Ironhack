@@ -3,23 +3,47 @@ const router = express.Router();
 const mongoose = require('mongoose')
 
 const Product = require("../models/Products.model")
+const User = require("../models/User.model")
+const { isAuthenticated } = require("../middleware/jwt.middleware.js");
+
+const fileUploader = require("../config/cloudinary.config");
+
+// Route to upload images om cloud //////// WORK  ////////
+router.post("/upload", fileUploader.single("imageUrl"), (req, res, next) => {
+    // console.log("file is: ", req.file)
+   
+    if (!req.file) {
+      next(new Error("No file uploaded!"));
+      return;
+    }
+    
+    // Get the URL of the uploaded file and send it as a response.
+    // 'fileUrl' can be any name, just make sure you remember to use the same when accessing it on the frontend
+    
+    res.json({ fileUrl: req.file.path });
+  });
 
 
 // Route to create a products  //////// WORK  ////////
-router.post("/products", (req, res, next) => {
+router.post("/products", isAuthenticated, (req, res, next) => {
     const { img, title, description, price } = req.body
 
-    Product.create({ img, title, description, price})
+    Product.create({ img, title, description, price, user: req.payload._id  })
     .then(response => res.json(response.data))
     .catch(err => res.json(err))
 })
 
 // Route to get all the products //////// WORK  ////////
 
-router.get("/products", (req, res, next) => {
+router.get("/products", isAuthenticated, (req, res, next) => {
+    
+
     Product.find()
-    .then(allProducts => res.json(allProducts))
+    .then(allProducts => {
+        res.json(allProducts)
+    })
     .catch(err => res.json(err))
+
 })
 
 
@@ -40,7 +64,7 @@ router.get("/products/:productId", (req, res, next) => {
 })
 
 // Route to UPDATE/EDIT a product by ID //////// WORK  ////////
-router.put("/products/:productId", (req, res, next) => {
+router.post("/products/:productId/edit", (req, res, next) => {
 
     const { productId } = req.params
 

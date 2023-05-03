@@ -13,7 +13,7 @@ function ProductDetailPage() {
     const { productId } = useParams(); 
 
     const getProduct = () => {
-        axios.get(`${API_URL}/api/projects/${productId}`)
+        axios.get(`${API_URL}/api/products/${productId}`)
         .then((response) => {
             const singleProduct = response.data
             setProduct(singleProduct)
@@ -22,7 +22,7 @@ function ProductDetailPage() {
     }
 
 
-    useEffect(()=> {                   // <== ADD AN EFFECT
+    useEffect(() => {                   // <== ADD AN EFFECT
         getProduct();
       }, [] );
 
@@ -42,7 +42,7 @@ function ProductDetailPage() {
                 <button>Back to products</button>
             </Link>
 
-            <Link to={`/products/${productId}`}>
+            <Link to={`/products/${productId}/edit`}>
                 <button>Edit Product</button>
             </Link>  
         </div>

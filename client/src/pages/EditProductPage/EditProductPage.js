@@ -10,6 +10,7 @@ const API_URL = "http://localhost:5005";
 function EditProjectPage(props) {
 
     const { productId } = useParams();   
+    const navigate = useNavigate();  
 
     const [product, setProduct] = useState({
         image: "",
@@ -25,15 +26,16 @@ function EditProjectPage(props) {
 
     function handleSubmit(event) {
         event.preventDefault();
-        axios.post(`${API_URL}/api/products/${productId}`, product)
+        axios.post(`${API_URL}/api/products/${productId}/edit`, product)
             .then(response => {
                 console.log("success")
+                navigate(`/products/${productId}`)
             })
     }
 
     useEffect(() => {
         axios
-          .get(`${API_URL}/api/projects/${productId}`)
+          .get(`${API_URL}/api/products/${productId}`)
           .then((response) => {
             const oneProduct = response.data;
             setProduct(oneProduct)
@@ -42,7 +44,20 @@ function EditProjectPage(props) {
         
       }, [productId]);
       
-      /////FINISH THIS PAGE 
+
+      const deleteProduct = () => {                    //  <== ADD
+        // Make a DELETE request to delete the project
+        axios
+          .delete(`${API_URL}/api/products/${productId}`)
+          .then(() => {
+            // Once the delete request is resolved successfully
+            // navigate back to the list of projects.
+            navigate("/products");
+          })
+          .catch((err) => console.log(err));
+      };  
+     
+
     
     return (
 
@@ -59,14 +74,16 @@ function EditProjectPage(props) {
             </div>
             <div className="formDiv">
                 <p>Description</p>
-                <input name="description" type="text" alt="" onChange={handleChange}></input>
+                <input name="description" type="text" alt="" onChange={handleChange} value={product.description}></input>
             </div>
             <div className="formDiv">
                 <p>Price</p>
-                <input name="price" type="number" alt="" onChange={handleChange}></input>
+                <input name="price" type="number" alt="" onChange={handleChange} value={product.price}></input>
             </div>
-            <button>Upload</button>
+            <button type="submit">Upload</button>
         </form>
+
+        <button onClick={deleteProduct}>Delete Product</button>
     </div>
 
     );

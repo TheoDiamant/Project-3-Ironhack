@@ -9,8 +9,11 @@ function ProductsListPage() {
 
     const [products, setProducts] = useState([])
 
+    const storedToken = localStorage.getItem("authToken");
+
     const getAllProducts = () => {
-        axios.get(`${API_URL}/api/products`)
+        axios.get(`${API_URL}/api/products`, 
+        { headers: { Authorization: `Bearer ${storedToken}` } })
         .then(response => setProducts(response.data))
         .catch(err => console.log(err))
     }

@@ -20,6 +20,8 @@ function Navbar() {
           <input type="text" className="searchBar" placeholder="Search for products"></input>
         </form>
       </div>
+
+      
       <div className="buttonsDiv">
         <Link to="/">
           <button className="button normalColors">Home</button>

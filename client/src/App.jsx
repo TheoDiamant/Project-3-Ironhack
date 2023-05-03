@@ -12,6 +12,8 @@ import IsAnon from "./components/IsAnon/IsAnon";
 
 import ProductsListPage from "./pages/ProductsListPage/ProductsListPage";
 import AddProduct from "./pages/AddProduct/AddProduct.jsx"
+import ProductDetailPage from "./pages/ProductDetailPage/ProductDetailPage"
+import EditProjectPage from "./pages/EditProductPage/EditProductPage"
 
 function App() {
   return (
@@ -50,6 +52,8 @@ function App() {
         <Route path="/products" element={<ProductsListPage />}/>
 
         <Route path="/new-product" element={<AddProduct />} />
+        <Route path="/products/:productId" element={<ProductDetailPage />} />
+        <Route path="/products/:productId/edit" element={<EditProjectPage />} />
       </Routes>
     </div>
   );

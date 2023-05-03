@@ -7,6 +7,9 @@ const API_URL = "http://localhost:5005";
 
 function AddProduct() {
 
+
+    const storedToken = localStorage.getItem("authToken");
+
     const [newProduct, setNewProduct] = useState({
         image: "",
         title: "",
@@ -21,7 +24,7 @@ function AddProduct() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        axios.post(`${API_URL}/api/products`, newProduct)
+        axios.post(`${API_URL}/api/products`, newProduct, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(response => {
                 console.log("success")
             })
