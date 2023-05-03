@@ -22,7 +22,8 @@ const productSchema = new Schema(
         required: [true, "price is required."],
       },
 
-      review: [{type: Schema.Types.ObjectId, ref: "Review"}]
+      review: [{type: Schema.Types.ObjectId, ref: "Review"}],
+      user: [{type: Schema.Types.ObjectId, ref: "User"}],
     },
     {
       // this second object adds extra properties: `createdAt` and `updatedAt`

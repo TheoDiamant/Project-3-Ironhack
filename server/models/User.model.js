@@ -19,7 +19,8 @@ const userSchema = new Schema(
       required: [true, "Name is required."],
     },
 
-    review: [{type: Schema.Types.ObjectId, ref: "Review"}]
+    review: [{type: Schema.Types.ObjectId, ref: "Review"}],
+    product: [{type: Schema.Types.ObjectId, ref: "Product"}]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
