@@ -1,4 +1,4 @@
- 
+import "./ProductListPage.css" 
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -21,25 +21,17 @@ function ProductsListPage() {
 
 
     return (
-        <div> 
-        
-        {products.map(product => (
+       
+       <div className="listDiv"> 
+            {products.map(product => {
+                return(
+                    <ProductCard product={product}/>
+                )
+            })} 
 
-            <div key={product._id}> 
-            
-                <Link to={`/products/${product._id}`}>
+           
 
-                    <img src={product.img} alt=""/>
-                    <h3>{product.title}</h3>
-                    <p>{product.description}</p>
-                    <p>{product.price}</p>
 
-                </Link>
-                <ProductCard product={product}/>
-            </div>
-
-        ))}
-        
         </div>
     )
 }

@@ -12,9 +12,12 @@ function LatestProducts() {
   const [latestProducts, setLatestProducts] = useState([])
 
   useEffect(() => {
-    axios.get(`${API_URL}/api/latest`)
-      .then(response => setLatestProducts(response.data))
-  })
+    console.log("this is the useEffect requests")
+    axios.get(`${API_URL}/api/products`)
+      .then(response => {setLatestProducts(response.data)})
+      .catch(err => console.log(err))
+      
+  }, [])
 
 
   return (
@@ -22,7 +25,10 @@ function LatestProducts() {
         <h1>Latest Products</h1>
         <div className="latestProductsDiv">
           {latestProducts.map(product => {
-            <ProductCard product={product} />
+            return(
+              <ProductCard product={product} />
+
+            )
           })}
         </div>
     </>

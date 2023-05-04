@@ -12,8 +12,8 @@ const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 const fileUploader = require("../config/cloudinary.config");
 
 // Route to upload images om cloud //////// WORK  ////////
-router.post("/upload", fileUploader.single("imageUrl"), (req, res, next) => {
-    // console.log("file is: ", req.file)
+router.post("/upload", fileUploader.single("image"), (req, res, next) => {
+    console.log("file is: ", req.file)
    
     if (!req.file) {
       next(new Error("No file uploaded!"));
@@ -25,6 +25,16 @@ router.post("/upload", fileUploader.single("imageUrl"), (req, res, next) => {
     
     res.json({ fileUrl: req.file.path });
   });
+
+// TEST ROUTE, MAY BE DELETED
+router.post("/uploadmany", fileUploader.array("image"), (req, res, next) => {
+  const images = req.files
+  const imagePaths = []
+  for (let i = 0; i < images.length; i++) {
+    imagePaths.push(images[i].path)
+  }
+  res.json(imagePaths)
+})
 
 
 // Route to create a products  //////// WORK  ////////
@@ -38,7 +48,7 @@ router.post("/products", isAuthenticated, (req, res, next) => {
 
 // Route to get all the products //////// WORK  ////////
 
-router.get("/products", isAuthenticated, (req, res, next) => {
+router.get("/products", (req, res, next) => {
     
 
     Product.find()
@@ -158,5 +168,24 @@ router.get("/products/:productId/review", (req, res, next) => {
     .catch(err => res.json(err))
 
 })
+
+// Route to get the offer for a product //////// WORK  ////////
+router.get("/products/:productId/offer", (req, res, next) => {
+
+  const { productId } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(productId)) {
+      res.status(400).json({ message: 'Specified id is not valid' });
+      return;
+    }
+
+    Offer.find()
+    .then(response => {
+      res.json(response)
+    })
+    .catch(err => res.json(err))
+
+})
+
 
 module.exports = router;

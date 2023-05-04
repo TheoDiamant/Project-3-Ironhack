@@ -1,13 +1,14 @@
- 
+import "./EditProductPage.css"
+
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";  //  <== IMPORT 
+import { useParams, useNavigate } from "react-router-dom";
 
 import axios from "axios";
  
 const API_URL = "http://localhost:5005";
 
  
-function EditProjectPage(props) {
+function EditProjectPage() {
 
     const { productId } = useParams();   
     const navigate = useNavigate();  
@@ -60,32 +61,37 @@ function EditProjectPage(props) {
 
     
     return (
+        <>
+            <div className="baseDiv">
+                <form className="editProductForm" onSubmit={handleSubmit}>
+                    <h3>Edit product</h3>
+                    <div className="editImageFormDiv">
+                        <div className="newImagesDiv">
+                            <p>Change images</p>
+                            <input className="imageInput" name="image" type="file" multiple alt="" onChange={handleChange}></input>
+                        </div>
+                        <div className="newImagesDiv">
 
-        <div className="baseDiv">
-        <form className="addProductForm" onSubmit={handleSubmit}>
-            <h3>Edit product</h3>
-            <div className="imageFormDiv">
-                <p>Change images</p>
-                <input name="image" type="file" multiple alt="" onChange={handleChange}></input>
-            </div>
-            <div className="formDiv">
-                <p>Title</p>
-                <input name="title" type="text" alt="" onChange={handleChange} value={product.title}></input>
-            </div>
-            <div className="formDiv">
-                <p>Description</p>
-                <input name="description" type="text" alt="" onChange={handleChange} value={product.description}></input>
-            </div>
-            <div className="formDiv">
-                <p>Price</p>
-                <input name="price" type="number" alt="" onChange={handleChange} value={product.price}></input>
-            </div>
-            <button type="submit">Upload</button>
-        </form>
+                        </div>
+                    </div>
+                    <div className="editFormDiv">
+                        <p>Title</p>
+                        <input name="title" type="text" alt="" onChange={handleChange} value={product.title}></input>
+                    </div>
+                    <div className="editFormDiv">
+                        <p>Description</p>
+                        <input name="description" type="text" alt="" onChange={handleChange} value={product.description}></input>
+                    </div>
+                    <div className="editFormDiv">
+                        <p>Price</p>
+                        <input name="price" type="number" alt="" onChange={handleChange} value={product.price}></input>
+                    </div>
+                    <button type="submit">Upload</button>
+                </form>
 
-        <button onClick={deleteProduct}>Delete Product</button>
-    </div>
-
+            </div>
+                <button onClick={deleteProduct}>Delete Product</button>
+        </>
     );
   }
    

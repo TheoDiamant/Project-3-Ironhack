@@ -1,17 +1,19 @@
 import "./AddProduct.css"
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
  
 const API_URL = "http://localhost:5005";
 
 function AddProduct() {
 
+    const navigate = useNavigate()
 
     const storedToken = localStorage.getItem("authToken");
 
     const [newProduct, setNewProduct] = useState({
-        image: "",
+        img: [],
         title: "",
         description: "",
         price: 0,
@@ -20,6 +22,21 @@ function AddProduct() {
     function handleChange(event) {
         const { name, value } = event.target
         setNewProduct(prevState => ({...prevState, [name]: value}))
+        console.log(newProduct)
+    }
+
+    function handleImage(event) {
+        const files = event.target.files
+        const imageData = new FormData()
+
+        for (let i = 0; i < files.length; i++) {
+            imageData.append("image", files[i])
+        }
+        
+        console.log(imageData)
+        axios.post(`${API_URL}/api/uploadmany`, imageData)
+            .then(response => setNewProduct(prevState => ({...prevState, img: response.data})))
+            .catch(err => console.log(err))
     }
 
     function handleSubmit(event) {
@@ -27,6 +44,7 @@ function AddProduct() {
         axios.post(`${API_URL}/api/products`, newProduct, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(response => {
                 console.log("success")
+                navigate(`/products/${response.data._id}`)
             })
     }
 
@@ -36,7 +54,7 @@ function AddProduct() {
                 <h3>Add a product</h3>
                 <div className="imageFormDiv">
                     <p>Add up to 5 images</p>
-                    <input name="image" type="file" multiple alt="" onChange={handleChange}></input>
+                    <input name="image" type="file" multiple alt="" onChange={handleImage}></input>
                 </div>
                 <div className="formDiv">
                     <p>Title</p>
