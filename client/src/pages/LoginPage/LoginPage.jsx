@@ -20,13 +20,6 @@ function LoginPage() {
     e.preventDefault();
     const requestBody = { email, password };
 
-    // Send a request to the server using axios
-    /* 
-    axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/login`)
-      .then((response) => {})
-    */
-
-    // Or using a service
     authService
       .login(requestBody)
       .then((response) => {
@@ -45,9 +38,9 @@ function LoginPage() {
   };
 
   return (
-    <div className="LoginPage">
+    <div>
 
-      <form onSubmit={handleLoginSubmit}>
+      <form className="authForm" onSubmit={handleLoginSubmit}>
       <h1>Login</h1>
         <label>Email:</label>
         <input type="email" name="email" value={email} onChange={handleEmail} />

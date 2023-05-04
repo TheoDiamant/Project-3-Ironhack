@@ -70,7 +70,8 @@ function EditProjectPage() {
                             <p>Change images</p>
                             <input className="imageInput" name="image" type="file" multiple alt="" onChange={handleChange}></input>
                         </div>
-                        <div className="newImagesDiv">
+                        <div className="divider"></div>
+                        <div className="oldImagesDiv">
 
                         </div>
                     </div>
@@ -90,7 +91,7 @@ function EditProjectPage() {
                 </form>
 
             </div>
-                <button onClick={deleteProduct}>Delete Product</button>
+                <button className="productFormButton" onClick={deleteProduct}>Delete Product</button>
         </>
     );
   }

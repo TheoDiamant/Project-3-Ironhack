@@ -1,3 +1,5 @@
+import "./Offer.css"
+
 import { useState } from "react";
 import axios from "axios";
 import {useParams } from "react-router-dom";
@@ -39,7 +41,7 @@ function Offer() {
 
           <div>
 
-             <form onSubmit={handleSubmit}>
+             <form className="offerForm" onSubmit={handleSubmit}>
 
                <h1>Make an Offer</h1>
 

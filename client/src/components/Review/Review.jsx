@@ -1,3 +1,5 @@
+import "./Review.css"
+
 import { useState } from "react";
 import axios from "axios";
 import {useParams } from "react-router-dom";
@@ -35,7 +37,7 @@ function Review() {
   return (
 
     <div>
-            <form onSubmit={handleSubmit}>
+            <form className="reviewForm" onSubmit={handleSubmit}>
 
                 <h1>Add a Review</h1>
 

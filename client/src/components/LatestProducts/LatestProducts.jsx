@@ -22,7 +22,7 @@ function LatestProducts() {
 
   return (
     <>
-        <h1>Latest Products</h1>
+        <h1 className="latestProductsText">Latest Products</h1>
         <div className="latestProductsDiv">
           {latestProducts.map(product => {
             return(

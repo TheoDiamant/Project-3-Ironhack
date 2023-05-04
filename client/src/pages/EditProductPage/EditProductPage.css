@@ -9,7 +9,7 @@
     color: white
 }
 
-form p {
+.editProductForm p {
     margin: 15px 5px;
 }
 
@@ -19,17 +19,36 @@ form p {
 
 .editImageFormDiv {
     display: flex;
+    align-items: center;
     background-color: white;
     text-align: left;
     margin-bottom: 20px;
+    height: 30%;
+}
+
+.newImagesDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    flex-basis: 50%;
+    padding: 5px;
 }
 
 .imageInput {
     border: 1px dashed black;
-    margin: 5px;
     height: 50px;
-    width: 50%;
-    box-sizing: border-box;
+    width: 100%;
+}
+
+.divider {
+    height: 80%;
+    border: 1px solid grey;
+}
+
+.oldImagesDiv {
+    height: 100%;
+    flex-basis: 50%;
 }
 
 .editFormDiv {

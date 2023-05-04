@@ -68,7 +68,7 @@ function AddProduct() {
                     <p>Price</p>
                     <input name="price" type="number" alt="" onChange={handleChange}></input>
                 </div>
-                <button>Upload</button>
+                <button className="productFormButton">Upload</button>
             </form>
         </div>
     )
