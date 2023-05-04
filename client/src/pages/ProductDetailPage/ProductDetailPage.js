@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import Offer from "../../components/Offer/Offer";
+import Review from "../../components/Review/Review";
  
 
 const API_URL = "http://localhost:5005";     
@@ -48,6 +49,7 @@ function ProductDetailPage() {
             </Link>  
 
             <Offer />
+            <Review />
         </div>
     )
 }

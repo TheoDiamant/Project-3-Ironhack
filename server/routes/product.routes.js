@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 const Product = require("../models/Products.model")
 const User = require("../models/User.model")
 const Offer = require("../models/Offer.model")
+const Review = require("../models/Review.model")
+
 const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 
 const fileUploader = require("../config/cloudinary.config");
@@ -105,7 +107,7 @@ router.delete("/products/:productId", (req, res, next) => {
 
 
 
-// Route to create an offer for a product
+// Route to create an offer for a product //////// WORK  ////////
 router.post("/products/:productId/offer", isAuthenticated, (req, res, next) => {
 
   const { productId } = req.params
@@ -121,7 +123,24 @@ router.post("/products/:productId/offer", isAuthenticated, (req, res, next) => {
     .then(response => res.json(response.data))
     .catch(err => res.json(err))
 
-  
+})
+
+
+// Route to create a review for a product //////// WORK  ////////
+router.post("/products/:productId/review", isAuthenticated, (req, res, next) => {
+
+  const { productId } = req.params
+
+  const { title, message } = req.body
+
+  if (!mongoose.Types.ObjectId.isValid(productId)) {
+      res.status(400).json({ message: 'Specified id is not valid' });
+      return;
+    }
+
+    Review.create({title, message, user: req.payload._id, product: productId})
+    .then(response => res.json(response.data))
+    .catch(err => res.json(err))
 
 })
 
