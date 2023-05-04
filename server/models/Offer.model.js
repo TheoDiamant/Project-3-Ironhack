@@ -5,7 +5,7 @@ const offerSchema = new Schema(
     {
         price: {
           type: Number,
-          required: [true, "Price is required."],
+          // required: [true, "Price is required."],
         },
 
       message: { type: String },

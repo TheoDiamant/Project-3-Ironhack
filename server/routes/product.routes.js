@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 
 const Product = require("../models/Products.model")
 const User = require("../models/User.model")
+const Offer = require("../models/Offer.model")
 const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 
 const fileUploader = require("../config/cloudinary.config");
@@ -61,7 +62,12 @@ router.get("/products/:productId", (req, res, next) => {
     Product.findById(productId)
     .then(product => res.status(200).json(product))
     .catch(error => res.json(error));
+
+    Offer.find()
+    .then(offre => console.log(offre))
+
 })
+
 
 // Route to UPDATE/EDIT a product by ID //////// WORK  ////////
 router.post("/products/:productId/edit", (req, res, next) => {
@@ -94,6 +100,28 @@ router.delete("/products/:productId", (req, res, next) => {
       Product.findByIdAndDelete(productId)
       .then(() => res.json({ message: `Product with ${productId} is removed successfully.` }))
       .catch(error => res.json(error));
+
+})
+
+
+
+// Route to create an offer for a product
+router.post("/products/:productId/offer", isAuthenticated, (req, res, next) => {
+
+  const { productId } = req.params
+
+  const { price, message } = req.body
+
+  if (!mongoose.Types.ObjectId.isValid(productId)) {
+      res.status(400).json({ message: 'Specified id is not valid' });
+      return;
+    }
+
+    Offer.create({price, message, user: req.payload._id, product: productId})
+    .then(response => res.json(response.data))
+    .catch(err => res.json(err))
+
+  
 
 })
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import Offer from "../../components/Offer/Offer";
  
 
 const API_URL = "http://localhost:5005";     
@@ -45,6 +46,8 @@ function ProductDetailPage() {
             <Link to={`/products/${productId}/edit`}>
                 <button>Edit Product</button>
             </Link>  
+
+            <Offer />
         </div>
     )
 }
