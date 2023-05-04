@@ -39,10 +39,10 @@ router.post("/uploadmany", fileUploader.array("image"), (req, res, next) => {
 
 // Route to create a products  //////// WORK  ////////
 router.post("/products", isAuthenticated, (req, res, next) => {
-    const { img, title, description, price } = req.body
 
-    Product.create({ img, title, description, price, user: req.payload._id  })
-    .then(response => res.json(response.data))
+    Product.create({ ...req.body, user: req.payload._id  })
+    .then(response => {
+      res.json(response)})
     .catch(err => res.json(err))
 })
 

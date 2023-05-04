@@ -3,6 +3,8 @@ import "./AddProduct.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
+import ImageInput from "../../components/ImageInput/ImageInput";
  
 const API_URL = "http://localhost:5005";
 
@@ -13,7 +15,7 @@ function AddProduct() {
     const storedToken = localStorage.getItem("authToken");
 
     const [newProduct, setNewProduct] = useState({
-        img: [],
+        img: [""],
         title: "",
         description: "",
         price: 0,
@@ -25,7 +27,7 @@ function AddProduct() {
         console.log(newProduct)
     }
 
-    function handleImage(event) {
+    function handleImages(event) {
         const files = event.target.files
         const imageData = new FormData()
 
@@ -43,7 +45,6 @@ function AddProduct() {
         event.preventDefault();
         axios.post(`${API_URL}/api/products`, newProduct, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(response => {
-                console.log("success")
                 navigate(`/products/${response.data._id}`)
             })
     }
@@ -54,21 +55,21 @@ function AddProduct() {
                 <h3>Add a product</h3>
                 <div className="imageFormDiv">
                     <p>Add up to 5 images</p>
-                    <input name="image" type="file" multiple alt="" onChange={handleImage}></input>
+                    <ImageInput handleImages={handleImages}/>
                 </div>
                 <div className="formDiv">
                     <p>Title</p>
                     <input name="title" type="text" alt="" onChange={handleChange}></input>
                 </div>
-                <div className="formDiv">
+                <div className="formDiv descriptionDiv">
                     <p>Description</p>
-                    <input name="description" type="text" alt="" onChange={handleChange}></input>
+                    <textarea name="description" type="text" alt="" onChange={handleChange}></textarea>
                 </div>
                 <div className="formDiv">
                     <p>Price</p>
                     <input name="price" type="number" alt="" onChange={handleChange}></input>
                 </div>
-                <button className="productFormButton">Upload</button>
+                <button className="uploadButton">Upload</button>
             </form>
         </div>
     )

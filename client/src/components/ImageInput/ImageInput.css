@@ -1,0 +1,24 @@
+.imageInputDiv {
+    border: 2px dashed grey;
+    margin: 5px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageInputDiv button {
+    height: 100%;
+    width: 100%;
+    border: 1px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.imageInputDiv img {
+    height: 60px;
+}
+
+.hiddenImageInput {
+    display: none;
+}
