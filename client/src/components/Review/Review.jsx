@@ -19,6 +19,7 @@ function Review() {
     const handleChange = (event) => {
         const { name, value } = event.target
         setReview(prevState => ({...prevState, [name]: value}))
+        
     }
 
     const handleSubmit = (e) => {
@@ -28,6 +29,8 @@ function Review() {
         .then(response => {
             console.log("success")
         })
+
+        
     }
   return (
 

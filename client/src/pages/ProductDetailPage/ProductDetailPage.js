@@ -11,6 +11,8 @@ const API_URL = "http://localhost:5005";
 function ProductDetailPage() {
 
     const [product, setProduct] = useState(null)
+    const [review, setReview] = useState(null)
+
 
     const { productId } = useParams(); 
 
@@ -23,10 +25,20 @@ function ProductDetailPage() {
         .catch(err => console.log(err))
     }
 
+    const getReview = () => {
+        axios.get(`${API_URL}/api/products/${productId}/review`)
+        .then(response => {
+            const reviews = response.data
+            setReview(reviews)
+            console.log(response.data)
+        })
+        .catch(err => console.log(err))
+    }
 
-    useEffect(() => {                   // <== ADD AN EFFECT
+    useEffect(() => {
         getProduct();
-      }, [] );
+        getReview();
+    }, [productId]);
 
     return (
         
@@ -50,6 +62,14 @@ function ProductDetailPage() {
 
             <Offer />
             <Review />
+
+            {review && (
+                <>
+                    {/* review.image */}
+                    <h1>{review.title}</h1>
+                    <p>{review.message}</p>
+                </>
+            )}
         </div>
     )
 }

@@ -65,9 +65,6 @@ router.get("/products/:productId", (req, res, next) => {
     .then(product => res.status(200).json(product))
     .catch(error => res.json(error));
 
-    Offer.find()
-    .then(offre => console.log(offre))
-
 })
 
 
@@ -139,7 +136,25 @@ router.post("/products/:productId/review", isAuthenticated, (req, res, next) => 
     }
 
     Review.create({title, message, user: req.payload._id, product: productId})
-    .then(response => res.json(response.data))
+    .then(response => res.json(response))
+    .catch(err => res.json(err))
+
+})
+
+// Route to get the review for a product //////// WORK  ////////
+router.get("/products/:productId/review", (req, res, next) => {
+
+  const { productId } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(productId)) {
+      res.status(400).json({ message: 'Specified id is not valid' });
+      return;
+    }
+
+    Review.find()
+    .then(response => {
+      res.json(response)
+    })
     .catch(err => res.json(err))
 
 })
