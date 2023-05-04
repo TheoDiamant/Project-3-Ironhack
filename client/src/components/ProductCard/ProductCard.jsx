@@ -2,15 +2,19 @@ import React from 'react'
 
 import "./ProductCard.css"
 
-function ProductCard() {
+function ProductCard({product}) {
+
+  console.log(product)
+
   return (
     <div className="card">
       <div className="cardImageWrapper">
-        <img className="cardImage" src="https://images1.vinted.net/t/03_00a9b_3Sa9dujA69VGiynsbzZKNtNW/f800/1682955880.jpeg?s=a677955a532d78cc37e615ceeb87d5e10d729191" alt="" />
+        <img className="cardImage" src={product.img[0]} alt="placeholderImage" />
       </div>
       <div className="cardText">
-        <h5>Price</h5>
-        <h6>Brand</h6>
+        <h1>{product.name}</h1>
+        <h5>{product.price}</h5>
+        <h6>{product.description}</h6>
       </div>  
     </div>
   )

@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
  
+import ProductCard from "../../components/ProductCard/ProductCard";
+
 const API_URL = "http://localhost:5005";
 
 function ProductsListPage() {
@@ -11,15 +13,10 @@ function ProductsListPage() {
 
     const storedToken = localStorage.getItem("authToken");
 
-    const getAllProducts = () => {
-        axios.get(`${API_URL}/api/products`, 
-        { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(response => setProducts(response.data))
-        .catch(err => console.log(err))
-    }
-
     useEffect(() => {
-        getAllProducts()
+        axios.get(`${API_URL}/api/products`, { headers: { Authorization: `Bearer ${storedToken}` } })
+            .then(response => setProducts(response.data))
+            .catch(err => console.log(err))
     }, [])
 
 
@@ -32,13 +29,13 @@ function ProductsListPage() {
             
                 <Link to={`/products/${product._id}`}>
 
-                    <img src={product.img}/>
+                    <img src={product.img} alt=""/>
                     <h3>{product.title}</h3>
                     <p>{product.description}</p>
                     <p>{product.price}</p>
 
                 </Link>
-
+                <ProductCard product={product}/>
             </div>
 
         ))}

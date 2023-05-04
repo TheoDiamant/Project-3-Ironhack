@@ -1,9 +1,6 @@
 .card {
     margin: 5px;
-}
-
-.cardImageWrapper {
-    height: 80%;
+    border: 1px dashed black;
 }
 
 .cardImage {
