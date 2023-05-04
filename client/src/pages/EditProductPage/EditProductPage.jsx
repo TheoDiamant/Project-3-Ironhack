@@ -87,11 +87,11 @@ function EditProjectPage() {
                         <p>Price</p>
                         <input name="price" type="number" alt="" onChange={handleChange} value={product.price}></input>
                     </div>
-                    <button type="submit">Upload</button>
+                    <button className="productFormButton" onClick={handleSubmit}>Upload</button>
                 </form>
 
             </div>
-                <button className="productFormButton" onClick={deleteProduct}>Delete Product</button>
+                <button className="deleteProductButton" onClick={deleteProduct}>DELETE PRODUCT</button>
         </>
     );
   }

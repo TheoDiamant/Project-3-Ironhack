@@ -23,7 +23,6 @@
     background-color: white;
     text-align: left;
     margin-bottom: 20px;
-    height: 30%;
 }
 
 .newImagesDiv {
@@ -64,4 +63,22 @@
 
 .editFormDiv > input {
     width: 50%;
+}
+
+.deleteProductButton {
+    background: #b74848;
+    border: 1px solid #b74848;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 16px;
+    text-decoration: none;
+    transition: 0.3s ease background;
+    width: 100%;
+}
+
+.deleteProductButton:hover {
+    background: #fff;
+    color: #b74848;
+    transition: 0.3s ease background;
 }
