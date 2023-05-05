@@ -4,7 +4,7 @@ import "./ProductCard.css"
 
 import { Link } from "react-router-dom";
 
-function ProductCard({product}) {
+function ProductCard({product, user}) {
 
   console.log(product)
 
@@ -16,12 +16,12 @@ function ProductCard({product}) {
           <div class="row">
             <div class="el-wrapper">
               <div class="box-up">
-                <img class="img" src="http://code.slicecrowd.com/labs/4/images/t-shirt.png" alt=""/>
+                <img class="img" src={product.img} alt=""/>
                 <div class="img-info">
                   <div class="info-inner">
 
                     <span class="p-name">{product.title}</span>
-                    <span class="p-company">Yeezy</span>
+                    <span class="p-company">{console.log(product)}</span>
                     <span class="p-company">{product.price}</span>
 
                   </div>

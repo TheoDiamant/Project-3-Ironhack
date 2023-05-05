@@ -52,7 +52,9 @@ router.get("/products", (req, res, next) => {
     
 
     Product.find()
+    .populate("user")
     .then(allProducts => {
+      console.log(allProducts);
         res.json(allProducts)
     })
     .catch(err => res.json(err))
