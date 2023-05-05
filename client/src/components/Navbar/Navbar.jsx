@@ -30,7 +30,7 @@ function Navbar() {
           <>
             <button className="button invertedColors" onClick={logOutUser}>Logout</button>
 
-            <Link to="/profile">
+            <Link to="/member">
               <button className="button normalColors">Profile</button>
             </Link>
           </>

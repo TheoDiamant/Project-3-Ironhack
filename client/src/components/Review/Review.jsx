@@ -1,9 +1,11 @@
 import "./Review.css"
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import {useParams } from "react-router-dom";
- 
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import ReviewImageInput from "../../components/ReviewImageInput/ReviewImageInput.jsx";
+
 const API_URL = "http://localhost:5005";
 
 function Review() {
@@ -12,11 +14,19 @@ function Review() {
 
     const { productId } = useParams()
 
+    const [imagesLoading, setImagesLoading] = useState(false)
+    const [imageURLs, setImageURLs] = useState([])
+
     const [review, setReview] = useState({
-        img: "",
+        img: [""],
         title: "",
         message: ""
     })
+    
+    useEffect(() => {
+        setReview(prevState => ({...prevState, img: imageURLs}))
+    }, [imageURLs])
+
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -31,9 +41,26 @@ function Review() {
         .then(response => {
             console.log("success")
         })
-
         
     }
+
+    function handleImages(files) {
+        const imageData = new FormData()
+
+        for (let i = 0; i < files.length; i++) {
+            imageData.append("image", files[i])
+        }
+        
+        console.log(imageData)
+        axios.post(`${API_URL}/api/uploadmany`, imageData)
+            .then(response => {
+                setImageURLs(response.data)
+                setImagesLoading(!imagesLoading)
+            })
+            .catch(err => console.log(err))
+    }
+    
+
   return (
 
     <div>
@@ -41,8 +68,9 @@ function Review() {
 
                 <h1>Add a Review</h1>
 
-                     {/* DONT FORGET TO ADD AN INPUT FOR THE IMAGE */}
+                    <ReviewImageInput imagesLoading={imagesLoading} setImageURLs={setImageURLs} imageURLs={imageURLs} handleImages={handleImages}/>
 
+                
                     <input name="title" type="text" alt="" onChange={handleChange}></input>
                     <textarea name="message" type="text" onChange={handleChange}></textarea>
 
@@ -54,6 +82,7 @@ function Review() {
 
     </div>
   )
+
 
 }
 

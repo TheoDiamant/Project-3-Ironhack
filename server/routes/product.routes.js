@@ -42,7 +42,13 @@ router.post("/products", isAuthenticated, (req, res, next) => {
 
     Product.create({ ...req.body, user: req.payload._id  })
     .then(response => {
-      res.json(response)})
+
+      res.json(response)
+
+      return User.findByIdAndUpdate(req.payload._id, {
+        $push: {product: response._id}},
+        {new: true})
+    })
     .catch(err => res.json(err))
 })
 
@@ -54,7 +60,6 @@ router.get("/products", (req, res, next) => {
     Product.find()
     .populate("user")
     .then(allProducts => {
-      console.log(allProducts);
         res.json(allProducts)
     })
     .catch(err => res.json(err))
@@ -128,10 +133,21 @@ router.post("/products/:productId/offer", isAuthenticated, (req, res, next) => {
       return;
     }
 
-    Offer.create({price, message, user: req.payload._id, product: productId})
-    .then(response => res.json(response.data))
-    .catch(err => res.json(err))
+    let offer;
 
+    Offer.create({price, message, user: req.payload._id, product: productId})
+    .then(response =>{
+      offer = response
+      return User.findByIdAndUpdate(req.payload._id, {$push: {offer: response._id}, },{new: true})
+      })
+      .then(() => {
+        return Product.findByIdAndUpdate(productId, {$push: {offer: offer._id}, },{new: true} )
+      })
+      .then(() => {
+        res.json(response.data)
+      })
+      .catch(err => res.json(err))
+      
 })
 
 
@@ -140,18 +156,28 @@ router.post("/products/:productId/review", isAuthenticated, (req, res, next) => 
 
   const { productId } = req.params
 
-  const { title, message } = req.body
+  const { title, message, img } = req.body
 
   if (!mongoose.Types.ObjectId.isValid(productId)) {
       res.status(400).json({ message: 'Specified id is not valid' });
       return;
     }
 
-    Review.create({title, message, user: req.payload._id, product: productId})
-    .then(response => res.json(response))
-    .catch(err => res.json(err))
+    let review;
 
-})
+    Review.create({ title, message, img, user: req.payload._id, product: productId })
+      .then(response => {
+        review = response;
+        return User.findByIdAndUpdate(req.payload._id, { $push: { review: response._id } }, { new: true });
+      })
+      .then(() => {
+        return Product.findByIdAndUpdate(productId, { $push: { review: review._id } }, { new: true });
+      })
+      .then(() => {
+        res.json(review);
+      })
+      .catch(err => res.json(err));
+  });
 
 // Route to get the review for a product //////// WORK  ////////
 router.get("/products/:productId/review", (req, res, next) => {
@@ -188,6 +214,8 @@ router.get("/products/:productId/offer", (req, res, next) => {
     .catch(err => res.json(err))
 
 })
+
+
 
 
 module.exports = router;

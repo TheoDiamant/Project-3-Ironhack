@@ -78,11 +78,13 @@ function ProductDetailPage() {
             </Link>  
 
             <Offer />
+
             <Review />
 
             {review === null ? <p>Loading reviews...</p> : review.map(reviews => {
                 return (
                     <div key={reviews._id}>
+                    <img src={reviews.img}/>
                         <h1>{reviews.title}</h1>
                         <p>{reviews.message}</p>
                     </div>
