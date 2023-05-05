@@ -1,13 +1,17 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import "./ImageInput.css"
 
 function ImageInput({imagesLoading, handleImages, imageURLs, setImageURLs}) {
 
-    const deleteButtons = document.getElementsByClassName("removeImageButton")
+    const deleteButtons = [...document.getElementsByClassName("removeImageButton")]
+ 
     const canvasRefs = useRef([null, null, null, null])
+    const [imageURLsCopy, setImageURLsCopy] = useState([])
+    const [triggered, setTriggered] = useState(false)
 
     useEffect(() => {
         loadCanvases()
+        setImageURLsCopy(imageURLs)
     }, [imagesLoading])
 
     function loadCanvases() {
@@ -26,10 +30,23 @@ function ImageInput({imagesLoading, handleImages, imageURLs, setImageURLs}) {
                 button.style.display = "inline-block"
             }
         })
-        console.log(imageURLs)
     }
 
     function handleFileInput(event) {
+        if(triggered === true) {
+            deleteButtons.forEach(button => {
+                button.style.display = "none"
+            })
+            canvasRefs.current.forEach(canvas => {
+                canvas.classList.remove("fade-in")
+                const ctx = canvas.getContext("2d")
+                ctx.clearRect(0, 0, canvas.width, canvas.height)
+            })
+        }
+        else {
+            setTriggered(true)
+        }
+
         handleImages(event)
         const length = event.target.files.length
         for (let i = 0; i < length; i++) {
@@ -45,9 +62,11 @@ function ImageInput({imagesLoading, handleImages, imageURLs, setImageURLs}) {
 
     function handleDelete(index, e) {
         e.preventDefault()
-        const newURLs = imageURLs.splice(index, 1)
+
+        const newURLs = imageURLs.filter(element => element !== imageURLsCopy[index])
+        
         setImageURLs(newURLs)
-        console.log(imageURLs)
+
         const canvas = canvasRefs.current[index]
         const button = deleteButtons[index]
         const ctx = canvas.getContext("2d")
