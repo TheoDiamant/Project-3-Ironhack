@@ -1,6 +1,6 @@
 import "./AddProduct.css"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -10,16 +10,23 @@ const API_URL = "http://localhost:5005";
 
 function AddProduct() {
 
+    
     const navigate = useNavigate()
-
+    
     const storedToken = localStorage.getItem("authToken");
-
+    
+    const [imagesLoading, setImagesLoading] = useState(false)
+    const [imageURLs, setImageURLs] = useState([])
     const [newProduct, setNewProduct] = useState({
         img: [""],
         title: "",
         description: "",
         price: 0,
     })
+
+    useEffect(() => {
+        setNewProduct(prevState => ({...prevState, img: imageURLs}))
+    }, [imageURLs])
 
     function handleChange(event) {
         const { name, value } = event.target
@@ -37,7 +44,10 @@ function AddProduct() {
         
         console.log(imageData)
         axios.post(`${API_URL}/api/uploadmany`, imageData)
-            .then(response => setNewProduct(prevState => ({...prevState, img: response.data})))
+            .then(response => {
+                setImageURLs(response.data)
+                setImagesLoading(!imagesLoading)
+            })
             .catch(err => console.log(err))
     }
 
@@ -55,7 +65,7 @@ function AddProduct() {
                 <h3>Add a product</h3>
                 <div className="imageFormDiv">
                     <p>Add up to 5 images</p>
-                    <ImageInput handleImages={handleImages}/>
+                    <ImageInput imagesLoading={imagesLoading} setImageURLs={setImageURLs} imageURLs={imageURLs} handleImages={handleImages}/>
                 </div>
                 <div className="formDiv">
                     <p>Title</p>
