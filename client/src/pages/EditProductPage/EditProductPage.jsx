@@ -12,13 +12,25 @@ function EditProjectPage() {
 
     const { productId } = useParams();   
     const navigate = useNavigate();  
-
+    
     const [product, setProduct] = useState({
         image: "",
         title: "",
         description: "",
         price: 0,
     })
+
+    useEffect(() => {
+        axios.get(`${API_URL}/api/products/${productId}`)
+            .then((response) => {
+                const oneProduct = response.data;
+                setProduct(oneProduct)
+            })
+            .catch((error) => console.log(error));
+        
+    }, [productId]);
+
+    ///////////////////////
 
     function handleChange(event) {
         const { name, value } = event.target
@@ -32,19 +44,8 @@ function EditProjectPage() {
                 console.log("success")
                 navigate(`/products/${productId}`)
             })
+            .catch(err => console.log(err))
     }
-
-    useEffect(() => {
-        axios
-          .get(`${API_URL}/api/products/${productId}`)
-          .then((response) => {
-            const oneProduct = response.data;
-            setProduct(oneProduct)
-          })
-          .catch((error) => console.log(error));
-        
-      }, [productId]);
-      
 
       const deleteProduct = () => {                    //  <== ADD
         // Make a DELETE request to delete the project
@@ -58,7 +59,7 @@ function EditProjectPage() {
           .catch((err) => console.log(err));
       };  
      
-
+      ///////////////////////
     
     return (
         <>
@@ -66,32 +67,26 @@ function EditProjectPage() {
                 <form className="editProductForm" onSubmit={handleSubmit}>
                     <h3>Edit product</h3>
                     <div className="editImageFormDiv">
-                        <div className="newImagesDiv">
-                            <p>Change images</p>
-                            <input className="imageInput" name="image" type="file" multiple alt="" onChange={handleChange}></input>
-                        </div>
-                        <div className="divider"></div>
-                        <div className="oldImagesDiv">
-
-                        </div>
+                        <p>Change images</p>
+                        <input className="imageInput" name="image" type="file" multiple alt="" onChange={handleChange}></input>
                     </div>
                     <div className="editFormDiv">
                         <p>Title</p>
                         <input name="title" type="text" alt="" onChange={handleChange} value={product.title}></input>
                     </div>
-                    <div className="editFormDiv">
+                    <div className="editFormDiv descriptionDiv">
                         <p>Description</p>
-                        <input name="description" type="text" alt="" onChange={handleChange} value={product.description}></input>
+                        <textarea name="description" type="text" alt="" onChange={handleChange} value={product.description}></textarea>
                     </div>
                     <div className="editFormDiv">
                         <p>Price</p>
                         <input name="price" type="number" alt="" onChange={handleChange} value={product.price}></input>
                     </div>
-                    <button className="productFormButton" onClick={handleSubmit}>Upload</button>
+                    <button className="uploadButton" onClick={handleSubmit}>EDIT</button>
                 </form>
 
             </div>
-                <button className="deleteProductButton" onClick={deleteProduct}>DELETE PRODUCT</button>
+            {/* <button className="deleteProductButton" onClick={deleteProduct}>DELETE PRODUCT</button> */}
         </>
     );
   }

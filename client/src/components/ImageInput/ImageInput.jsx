@@ -47,9 +47,14 @@ function ImageInput({imagesLoading, handleImages, imageURLs, setImageURLs}) {
             setTriggered(true)
         }
 
-        handleImages(event)
-        const length = event.target.files.length
-        for (let i = 0; i < length; i++) {
+        let files = [...event.target.files]
+        
+        if(files.length > 4) {
+            files = files.slice(0, 4)
+        }
+        
+        handleImages(files)
+        for (let i = 0; i < files.length; i++) {
             canvasRefs.current[i].classList.add("loading")
         }
     }

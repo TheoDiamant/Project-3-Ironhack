@@ -10,7 +10,6 @@ const API_URL = "http://localhost:5005";
 
 function AddProduct() {
 
-    
     const navigate = useNavigate()
     
     const storedToken = localStorage.getItem("authToken");
@@ -28,14 +27,9 @@ function AddProduct() {
         setNewProduct(prevState => ({...prevState, img: imageURLs}))
     }, [imageURLs])
 
-    function handleChange(event) {
-        const { name, value } = event.target
-        setNewProduct(prevState => ({...prevState, [name]: value}))
-        console.log(newProduct)
-    }
+    ///////////////////////
 
-    function handleImages(event) {
-        const files = event.target.files
+    function handleImages(files) {
         const imageData = new FormData()
 
         for (let i = 0; i < files.length; i++) {
@@ -51,20 +45,30 @@ function AddProduct() {
             .catch(err => console.log(err))
     }
 
+    function handleChange(event) {
+        const { name, value } = event.target
+        setNewProduct(prevState => ({...prevState, [name]: value}))
+        console.log(newProduct)
+    }
+
+
     function handleSubmit(event) {
         event.preventDefault();
         axios.post(`${API_URL}/api/products`, newProduct, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(response => {
                 navigate(`/products/${response.data._id}`)
             })
+            .catch(err => console.log(err))
     }
+
+    ///////////////////////
 
     return (
         <div className="baseDiv">
             <form className="addProductForm" onSubmit={handleSubmit}>
                 <h3>Add a product</h3>
                 <div className="imageFormDiv">
-                    <p>Add up to 5 images</p>
+                    <p>Add up to 4 images</p>
                     <ImageInput imagesLoading={imagesLoading} setImageURLs={setImageURLs} imageURLs={imageURLs} handleImages={handleImages}/>
                 </div>
                 <div className="formDiv">
