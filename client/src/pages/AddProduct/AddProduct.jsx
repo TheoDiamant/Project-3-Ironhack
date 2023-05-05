@@ -2,6 +2,7 @@ import "./AddProduct.css"
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 
 import ImageInput from "../../components/ImageInput/ImageInput";

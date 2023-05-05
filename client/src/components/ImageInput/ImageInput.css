@@ -5,9 +5,10 @@
     flex: 1;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.imageInputDiv > div {
+.imageInputHalfDiv {
     flex-basis: calc(50% - 15%/2);
     display: flex;
     justify-content: space-evenly;
@@ -15,11 +16,11 @@
 }
 
 .canvasDiv {
+    flex: 1;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
 }
 
 .removeImageButton {
@@ -66,10 +67,6 @@
     100% { opacity: 1; }
 }
 
-.imageInputDiv img {
-    height: 60px;
-}
-
 .hiddenImageInput {
     display: none;
 }
@@ -78,10 +75,16 @@
     position: absolute;
     border: 1px solid black;
     border-radius: 5%;
-    height: 90%;
-    width: 15%;
     background-color: white;
+    width: 14.5%;
+    aspect-ratio: 1/1;
+    left: calc(50% - 14.5%/2);
     cursor: pointer;
-    top: 5%;
-    left: calc(50% - 15%/2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.uploadIcon {
+    height: 50%;
 }
