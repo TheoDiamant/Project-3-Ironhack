@@ -15,13 +15,11 @@ router.get("/member", isAuthenticated, (req, res, next) => {
 
     User.findById(req.payload._id)
     .populate("review")
+    .populate("product")
     .then(response => {
       res.json(response)
     })
 
-
-
-  
   })
 
   module.exports = router;

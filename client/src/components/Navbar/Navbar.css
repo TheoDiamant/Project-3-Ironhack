@@ -1,4 +1,4 @@
-.navbar {
+.projectNavbar {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -26,6 +26,7 @@
 }
 
 .searchBarForm {
+    height: 70%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -34,8 +35,9 @@
 }
 
 .searchBar {
+    height: 100%;
     width: 100%;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     background-color: #D3D3D3;
     border: 0;
     outline: none;
@@ -61,8 +63,7 @@
 .button {
     background-color: white;
     border-radius: 3px;
-    padding: 5px;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .normalColors {

@@ -8,7 +8,7 @@ function Navbar() {
   const { isLoggedIn, logOutUser } = useContext(AuthContext);
 
   return (
-    <nav className="navbar">
+    <nav className="projectNavbar">
       <div className="logoDiv">
         <img src="https://www.kadencewp.com/wp-content/uploads/2020/10/alogo-1.png" alt=""/>
       </div>

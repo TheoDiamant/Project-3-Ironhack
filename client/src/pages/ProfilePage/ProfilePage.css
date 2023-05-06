@@ -1,14 +1,17 @@
 .profilePageDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #C2634B;
-    height: 92vh;
+    min-height: 92vh;
 }
 
 .topDiv {
-    margin: 0 10%;
-    width: 100%;
+    width: 80%;
     display: flex;
     text-align: left;
-    height: 40vh;
+    height: 320px;
+    margin-bottom: 50px;
 }
 
 .profilePictureDiv {
@@ -19,7 +22,7 @@
 }
 
 .profilePic {
-    height: 80%;
+    width: 80%;
     border-radius: 50%;
 }
 
@@ -30,7 +33,7 @@
 }
 
 .infoTextDiv {
-    flex-basis: 50%;
+    flex: 1;
     background-color: #f7f7f7;
     margin: 10px;
     border-radius: 5px;
@@ -46,17 +49,17 @@
 }
 
 .divider {
-    margin: 0 10%;
-    font-size: 2rem;
+    height: 10px;
+    margin: 0;
+    font-size: 5rem;
     width: 80%;
-    color: #f7f7f7;
+    background-color: black;
 }
 
 .tabButtonDiv {
-    width: 100%;
+    width: 80%;
     display: flex;
     justify-content: flex-start;
-    margin: 0 10%;
 }
 
 .tabButton {
@@ -69,4 +72,16 @@
 
 .tabButton:hover {
     background-color: lightgrey;
+}
+
+.reviewsAndProductsDiv {
+    background-color: white;
+    width: 80%;
+    flex: 1;
+}
+
+@media only screen and (min-width: 1920px) {
+    .topDiv, .tabButtonDiv, .divider, .reviewsAndProductsDiv {
+        width: 50%;
+    }
 }

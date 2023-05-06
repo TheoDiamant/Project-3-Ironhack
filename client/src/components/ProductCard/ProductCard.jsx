@@ -16,7 +16,7 @@ function ProductCard({product, user}) {
           <div class="row">
             <div class="el-wrapper">
               <div class="box-up">
-                <img class="img" src={product.img} alt=""/>
+                <img class="img" src={product.img[0]} alt=""/>
                 <div class="img-info">
                   <div class="info-inner">
 

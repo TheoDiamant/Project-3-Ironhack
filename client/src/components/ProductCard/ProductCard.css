@@ -121,7 +121,9 @@ body {
   /* ease-out */
 }
 
-
+.img {
+  max-width: 100;
+}
 
 
 

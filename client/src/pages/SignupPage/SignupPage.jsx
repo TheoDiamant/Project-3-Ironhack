@@ -2,6 +2,7 @@ import "./SignupPage.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
+import DropDownCountry from "../../components/DropDownCountry/DropDownCountry";
 
 
 
@@ -92,6 +93,8 @@ function SignupPage() {
   <button title="Sign In" type="submit" class="sign-in_btn">
     <span>Sign In</span>
   </button>
+
+  <DropDownCountry />
 
   <div class="separator">
     <hr class="line"></hr>
