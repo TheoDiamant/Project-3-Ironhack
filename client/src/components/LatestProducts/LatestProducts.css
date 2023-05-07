@@ -1,14 +1,12 @@
-.latestProductsText {
-    text-align: left;
-    margin: 15px;
-    margin-left: 28vh;
+.latestProductsDiv {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 
-.latestProductsDiv {
-    margin: 10px;
-    display: grid;
-    grid-template-columns: 20% 20% 20% 20%;
-    margin-left: 28vh;
-    font-weight: 400;
-    background-color: rgb(247 247 247);
+@media only screen and (min-width: 1920px) {
+    .latestProductsDiv {
+        width: 50%;
+    }
 }

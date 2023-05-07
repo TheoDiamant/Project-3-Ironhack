@@ -19,19 +19,23 @@ function LatestProducts() {
       
   }, [])
 
+  const testProduct = {
+    _id: 1001,
+    img: ["https://www.cityoftaylor.org/wp-content/uploads/2014/02/500X50032.gif"],
+    title: "Test product",
+    price: 120,
+    description: "This is a test product"
+  }
+
 
   return (
-    <>
-        <h1 className="latestProductsText">Latest Products</h1>
         <div className="latestProductsDiv">
           {latestProducts.map(product => {
             return(
               <ProductCard product={product} />
-
             )
           })}
         </div>
-    </>
   )
 }
 

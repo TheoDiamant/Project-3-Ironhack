@@ -1,6 +1,6 @@
 import "./ProductsTab.css"
 
-import ProfileProductCard from "../ProfileProductCard/ProfileProductCard.jsx"
+import ProductCard from "../ProductCard/ProductCard"
 
 function ProductsTab({products}) {
 
@@ -13,7 +13,7 @@ function ProductsTab({products}) {
                 <div className="productsTabDiv">
                     {products.map(product => {
                         return(
-                            <ProfileProductCard product={product}/>
+                            <ProductCard product={product}/>
                         )
                     })}
                 </div>

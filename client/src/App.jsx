@@ -1,7 +1,5 @@
 import "./App.css";
 
-
-
 import { Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage/HomePage.jsx";
@@ -17,6 +15,7 @@ import ProductsListPage from "./pages/ProductsListPage/ProductsListPage.jsx";
 import AddProduct from "./pages/AddProduct/AddProduct.jsx"
 import ProductDetailPage from "./pages/ProductDetailPage/ProductDetailPage.jsx"
 import EditProductPage from "./pages/EditProductPage/EditProductPage.jsx"
+
 
 function App() {
   return (
@@ -59,6 +58,7 @@ function App() {
         <Route path="/products/:productId" element={<ProductDetailPage />} />
 
         <Route path="/products/:productId/edit" element={<EditProductPage />} />
+
       </Routes>
     </div>
   );
