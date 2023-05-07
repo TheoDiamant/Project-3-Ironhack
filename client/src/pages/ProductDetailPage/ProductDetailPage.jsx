@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import Offer from "../../components/Offer/Offer";
 import Review from "../../components/Review/Review";
 import ProductCard from "../../components/ProductCard/ProductCard"
+import YouMightAlsoLike from "../../components/LatestProducts/LatestProducts"
+
 
 const API_URL = "http://localhost:5005";     
 
@@ -162,6 +164,12 @@ function ProductDetailPage() {
 
             </div>
         </div>
+        <div>
+
+            <YouMightAlsoLike />
+            
+        </div>
+
         </main>
 
             {/* {product &&  (

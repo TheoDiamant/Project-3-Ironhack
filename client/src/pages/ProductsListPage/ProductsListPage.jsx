@@ -25,9 +25,8 @@ function ProductsListPage() {
        <div className="listDiv"> 
             {products.map(product => {
                 const user = product.user[0]; 
-                return(
-                    <ProductCard key={product._id} product={product} user={user}/>
-                )
+                return <ProductCard key={product._id} product={product} user={user}/>
+                
             })} 
 
            

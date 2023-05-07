@@ -122,7 +122,6 @@ img.avatar-card {
 .bloc-1 {
   display: flex;
   justify-content: space-between;
-  margin: 20px 0 40px 0;
   line-height: 20px;
   font-size: 13px;
   border-bottom: 1px solid var(--dark-grey);
@@ -164,7 +163,7 @@ img.avatar-card {
 }
 
 .bloc-2 {
-  margin-bottom: 30px;
+  margin-bottom: 18px;
   text-align: left;
 }
 .bloc-2 p:first-child {
