@@ -4,42 +4,40 @@ import "./ProductCard.css"
 
 import { Link } from "react-router-dom";
 
-function ProductCard({product, user}) {
-
-  console.log(product)
+function ProductCard({product}) {
 
   return (
     <>
     <Link to={`/products/${product._id}`}>
-      <div class="container page-wrapper">
-        <div class="page-inner">
-          <div class="row">
-            <div class="el-wrapper">
-              <div class="box-up">
-                <img class="img" src={product.img[0]} alt=""/>
-                <div class="img-info">
-                  <div class="info-inner">
+      <div className="container page-wrapper">
+        <div className="page-inner">
+          <div className="row">
+            <div className="el-wrapper">
+              <div className="box-up">
+                <img className="img" src={product.img[0]} alt=""/>
+                <div className="img-info">
+                  <div className="info-inner">
 
-                    <span class="p-name">{product.title}</span>
-                    <span class="p-company">{console.log(product)}</span>
-                    <span class="p-company">{product.price}</span>
+                    <span className="p-name">{product.title}</span>
+                    <span className="p-company">{}</span>
+                    <span className="p-company">{product.price}</span>
 
                   </div>
-                  <div class="a-size">Description : <span class="size">{product.description}</span></div>
+                  <div className="a-size">Description : <span className="size">{product.description}</span></div>
                 </div>
               </div>
-                <div class="box-down-container">
-                  <div class="box-down">
-                    <span class="add-to-cart">
-                      <a href="">Add in cart</a>
+                <div className="box-down-container">
+                  <div className="box-down">
+                    <span className="add-to-cart">
+                      {/* <a href="">Add in cart</a> */}
                     </span>
                   </div>
-                  <div class="box-down">
-                    <div class="h-bg">
-                      <div class="h-bg-inner"></div>
+                  <div className="box-down">
+                    <div className="h-bg">
+                      <div className="h-bg-inner"></div>
                     </div>
                     
-                    <a href="">Make an offer</a>
+                    {/* <a href="">Make an offer</a> */}
                   </div>
                 </div>
               </div>
