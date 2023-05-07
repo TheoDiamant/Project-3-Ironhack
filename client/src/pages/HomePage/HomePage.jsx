@@ -8,8 +8,10 @@ function HomePage() {
       <div className="firstSection"> 
         <h1>First Section</h1>
       </div>
-
-      <LatestProducts />
+      <div className="secondSection">
+      <h1 className="latestProductsText">Latest Products</h1>
+        <LatestProducts />
+      </div>
     </div>
   );
 }
