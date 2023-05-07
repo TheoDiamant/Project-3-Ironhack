@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import axios from "axios"
 
-import "./LatestProducts.css"
+import "../LatestProducts/LatestProducts.css"
 import ProductCard from "../ProductCard/ProductCard"
 import { useState } from 'react';
 
