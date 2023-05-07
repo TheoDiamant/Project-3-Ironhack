@@ -1,8 +1,10 @@
 .firstSection {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 25vh;
-    background-color: #C2634B;
-    color: white;
+    position: relative;
 }
+
+.firstSection .banner {
+    width: 100vw;
+    height: 490px;
+    object-fit: cover;
+}
+

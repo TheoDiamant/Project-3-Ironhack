@@ -6,8 +6,8 @@ function HomePage() {
   return (
     <div>
       <div className="firstSection"> 
-        <h1>First Section</h1>
-      </div>
+        <img class="banner" src="https://myvinted-lereacteur-2021.netlify.app/static/media/hero-banner.bebb87dd.jpg"/>
+              </div>
 
       <LatestProducts />
     </div>
