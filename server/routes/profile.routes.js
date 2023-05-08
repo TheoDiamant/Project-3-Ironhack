@@ -11,9 +11,11 @@ const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 
 
 // Route to get the info on the profile page of the user
-router.get("/member", isAuthenticated, (req, res, next) => {
+router.get("/member/", isAuthenticated, (req, res, next) => {
 
-    User.findById(req.payload._id)
+  const { userId } = req.payload._id 
+
+    User.findById(userId)
     .populate("review")
     .populate("product")
     .then(response => {
@@ -24,7 +26,9 @@ router.get("/member", isAuthenticated, (req, res, next) => {
 
   router.get("member/edit", isAuthenticated, (req, res , next) => {
 
-    User.findById(req.payload._id)
+    const { userId } = req.payload._id 
+
+    User.findById(userId)
     .then(response => {
       res.json(response)
     })
