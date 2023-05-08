@@ -22,6 +22,11 @@ function AddProduct() {
         title: "",
         description: "",
         price: 0,
+        state: "",
+        brand: "",
+        size: "",
+        color: "",
+        country: "",
     })
 
     useEffect(() => {
@@ -81,9 +86,9 @@ function AddProduct() {
 
                     <div>
                         <label for="file" className="upload-file">Add Pictures</label>
-                        <divc className="input-img">
+                        <div className="input-img">
                         <ImageInput imagesLoading={imagesLoading} setImageURLs={setImageURLs} imageURLs={imageURLs} handleImages={handleImages}/>
-                        </divc>
+                        </div>
                     </div>
                     <div>
                         <label>Title</label>
@@ -99,23 +104,23 @@ function AddProduct() {
                     </div>
                     <div>
                         <label>State</label>
-                        <input name="title" placeholder="ex: Good" type="text" alt="" onChange={handleChange}></input>
+                        <input name="state" placeholder="ex: Good" type="text" alt="" onChange={handleChange}></input>
                     </div>
                     <div>
                         <label>Brand</label>
-                        <input name="title" placeholder="ex: Zara" type="text" alt="" onChange={handleChange}></input>
+                        <input name="brand" placeholder="ex: Zara" type="text" alt="" onChange={handleChange}></input>
                     </div>
                     <div>
                         <label>Size</label>
-                        <input name="title" placeholder="ex: L" type="text" alt="" onChange={handleChange}></input>
+                        <input name="size" placeholder="ex: L" type="text" alt="" onChange={handleChange}></input>
                     </div>
                     <div>
                         <label>Color</label>
-                        <input name="title" placeholder="ex: Blue" type="text" alt="" onChange={handleChange}></input>
+                        <input name="color" placeholder="ex: Blue" type="text" alt="" onChange={handleChange}></input>
                     </div>
                     <div>
-                        <label>City</label>
-                        <input name="title" placeholder="Ex: Lisbon" type="text" alt="" onChange={handleChange}></input>
+                        <label>Country</label>
+                        <input name="country" placeholder="ex: France" type="text" alt="" onChange={handleChange}></input>
                     </div>
 
                     <button type="submit" className="submit-btn">ADD A PRODUCT</button>

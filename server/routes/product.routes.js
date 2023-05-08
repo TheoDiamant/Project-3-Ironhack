@@ -44,6 +44,7 @@ router.post("/products", isAuthenticated, (req, res, next) => {
     .then(response => {
 
       res.json(response)
+      console.log(response)
 
       return User.findByIdAndUpdate(req.payload._id, {
         $push: {product: response._id}},

@@ -21,6 +21,26 @@ const productSchema = new Schema(
         type: Number,
         required: [true, "price is required."],
       },
+      state: {
+        type: String,
+        
+      },
+      brand: {
+        type: String,
+        
+      },
+      size: {
+        type: String,
+        
+      },
+      color: {
+        type: String,
+        
+      },
+      country: {
+        type: String,
+        
+      },
 
       review: [{type: Schema.Types.ObjectId, ref: "Review"}],
       user: [{type: Schema.Types.ObjectId, ref: "User"}],

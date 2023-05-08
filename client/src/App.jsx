@@ -16,6 +16,7 @@ import ProductsListPage from "./pages/ProductsListPage/ProductsListPage.jsx";
 import AddProduct from "./pages/AddProduct/AddProduct.jsx"
 import ProductDetailPage from "./pages/ProductDetailPage/ProductDetailPage.jsx"
 import EditProductPage from "./pages/EditProductPage/EditProductPage.jsx"
+import UnderNavBar from "./components/UnderNavbar/UnderNavbar";
 
 /// IMPORT for New routes for chat 
 
@@ -24,6 +25,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      <UnderNavBar />
 
       <Routes>
         <Route path="/" element={<HomePage />} />

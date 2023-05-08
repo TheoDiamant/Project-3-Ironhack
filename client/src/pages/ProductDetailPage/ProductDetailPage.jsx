@@ -90,30 +90,35 @@ function ProductDetailPage() {
                         <div>
                             <p className="description-details">
                                 <span>Brand :</span>
-                                <span><strong>Zara</strong></span>
+                                {product === null ? <p>Loading brand</p> : <span><strong>{product.brand}</strong></span>}  
                             </p>
+
                             <p className="description-details">
                                 <span>Size :</span>
-                                <span><strong>L</strong></span>
+                                {product === null ? <p>Loading brand</p> : <span><strong>{product.size}</strong></span>}  
                             </p>
+
                             <p className="description-details">
                                 <span>State :</span>
-                                <span><strong>New</strong></span>
+                                {product === null ? <p>Loading brand</p> : <span><strong>{product.state}</strong></span>}  
                             </p>
+
                             <p className="description-details">
                                 <span>Color :</span>
-                                <span><strong>Blue</strong></span>
+                                {product === null ? <p>Loading brand</p> : <span><strong>{product.color}</strong></span>}  
                             </p> 
+
                             <p className="description-details">
                                 <span>Country :</span>
-                                <span><strong>France</strong></span>
+                                {product === null ? <p>Loading brand</p> : <span><strong>{product.country}</strong></span>}  
                             </p>
+
                         </div>
                     </div>
                     <div className="bloc-2">
                         <hr className="hr-design"></hr>
                         <h4>Product details :</h4>
-                        {product === null ? <p>Loading description</p> :<p className="description-general">Quarto et exilium pater non non locum est cruribus pater exilium per cum quarto in nulla lapide et exilium pater actitata in et nulla cum nomine multiplices Antiochia ut ut nulla et locum pervenissent ambo in quaedam cum pater quaedam et igitur clades lapide scilicet in Antiochia vicensimo clades lapide.</p>}  
+                        {product === null ? <p>Loading description</p> :<p className="description-general">{product.description}.</p>}  
                         <hr className="hr-design"></hr>
 
                         <div>
