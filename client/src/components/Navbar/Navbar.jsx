@@ -1,11 +1,19 @@
 import "./Navbar.css";
-import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/auth.context";
+
+import axios from "axios";
+
+
+
+const API_URL = "http://localhost:5005";     
 
 function Navbar() {
   
-  const { isLoggedIn, logOutUser } = useContext(AuthContext);
+  const { isLoggedIn, logOutUser, user } = useContext(AuthContext)
+
+
 
   return (
     <nav className="projectNavbar">
@@ -16,10 +24,10 @@ function Navbar() {
       <div className="searchBarDiv">
         <form className="searchBarForm">
           <img className="glass" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/magnifying-glass-icon.png" alt=""/>
-          <input type="text" className="searchBar" placeholder="Search for products"></input>
+          <input type="text" className="searchBar" placeholder="Search for products" ></input>
         </form>
       </div>
-
+     
       <div className="buttonsDiv">
 
         <Link to="/">
@@ -30,9 +38,9 @@ function Navbar() {
           <>
             <button className="button invertedColors" onClick={logOutUser}>Logout</button>
 
-            <Link to="/member">
-              <button className="button normalColors">Profile</button>
-            </Link>
+            <Link to={`/member/${user._id}`}>
+             <button className="button normalColors">Profile</button>
+           </Link>
           </>
         )}
 

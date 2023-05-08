@@ -24,6 +24,7 @@ import UnderNavBar from "./components/UnderNavbar/UnderNavbar";
 function App() {
   return (
     <div className="App">
+    
       <Navbar />
       <UnderNavBar />
 
@@ -31,7 +32,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         <Route
-          path="/member"
+          path="/member/:userId"
           element={
             <IsPrivate>
               <ProfilePage />

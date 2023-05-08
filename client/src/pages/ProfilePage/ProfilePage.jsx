@@ -2,6 +2,8 @@ import "./ProfilePage.css";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from 'react-router-dom';
+
 
 
 import ProductsTab from "../../components/ProductsTab/ProductsTab";
@@ -13,6 +15,8 @@ function ProfilePage() {
 
   const storedToken = localStorage.getItem("authToken");
 
+  const { userId } = useParams()
+
   const [user, setUser] = useState(null)
   const [activeTab, setActiveTab] = useState("products")
   const [loaded, setLoaded] = useState(false)
@@ -22,7 +26,7 @@ function ProfilePage() {
   }, []);
 
   const getUser = () => {
-    axios.get(`${API_URL}/api/member`, { headers: { Authorization: `Bearer ${storedToken}` } })
+    axios.get(`${API_URL}/api/member/${userId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
     .then(response => {
       const uniqueUser = response.data
       setUser(uniqueUser)
@@ -57,8 +61,8 @@ function ProfilePage() {
                   <div className="informationDiv">
 
                     <div className="infoTextDiv">
-                      <h1>{user.name}</h1>
-                      <p>Number of reviews : {user.review ? (user.review.length === 0 ? <p>No reviews yet</p> : user.review.length) : <p>Loading Reviews..</p>} ⭐️</p>          
+                      {/* <h1>{user.name}</h1>
+                      <p>Number of reviews : {user.review ? (user.review.length === 0 ? <p>No reviews yet</p> : user.review.length) : <p>Loading Reviews..</p>} ⭐️</p>           */}
                     </div>
       
                   </div>
