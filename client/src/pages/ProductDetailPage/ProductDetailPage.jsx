@@ -103,7 +103,7 @@ function ProductDetailPage() {
                             <p className="description-details">
                                 <span>Color :</span>
                                 <span><strong>Blue</strong></span>
-                            </p>
+                            </p> 
                             <p className="description-details">
                                 <span>Country :</span>
                                 <span><strong>France</strong></span>

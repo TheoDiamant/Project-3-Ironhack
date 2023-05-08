@@ -16,6 +16,8 @@ import AddProduct from "./pages/AddProduct/AddProduct.jsx"
 import ProductDetailPage from "./pages/ProductDetailPage/ProductDetailPage.jsx"
 import EditProductPage from "./pages/EditProductPage/EditProductPage.jsx"
 
+/// IMPORT for New routes for chat 
+
 
 function App() {
   return (
