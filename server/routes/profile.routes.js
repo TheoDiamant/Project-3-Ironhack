@@ -11,9 +11,9 @@ const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 
 
 // Route to get the info on the profile page of the user
-router.get("/member/", isAuthenticated, (req, res, next) => {
+router.get("/member/:userId", isAuthenticated, (req, res, next) => {
 
-  const { userId } = req.payload._id 
+  const { userId } = req.params
 
     User.findById(userId)
     .populate("review")

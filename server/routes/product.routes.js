@@ -68,6 +68,8 @@ router.get("/products", (req, res, next) => {
 })
 
 
+
+
 // Route to get a product by ID  //////// WORK  ////////
 
 router.get("/products/:productId", (req, res, next) => {
