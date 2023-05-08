@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage/HomePage.jsx";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
 import SignupPage from "./pages/SignupPage/SignupPage.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
+import EditProfilepage from "./pages/EditProfilePage/EditProfilepage";
 
 import Navbar from "./components/Navbar/Navbar.jsx";
 import IsPrivate from "./components/IsPrivate/IsPrivate.jsx";
@@ -32,6 +33,14 @@ function App() {
           element={
             <IsPrivate>
               <ProfilePage />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/member/edit"
+          element={
+            <IsPrivate>
+              <EditProfilepage />
             </IsPrivate>
           }
         />

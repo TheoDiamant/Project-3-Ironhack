@@ -1,4 +1,4 @@
-.baseDiv {
+/* .baseDiv {
     display: flex;
     justify-content: center;
     background-color: #C2634B;
@@ -79,4 +79,84 @@
     background: #fff;
     color: #43a3e6;
     transition: 0.3s ease background;
+} */
+
+
+.div-form {
+    background-color: #f5f6f7;
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-form .upload-file{
+    color: #09aeb7;
+    font-weight: 600;
+    margin: 0 auto;
+    border: 1px solid #09aeb7;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.div-form form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: 0 auto;
+    font-size: 14px;
+}
+
+.div-form form div {
+    background-color: #FFF;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.div-form form input {
+    font-family: "Open Sans",sans-serif;
+    width: 300px;
+    font-size: 12px;
+    margin-left: 40%;
+    border: none;
+    border-bottom: 1.8px solid #f5f6f7;
+
+}
+
+.div-form  form textarea {
+    height: 20vh;
+    font-family: "Open Sans",sans-serif;
+    width: 300px;
+    font-size: 12px;
+    margin-left: 40%;
+    border: none;
+    border-bottom: 1.8px solid var(--light-grey);
+}
+
+.div-form label {
+    max-width: 200px;
+}
+
+
+.submit-btn {
+
+    background-color: #09aeb7;
+    color: #fff;
+    border: 1px solid #09aeb7;
+    border-radius: 5px;
+    font-family: "Open Sans",sans-serif;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px 63px;
+    margin: 30px auto 0;
+
+}
+
+.input-img {
+    display: none;
 }

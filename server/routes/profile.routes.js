@@ -22,4 +22,13 @@ router.get("/member", isAuthenticated, (req, res, next) => {
 
   })
 
+  router.get("member/edit", isAuthenticated, (req, res , next) => {
+
+    User.findById(req.payload._id)
+    .then(response => {
+      res.json(response)
+    })
+
+  })
+
   module.exports = router;

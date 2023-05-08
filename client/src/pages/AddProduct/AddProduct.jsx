@@ -65,8 +65,67 @@ function AddProduct() {
     ///////////////////////
 
     return (
-        <div className="baseDiv">
-            <form className="addProductForm" onSubmit={handleSubmit}>
+
+        <div className="div-form">
+
+            <div className="wrapper">
+
+                <form onSubmit={handleSubmit}>
+
+       
+
+                    {/* <div className="imageFormDiv">
+                        <p>Add up to 4 images</p>
+                        <ImageInput imagesLoading={imagesLoading} setImageURLs={setImageURLs} imageURLs={imageURLs} handleImages={handleImages}/>
+                    </div> */}
+
+                    <div>
+                        <label for="file" className="upload-file">Add Pictures</label>
+                        <divc className="input-img">
+                        <ImageInput imagesLoading={imagesLoading} setImageURLs={setImageURLs} imageURLs={imageURLs} handleImages={handleImages}/>
+                        </divc>
+                    </div>
+                    <div>
+                        <label>Title</label>
+                        <input name="title" placeholder="Name of the product" type="text" alt="" onChange={handleChange}></input>
+                    </div>
+                    <div>
+                        <label>Description</label>
+                        <textarea name="description" placeholder="Description of the product" type="text" alt="" onChange={handleChange}></textarea>
+                    </div>
+                    <div>
+                        <label>Price</label>
+                        <input name="price" type="number" alt=""  placeholder="$00.00" onChange={handleChange}></input>
+                    </div>
+                    <div>
+                        <label>State</label>
+                        <input name="title" placeholder="ex: Good" type="text" alt="" onChange={handleChange}></input>
+                    </div>
+                    <div>
+                        <label>Brand</label>
+                        <input name="title" placeholder="ex: Zara" type="text" alt="" onChange={handleChange}></input>
+                    </div>
+                    <div>
+                        <label>Size</label>
+                        <input name="title" placeholder="ex: L" type="text" alt="" onChange={handleChange}></input>
+                    </div>
+                    <div>
+                        <label>Color</label>
+                        <input name="title" placeholder="ex: Blue" type="text" alt="" onChange={handleChange}></input>
+                    </div>
+                    <div>
+                        <label>City</label>
+                        <input name="title" placeholder="Ex: Lisbon" type="text" alt="" onChange={handleChange}></input>
+                    </div>
+
+                    <button type="submit" className="submit-btn">ADD A PRODUCT</button>
+
+                </form>
+
+            </div>
+
+
+            {/* <form className="addProductForm" onSubmit={handleSubmit}>
                 <h3>Add a product</h3>
                 <div className="imageFormDiv">
                     <p>Add up to 4 images</p>
@@ -85,7 +144,7 @@ function AddProduct() {
                     <input name="price" type="number" alt="" onChange={handleChange}></input>
                 </div>
                 <button className="uploadButton">Upload</button>
-            </form>
+            </form> */}
         </div>
     )
 }

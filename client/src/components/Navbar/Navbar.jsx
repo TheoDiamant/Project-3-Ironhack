@@ -10,7 +10,7 @@ function Navbar() {
   return (
     <nav className="projectNavbar">
       <div className="logoDiv">
-        <img src="https://www.kadencewp.com/wp-content/uploads/2020/10/alogo-1.png" alt=""/>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Vinted_logo.png" alt=""/>
       </div>
 
       <div className="searchBarDiv">

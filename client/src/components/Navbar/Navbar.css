@@ -9,7 +9,7 @@
 .logoDiv {
     display: flex;
     justify-content: flex-end;
-    height: 100%;
+    height: 60%;
     width: 20%;
 }
 
@@ -56,23 +56,26 @@
     height: 100%;
     width: 30%;
     margin-left: 20px;
-    padding-right: 245px;
     box-sizing: border-box;
 }
 
 .button {
     background-color: white;
-    border-radius: 3px;
-    font-size: 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
 }
 
 .normalColors {
-    border: 1px solid #C2634B;
+    border: 1px solid #ffffff;
+    background-color: rgb(239, 209, 170);
+    padding: 5px 25px ;
+    border-radius: 5px;
 }
 
 .invertedColors {
-    border: 0;
+    border: none;
     background-color: #C2634B;
     color: white;
-    border-radius: 4px;
+    padding: 5px 25px ;
+    border-radius: 5px;
 }
