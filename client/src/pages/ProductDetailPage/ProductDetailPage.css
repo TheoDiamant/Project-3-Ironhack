@@ -1,138 +1,19 @@
-productDetailsBodyDiv {
-    background-color: #f7f7f7;
+.productDetailsBodyDiv {
+  background-color: #f7f7f7;
+  min-height: 89vh;
+  display: flex;
+  justify-content: center;
 }
 
 .productDetailsDiv {
-    display: flex;
-    width: 80%;
-    margin: 0 10%;
-}
-
-.carousel {
-    border: 1px solid black;
-    display: flex;
-}
-
-.carousel img {
-  height: 65vh;
-  width: calc(100% / 2);
-  border-radius: 5px;
-  margin-right: 2px;
-}
-
-.offer-page-details {
-    border: 1px solid black;
-  background-color: #FFF;
-  padding: 30px;
-  width: 20%;
-}
-
-.description-details {
-  font-size: 15px;
-}
-
-.description-general {
-  font-size: 13px;
-  font-weight: 300;
-}
-
-.hr-design {
-  height: 1px;
-  border: none;
-  border-top: 2px solid #ccc;
-  margin: 20px 0;
-}
-
-
-.bloc-1 {
+  width: 80%;
+  margin: 0 10%;
   display: flex;
   justify-content: space-between;
-  line-height: 20px;
-  font-size: 13px;
-  border-bottom: 1px solid var(--dark-grey);
 }
 
-.description-details {
-  font-size: 15px;
-  display: flex;
-  justify-content: space-between;
-  margin: 5px 0;
-  color: #bbb;
-}
-
-.description-details span:first-child {
-  margin-right: 5px;
-}
-
-.bloc-1 div {
-  text-align: left;
-}
-
-.bloc-1 > div:first-child {
-  color: var(--dark-grey);
-}
-.offer-price {
-  font-weight: 600;
-  font-size: 30px;
-  display: flex;
-}
-
-.username-details-page {
-  font-size: 20px;
-}
-
-.text-title {
-  font-weight: 600;
-  font-size: 24px;
-  display: flex;
-}
-
-.bloc-2 {
-  margin-bottom: 18px;
-  text-align: left;
-}
-.bloc-2 p:first-child {
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-.bloc-2 p:nth-child(2) {
-  color: var(--dark-grey);
-  margin-bottom: 20px;
-}
-
-.name-review {
-  display: flex;
-  flex-direction: column;
-}
-
-
-.bloc-2 img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
-  object-fit: cover;
-}
-
-.bloc-2 div {
-  display: flex;
-  align-items: flex-start;
-}
-
-.main-offer .btn-green {
-  padding: 10px;
-  width: 100%;
-  background-color: #09aeb7;
-  border: none;
-  color: #fff;
-  margin-bottom: 5px;
-}
-
- .btn-border-green {
-  padding: 10px;
-  width: 100%;
-  border: 1.5px solid #09aeb7;
-  color: #000000;
-  margin-bottom: 5px;
-  background-color: #FFF;
+@media only screen and (min-width: 1920px) {
+  .productDetailsDiv {
+      width: 50%;
+  }
 }
