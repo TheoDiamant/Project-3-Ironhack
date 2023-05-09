@@ -6,6 +6,7 @@ import { Link, useParams } from "react-router-dom";
 
 import Offer from "../../components/Offer/Offer";
 import Review from "../../components/Review/Review";
+import Carousel from "../../components/Carousel/Carousel";
 import YouMightAlsoLike from "../../components/YouMightAlsoLike/YouMightAlsoLike"
 
 import axios from "axios";
@@ -73,77 +74,18 @@ function ProductDetailPage() {
     return (
         <div className="productDetailsBodyDiv">
             <div className="productDetailsDiv">
-
-                <div className="carousel">
-                    {product === null ? <p> Loading Images </p> : product.img.map(image => {
-                        return (
-                            <img src={image} alt=""/>
-                        )
-                    })}
-                </div>
+                {product 
                 
-                <div className="offer-page-details">
-                    {product === null ? <p>Loading price</p> : <p className="offer-price">{product.price}€</p> }
-                    <hr className="hr-design"></hr>
-                    {product === null ? <p>Loading title</p> :<p className="text-title">{product.title}</p>  }
-                    <div class="bloc-1">
-                        <div>
-                            <p className="description-details">
-                                <span>Brand :</span>
-                                {product === null ? <p>Loading brand</p> : <span><strong>{product.brand}</strong></span>}  
-                            </p>
+                ?
+                
+                <Carousel images={product.img} />
 
-                            <p className="description-details">
-                                <span>Size :</span>
-                                {product === null ? <p>Loading brand</p> : <span><strong>{product.size}</strong></span>}  
-                            </p>
+                :
 
-                            <p className="description-details">
-                                <span>State :</span>
-                                {product === null ? <p>Loading brand</p> : <span><strong>{product.state}</strong></span>}  
-                            </p>
-
-                            <p className="description-details">
-                                <span>Color :</span>
-                                {product === null ? <p>Loading brand</p> : <span><strong>{product.color}</strong></span>}  
-                            </p> 
-
-                            <p className="description-details">
-                                <span>Country :</span>
-                                {product === null ? <p>Loading brand</p> : <span><strong>{product.country}</strong></span>}  
-                            </p>
-
-                        </div>
-                    </div>
-                    <div className="bloc-2">
-                        <hr className="hr-design"></hr>
-                        <h4>Product details :</h4>
-                        {product === null ? <p>Loading description</p> :<p className="description-general">{product.description}.</p>}  
-                        <hr className="hr-design"></hr>
-
-                        <div>
-                            {/* put here the original picture of the user */}
-                            <img src="https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg" alt=""/>
-                            <div className="name-review">  
-                                {user === null ? <p>Loading name</p> : <h1 className="username-details-page">{user.name}</h1>}
-                                <p> Reviews : {user && user.review ? (user.review.length === 0 ? <p> No reviews yet</p> : user.review.length) : ( <p> Loading Reviews..</p>)} ⭐️</p>                     
-                            </div>
-                        </div>
-                    </div>
-                    <div className="bloc-1">
-                        <div>
-                            <p>Country : France</p>
-                            <p>Last seen: 45 min ago..</p>
-                        </div>
-                    </div>
-                    <button className="btn-green">Message</button>
-                    <button className="btn-border-green">Make an Offer</button>
-                    <button className="btn-border-green">Payment</button>
-                    <button className="btn-border-green">Add to WishList ❤️ </button>
-                </div>
-                {/* <div>
-                    <YouMightAlsoLike /> 
-                </div> */}
+                <p>Loading</p>
+                }
+                
+                
             </div>
         </div>
     )

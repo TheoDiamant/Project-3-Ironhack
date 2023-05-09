@@ -1,16 +1,18 @@
-productDetailsBodyDiv {
-    background-color: #f7f7f7;
+.productDetailsBodyDiv {
+  background-color: #f7f7f7;
+  min-height: 92vh;
 }
 
 .productDetailsDiv {
-    display: flex;
-    width: 80%;
-    margin: 0 10%;
+  border: 1px solid black;
+  width: 80%;
+  margin: 0 10%;
+  display: flex;
 }
 
 .carousel {
-    border: 1px solid black;
-    display: flex;
+  border: 1px solid black;
+  display: flex;
 }
 
 .carousel img {
