@@ -14,30 +14,34 @@ function DetailsSidebar({product, user}) {
 
                     <p className="details">
                         <span>Brand :</span>
-                        <span><strong>Zara</strong></span>
+                        <span><strong>{product.brand}</strong></span>
                     </p>
                     <p className="details">
                         <span>Size :</span>
-                        <span><strong>L</strong></span>
+                        <span><strong>{product.size}</strong></span>
                     </p>
                     <p className="details">
                         <span>State :</span>
-                        <span><strong>New</strong></span>
+                        <span><strong>{product.state}</strong></span>
                     </p>
                     <p className="details">
                         <span>Color :</span>
-                        <span><strong>Blue</strong></span>
+                        <span><strong>{product.color}</strong></span>
                     </p>
                     <p className="details">
                         <span>Country :</span>
-                        <span><strong>France</strong></span>
+                        <span><strong>{product.country}</strong></span>
+                    </p>
+                    <p className="details">
+                        <span>Category :</span>
+                        <span><strong>{product.category}</strong></span>
                     </p>
                 </div>
 
                 <hr />
 
                 <div className="sidebarDescriptionDiv">
-                    <p className="sidebarDescription">Quarto et exilium pater non non locum est cruribus pater exilium per cum quarto in nulla lapide et exilium pater actitata in et nulla cum nomine multiplices Antiochia ut ut nulla et locum pervenissent ambo in quaedam cum pater quaedam et igitur clades lapide scilicet in Antiochia vicensimo clades lapide.</p>
+                    <p className="sidebarDescription">{product.description}</p>
                 </div>
 
                 <hr />
@@ -47,9 +51,8 @@ function DetailsSidebar({product, user}) {
                             <img className="sidebarProfilePic" src="https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg" alt=""/>
                         </div>
                         <div className="nameReviewDiv"> 
-                            <h1 className="sidebarName">Username</h1>
-                            <p className="sidebarReviews">No reviews yet</p>
-                            {/* <p> Reviews : {user.review.length === 0 ? <p> No reviews yet</p> : user.review.length} ⭐️</p>                      */}
+                            <h1 className="sidebarName">{product.user[0].name}</h1>
+                            <p className="sidebarReviews">{product.user[0].review.length === 0 ? "No reviews yet" : product.user[0].review.length} ⭐️</p>
                         </div>
                 </div>
 

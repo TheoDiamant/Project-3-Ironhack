@@ -57,35 +57,26 @@ router.post("/products", isAuthenticated, (req, res, next) => {
 
 router.get("/products", (req, res, next) => {
 
-  const { q } = req.query
-  console.log(q)
-
-  const keys = ["title", "description", "price"]
-
-  const search = (data) => {
-    return data.filter((item) => 
-    keys.some((key) => item[key].toLowerCase().includes(q))
-    )
-  }
-
-  if (q) {
-    Product.find()
-      .populate("user")
-      .then(allProducts => {
-          res.json(search(allProducts))
-      })
-      .catch(err => res.json(err))
-  } else {
-    Product.find()
-      .populate("user")
-      .then(allProducts => {
-          res.json(allProducts)
-      })
-      .catch(err => res.json(err))
-  }
-
+  Product.find()
+    .populate("user")
+    .then(allProducts => {
+      res.json(allProducts)
+    })
+    .catch(err => res.json(err))
 })
 
+// Route to get product previews
+router.get("/preview", (req, res, next) => {
+  const { q } = req.query
+
+  Product.find({ $or: [{ title: {$regex: q, $options: "i" } }, { description: {$regex: q, $options: "i" } } ] })
+    .populate("user")
+    .then(allProducts => {
+      allProducts.slice(0, 3) 
+      res.json(allProducts)
+    })
+    .catch(err => res.json(err))
+})
 
 
 // Route to get a product by ID  //////// WORK  ////////
@@ -100,7 +91,10 @@ router.get("/products/:productId", (req, res, next) => {
       }
 
     Product.findById(productId)
-    .then(product => res.status(200).json(product))
+    .populate("user")
+    .then(product => {
+      res.status(200).json(product)
+    })
     .catch(error => res.json(error));
 
 })
@@ -139,7 +133,6 @@ router.delete("/products/:productId", (req, res, next) => {
       .catch(error => res.json(error));
 
 })
-
 
 
 // Route to create an offer for a product //////// WORK  ////////
@@ -235,6 +228,10 @@ router.get("/products/:productId/offer", (req, res, next) => {
     .catch(err => res.json(err))
 
 })
+
+
+
+
 
 
 

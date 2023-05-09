@@ -18,6 +18,14 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Name is required."],
     },
+    follow: {
+      type: Number,
+    },
+    followers: {
+      type: Number,
+    },
+
+    
 
     review: [{type: Schema.Types.ObjectId, ref: "Review"}],
     offer: [{type: Schema.Types.ObjectId, ref: "Offer"}],

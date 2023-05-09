@@ -41,6 +41,11 @@ const productSchema = new Schema(
         type: String,
         
       },
+      category: {
+        type: String,
+        enum: ["Men", "Women", "Home", "Baby", "Accessories"],
+        required: [true, "Category is required."],
+      },
 
       review: [{type: Schema.Types.ObjectId, ref: "Review"}],
       user: [{type: Schema.Types.ObjectId, ref: "User"}],

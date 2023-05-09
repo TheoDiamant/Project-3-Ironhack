@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import Carousel from "../../components/Carousel/Carousel";
-import DetailsSidebar from "../../components/DetailsColumn/DetailsSidebar";
+import DetailsSidebar from "../../components/DetailsSidebar/DetailsSidebar";
 import YouMightAlsoLike from "../../components/YouMightAlsoLike/YouMightAlsoLike"
 
 import axios from "axios";
@@ -15,20 +15,14 @@ function ProductDetailPage() {
 
     const storedToken = localStorage.getItem("authToken");
 
-    const [user, setUser] = useState(null)
     const [product, setProduct] = useState(null)
-    const [review, setReview] = useState(null)
     const [offer, setOffer] = useState(null)
-
-
 
     const { productId } = useParams(); 
 
     useEffect(() => {
         getProduct();
-        getReview();
         getOffer();
-        getUser();
     }, []);
 
     const getProduct = () => {
@@ -36,16 +30,7 @@ function ProductDetailPage() {
         .then((response) => {
             const singleProduct = response.data
             setProduct(singleProduct)
-        })
-        .catch(err => console.log(err))
-    }
-
-    const getReview = () => {
-        axios.get(`${API_URL}/api/products/${productId}/review`)
-        .then(response => {
-            const reviews = response.data
-            setReview(reviews)
-            console.log(response.data)
+            console.log(singleProduct)
         })
         .catch(err => console.log(err))
     }
@@ -55,19 +40,9 @@ function ProductDetailPage() {
         .then(response => {
             const offers = response.data
             setOffer(offers)
-            console.log(response.data)
         })
         .catch(err => console.log(err))
     }
-
-    const getUser = () => {
-        axios.get(`${API_URL}/api/member`, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(response => {
-          const uniqueUser = response.data
-          setUser(uniqueUser)
-          console.log(user)
-        })
-      }
 
     return (
         <div className="productDetailsBodyDiv">
@@ -78,7 +53,7 @@ function ProductDetailPage() {
 
                 <>
                     <Carousel images={product.img} />
-                    <DetailsSidebar product={product} user={user}/>
+                    <DetailsSidebar product={product}/>
                 </>
 
                 :

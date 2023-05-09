@@ -27,6 +27,7 @@ function AddProduct() {
         size: "",
         color: "",
         country: "",
+        category: "",
     })
 
     useEffect(() => {
@@ -121,6 +122,17 @@ function AddProduct() {
                     <div>
                         <label>Country</label>
                         <input name="country" placeholder="ex: France" type="text" alt="" onChange={handleChange}></input>
+                    </div>
+                    <div>
+                      <label>Category</label>
+                        <select name="category" onChange={handleChange}>
+                                <option value="">Select a category</option>
+                                <option value="Men">Men</option>
+                                <option value="Women">Women</option>
+                                <option value="Home">Home</option>
+                                <option value="Baby">Baby</option>
+                                <option value="Accessories">Accessories</option>
+                        </select>
                     </div>
 
                     <button type="submit" className="submit-btn">ADD A PRODUCT</button>

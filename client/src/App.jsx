@@ -18,6 +18,9 @@ import ProductDetailPage from "./pages/ProductDetailPage/ProductDetailPage.jsx"
 import EditProductPage from "./pages/EditProductPage/EditProductPage.jsx"
 import UnderNavBar from "./components/UnderNavbar/UnderNavbar";
 
+import WomanProducts from "./pages/WomanProducts/WomanProducts";
+import MenProducts from "./pages/MenProducts/MenProducts";
+
 /// IMPORT for New routes for chat 
 
 
@@ -72,6 +75,9 @@ function App() {
         <Route path="/products/:productId" element={<ProductDetailPage />} />
 
         <Route path="/products/:productId/edit" element={<EditProductPage />} />
+
+        <Route path="/products/women" element={<WomanProducts />} />
+        <Route path="/products/men" element={<MenProducts />} />
 
       </Routes>
     </div>

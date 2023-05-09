@@ -24,7 +24,7 @@
 }
 
 .newCard:hover .titlePriceDiv {
-    transform: translateY(-250%);
+    transform: translateY(-300%);
     transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
@@ -34,7 +34,7 @@
 }
 
 .newCard:hover .cardDescription {
-    transform: translateY(-100%);
+    transform: translateY(-150%);
     transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
     transition-delay: 0.3s;
 }
@@ -92,9 +92,12 @@
 .titlePriceDiv {
     position: absolute;
     top: 80%;
-    height: 20%;
+    height: calc(20% - 14px);
     width: 50%;
     margin: 0 25%;
+    pointer-events: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .titlePriceDiv > p {
@@ -103,8 +106,11 @@
 
 .cardDescription {
     top: 80%;
-    height: 20%;
+    height: calc(20% - 14px);
     width: 50%;
     margin: 0 25%;
     position: absolute;
+    pointer-events: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
