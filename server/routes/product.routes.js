@@ -56,17 +56,35 @@ router.post("/products", isAuthenticated, (req, res, next) => {
 // Route to get all the products //////// WORK  ////////
 
 router.get("/products", (req, res, next) => {
-    
 
+  const { q } = req.query
+  console.log(q)
+
+  const keys = ["title", "description", "price"]
+
+  const search = (data) => {
+    return data.filter((item) => 
+    keys.some((key) => item[key].toLowerCase().includes(q))
+    )
+  }
+
+  if (q) {
     Product.find()
-    .populate("user")
-    .then(allProducts => {
-        res.json(allProducts)
-    })
-    .catch(err => res.json(err))
+      .populate("user")
+      .then(allProducts => {
+          res.json(search(allProducts))
+      })
+      .catch(err => res.json(err))
+  } else {
+    Product.find()
+      .populate("user")
+      .then(allProducts => {
+          res.json(allProducts)
+      })
+      .catch(err => res.json(err))
+  }
 
 })
-
 
 
 

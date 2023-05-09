@@ -2,6 +2,8 @@ import "./Navbar.css";
 import { Link, useParams } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/auth.context";
+import { Users } from "../../user";
+import Table from "../Table.js";
 
 import axios from "axios";
 
@@ -10,12 +12,30 @@ import axios from "axios";
 const API_URL = "http://localhost:5005";     
 
 function Navbar() {
+
+  const storedToken = localStorage.getItem("authToken");
+
+  const [query, setQuery] = useState("")
+  const [products, setProducts] = useState([])
+
+  console.log(query)
+
+
+  useEffect(() => {
+      axios.get(`${API_URL}/api/products?q=${query}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+          .then(response => {
+            console.log(response.data)
+            setProducts(response.data)})
+          .catch(err => console.log(err))
+  }, [query])
   
   const { isLoggedIn, logOutUser, user } = useContext(AuthContext)
 
 
 
+
   return (
+    
     <nav className="projectNavbar">
       <div className="logoDiv">
         <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Vinted_logo.png" alt=""/>
@@ -24,7 +44,21 @@ function Navbar() {
       <div className="searchBarDiv">
         <form className="searchBarForm">
           <img className="glass" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/magnifying-glass-icon.png" alt=""/>
-          <input type="text" className="searchBar" placeholder="Search for products" ></input>
+
+
+          <input 
+            type="text" 
+            className="searchBar" 
+            placeholder="Search for products" 
+            onChange={e => setQuery(e.target.value)} />
+            {products && products.length > 0 ? (
+            <Table data={products} />
+          ) : (
+            <p>No products found.</p>
+          )}
+       
+
+
         </form>
       </div>
      
