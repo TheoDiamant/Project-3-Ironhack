@@ -3,10 +3,8 @@ import "./ProductDetailPage.css"
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
-
-import Offer from "../../components/Offer/Offer";
-import Review from "../../components/Review/Review";
 import Carousel from "../../components/Carousel/Carousel";
+import DetailsSidebar from "../../components/DetailsColumn/DetailsSidebar";
 import YouMightAlsoLike from "../../components/YouMightAlsoLike/YouMightAlsoLike"
 
 import axios from "axios";
@@ -74,11 +72,14 @@ function ProductDetailPage() {
     return (
         <div className="productDetailsBodyDiv">
             <div className="productDetailsDiv">
-                {product 
+                {product
                 
                 ?
-                
-                <Carousel images={product.img} />
+
+                <>
+                    <Carousel images={product.img} />
+                    <DetailsSidebar product={product} user={user}/>
+                </>
 
                 :
 
