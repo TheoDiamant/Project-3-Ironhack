@@ -9,18 +9,22 @@ const Review = require("../models/Review.model")
 const Follow = require("../models/Follow.model")
 
 const { isAuthenticated } = require("../middleware/jwt.middleware.js");
-
+const jwt = require("jsonwebtoken");
 
 // Route to get the info on the profile page of the user
 router.get("/member/:userId", isAuthenticated, (req, res, next) => {
-
   const { userId } = req.params
 
   User.findById(userId)
   .populate("review")
   .populate("product")
-  .then(response => {
-    res.json(response)
+  .then(user => {
+    if(req.payload._id === user.id.toString()) { //we check if the ID on the JWT matches the ID of the fetched user
+      res.json({user, isSelf: true})
+    }
+    else {
+      res.json({user, isSelf: false})
+    }
   })
 
 })
@@ -36,15 +40,15 @@ router.get("/member/:userId/edit", isAuthenticated, (req, res , next) => {
 
 })
 
+// Route to create a follow
 router.post("/member/:userId", isAuthenticated, (req, res, next) => {
 
   const { userId } = req.params
 
-
   Follow.create({...req.body, user: req.payload._id})
   .then(response => {
     res.json(response)
-    console.log(reponse)
+    console.log(response)
   })
   .catch(err => res.json(err))
 })

@@ -31,7 +31,43 @@
 
 .userInfoDiv {
     flex: 1;
+    display: flex;
     background-color: white;
+}
+
+.userInfoTextDiv {
+    flex: 1;
+    text-align: left;
+}
+
+.userInfoTextDiv > h2,
+.userInfoTextDiv > p {
+    margin: 10px;
+}
+
+.userButtonsDiv {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.editProfileButtonDiv {
+    flex: 1;
+}
+
+.followButtonDiv {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+}
+
+.profileButton {
+    width: 100%;
+    border: none;
+    padding: 5px;
+    border: 2px solid rgb(239, 209, 170);
+    background-color: white;
+    border-radius: 5px;
 }
 
 .tabButtonsDiv {
@@ -43,14 +79,20 @@
 
 .tabButton {
     font-size: 1rem;
-    padding: 10px;
+    padding: 10px 10px 7px;
     border: none;
+    border-bottom: 3px solid white;
     cursor: pointer;
     background-color: white;
+    box-sizing: border-box;
 }
 
 .tabButton:hover {
     background-color: rgb(247 247 247);
+}
+
+.activeTabButton {
+    border-color: #C2634B;
 }
 
 .profilePageDivider {
