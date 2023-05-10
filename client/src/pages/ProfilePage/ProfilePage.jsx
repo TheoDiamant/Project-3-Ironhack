@@ -6,7 +6,6 @@ import { useParams, Link } from 'react-router-dom';
 
 import { useNavigate } from "react-router-dom";
 
-
 import ProductsTab from "../../components/ProductsTab/ProductsTab";
 import ReviewsTab from "../../components/ReviewsTab/ReviewsTab";
 
@@ -19,7 +18,6 @@ function ProfilePage() {
   const currentUserID = JSON.parse(atob(storedToken.split('.')[1]))._id;
 
   const navigate = useNavigate()
-
   const { userId } = useParams()
 
   const [user, setUser] = useState(null)
@@ -29,14 +27,16 @@ function ProfilePage() {
     follow: 0,
   })
   
-  
-  const getUser = () => {
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  function getUser() {
     axios.get(`${API_URL}/api/member/${userId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
     .then(response => {
       const uniqueUser = response.data
       setUser(uniqueUser)
       setLoaded(true)
-      console.log(user)
     })
   }
 
@@ -49,15 +49,6 @@ function ProfilePage() {
         .catch(err => console.log(err))
 }
 
-  
-  useEffect(() => {
-    getUser();
-  }, []);
-
-
-  
-
-
   function handleTabChange(tab) {
     if(tab === "products") {
       setActiveTab("products")
@@ -68,74 +59,62 @@ function ProfilePage() {
   }
 
   return (
-          <>
-            { loaded
+    <div className="profilePageDiv">
+      <div className="profilePageWrapper">
+        
+          <div className="userDiv">
+            <div className="userPictureDiv">
+              <img className="profilePic" src="https://www.vinted.es/assets/no-photo/user-empty-state.svg" alt="" />
+            </div>
+            <div className="userInfoDiv">
 
-              ?
+            </div>
+            {/* <div className="informationDiv">
 
-              <div className="profilePageDiv">
-              
-                <div className="topDiv">
+              { userId === currentUserID &&
+              <Link to={`/member/${userId}/edit`} >
+                <button>Edit profile</button>
+              </Link>
+              }
 
-                  <div className="profilePictureDiv">
-                    <img className="profilePic" src="https://www.vinted.es/assets/no-photo/user-empty-state.svg" alt="" />
-                  </div>
-
-                  <div className="informationDiv">
-
-                  { userId === currentUserID &&
-                  <Link to={`/member/${userId}/edit`} >
-                    <button>Edit profile</button>
-                  </Link>
-                }
-
-               
               <Link to={`/member/${userId}`} >
+
               <form onSubmit={handleSubmit}>  
                 <button onChange={e => setNewFollow(e + 1)}>Follow</button>
               </form>
               </Link>
-            
 
-
-
-                    <div className="infoTextDiv">
-                       <h1>{user.name}</h1>
-                      <p>Number of reviews : {user.review ? (user.review.length === 0 ? <p>No reviews yet</p> : user.review.length) : <p>Loading Reviews..</p>} ⭐️</p> 
-                    </div>
-      
-                  </div>
-
-                </div>
-
-                <div className="tabButtonDiv">
-                  <button className="tabButton" onClick={() => handleTabChange("products")}>Products</button>
-                  <button className="tabButton" onClick={() => handleTabChange("reviews")}>Reviews</button>
-                </div>
-
-                <hr className="divider"/>
-        
-                <div className="reviewsAndProductsDiv">
-                  {activeTab === "products" 
-                  
-                  ? 
-                  
-                  <ProductsTab products={user.product}/>
-                  
-                  :
-        
-                  <ReviewsTab />
-                  
-                  }
-                </div>
-        
+              <div className="infoTextDiv">
+                  <h1>{user.name}</h1>
+                <p>Number of reviews : {user.review ? (user.review.length === 0 ? <p>No reviews yet</p> : user.review.length) : <p>Loading Reviews..</p>} ⭐️</p> 
               </div>
+            </div> */}
+            
+          </div>
 
-              :
+          <div className="tabButtonsDiv">
+            <button className="tabButton" onClick={() => handleTabChange("products")}>Products</button>
+            <button className="tabButton" onClick={() => handleTabChange("reviews")}>Reviews</button>
+          </div>
 
-              <p></p>
-            }
-          </>
+          <hr className="profilePageDivider"/>
+  
+          <div className="reviewsAndProductsDiv">
+            {/* {activeTab === "products" 
+            
+            ? 
+            
+            <ProductsTab products={user.product}/>
+            
+            :
+  
+            <ReviewsTab />
+            
+            } */}
+          </div>
+  
+        </div>
+    </div>
   );
 }
 
