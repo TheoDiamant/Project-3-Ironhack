@@ -65,11 +65,13 @@ router.get("/products", (req, res, next) => {
     .catch(err => res.json(err))
 })
 
+
 // Route to get product previews
 router.get("/preview", (req, res, next) => {
+
   const { q } = req.query
 
-  Product.find({ $or: [{ title: {$regex: q, $options: "i" } }, { description: {$regex: q, $options: "i" } } ] })
+  Product.find({ $or: [{ title: {$regex: q, $options: "i" } }, { description: {$regex: q, $options: "i" } }] })
     .populate("user")
     .then(allProducts => {
       allProducts.slice(0, 3) 

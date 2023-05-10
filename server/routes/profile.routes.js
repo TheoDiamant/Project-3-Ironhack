@@ -35,4 +35,17 @@ router.get("/member/:userId", isAuthenticated, (req, res, next) => {
 
   })
 
+
+  router.get("/memberpreview", (req, res, next) => {
+
+    const { q } = req.query
+  
+    User.find({ $or: [{ name: {$regex: q, $options: "i" } }, { description: {$regex: q, $options: "i" } }] })
+      .then(users => {
+        users.slice(0, 3) 
+        res.json(users)
+      })
+      .catch(err => res.json(err))
+  })
+  
   module.exports = router;

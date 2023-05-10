@@ -5,7 +5,10 @@ function SearchPreview({ products }) {
     <div className="searchPreviewDiv">
       {products.map(product => {
         return(
-          <div className="previewDiv">{product.title}</div>
+          <div className="previewDiv">
+          {product.title}
+       
+          </div>
         )
       })}
     </div>
