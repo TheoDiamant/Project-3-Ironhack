@@ -12,10 +12,13 @@ const API_URL = "http://localhost:5005";
 function Navbar() {
 
   const storedToken = localStorage.getItem("authToken");
+  
   const { isLoggedIn, logOutUser, user } = useContext(AuthContext)
   const location = useLocation()
 
   const [products, setProducts] = useState([])
+  
+  const [users, setUsers] = useState([])
 
   // If the user changes location we set products to an empty array to remove the preview to avoid ugly overflows
   useEffect(() => {
@@ -37,6 +40,25 @@ function Navbar() {
     }
   }
 
+  /////// THIS HANDLECHANGEUSER RETRIVE ALL THE USER FROM THE DATABASE AND IT WORKING
+
+  // function handleChangeUser(e) {
+  //   console.log("handleChange triggered, query is:", e.target.value)
+  //   if (e.target.value === "") {
+  //     setTimeout(() => {
+  //       setUsers([])
+  //     }, 500);
+  //   }
+  //   else {
+  //     axios.get(`${API_URL}/api/memberpreview?q=${e.target.value}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+  //       .then(response => {
+  //         setUsers(response.data)
+  //       })
+  //       .catch(err => console.log(err))
+  //   }
+  // }
+
+
 
   return (
     
@@ -49,7 +71,12 @@ function Navbar() {
         <form className="searchBarForm">
           <div className="searchBar">
             <img className="glass" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/magnifying-glass-icon.png" alt=""/>
-            <input type="text" className="searchBarInput" placeholder="Search for products" onChange={handleChange} />
+           
+           <input type="text" className="searchBarInput" placeholder="Search for products" onChange={handleChange} /> 
+
+            {/* ////INPUT FOR THE USERS RESEARCH */}
+            {/* <input type="text" className="searchBarInput" placeholder="Search for users" onChange={handleChangeUser} /> */}
+         
           </div>
             
           {products.length === 0 ? <></> :
@@ -62,7 +89,8 @@ function Navbar() {
            
           }
 
-
+          {/* SEARCH PREVIEW FOR THE USERS */}
+          {/* {users.length === 0 ? <></> : <SearchPreview products={users}/>} */}
           
 
         </form>
