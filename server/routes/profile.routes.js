@@ -18,13 +18,8 @@ router.get("/member/:userId", isAuthenticated, (req, res, next) => {
   User.findById(userId)
   .populate("review")
   .populate("product")
-  .then(user => {
-    if(req.payload._id === user.id.toString()) { //we check if the ID on the JWT matches the ID of the fetched user
-      res.json({user, isSelf: true})
-    }
-    else {
-      res.json({user, isSelf: false})
-    }
+  .then(response => {
+    res.json(response)
   })
 
 })

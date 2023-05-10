@@ -10,9 +10,7 @@ import SearchPreview from "../SearchPreview/SearchPreview"
 const API_URL = "http://localhost:5005";     
 
 function Navbar() {
-
-  const storedToken = localStorage.getItem("authToken");
-  
+    
   const location = useLocation()
   const { isLoggedIn, logOutUser, user } = useContext(AuthContext)
 

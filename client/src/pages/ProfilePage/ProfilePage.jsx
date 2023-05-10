@@ -1,8 +1,10 @@
 import "./ProfilePage.css";
 
-import { useState, useEffect } from "react";
 import axios from "axios";
+
+import { useState, useEffect, useContext } from "react";
 import { useParams, Link } from 'react-router-dom';
+import { AuthContext } from "../../context/auth.context";
 
 import ProductsTab from "../../components/ProductsTab/ProductsTab";
 import ReviewsTab from "../../components/ReviewsTab/ReviewsTab";
@@ -13,11 +15,11 @@ function ProfilePage() {
 
   const storedToken = localStorage.getItem("authToken");
 
+  const { user } = useContext(AuthContext)
   const { userId } = useParams()
 
-  const [user, setUser] = useState(null)
+  const [userInfo, setUserInfo] = useState(null)
   const [activeTab, setActiveTab] = useState("products")
-  const [isSelf, setIsSelf] = useState(null)
 
   // const [newfollow, setNewFollow] = useState({
   //   follow: 0,
@@ -30,8 +32,7 @@ function ProfilePage() {
   function getUser() {
     axios.get(`${API_URL}/api/member/${userId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
     .then(response => {
-      setUser(response.data.user)
-      setIsSelf(response.data.isSelf)
+      setUserInfo(response.data)
     })
   }
 
@@ -68,21 +69,28 @@ function ProfilePage() {
             <div className="userPictureDiv">
               <img className="profilePic" src="https://www.vinted.es/assets/no-photo/user-empty-state.svg" alt="" />
             </div>
-            {user ? 
+            {userInfo ? 
             
             <div className="userInfoDiv">
 
               <div className="userInfoTextDiv">
-                <h2>{user.name}</h2>
-                <p>{user.review.length === 0 ? "No reviews yet" : user.review.length}</p> 
+                <h2>{userInfo.name}</h2>
+                <p>{userInfo.review.length === 0 ? "No reviews yet" : userInfo.review.length}</p> 
               </div>
               
               <div className="userButtonsDiv">
                 <div className="editProfileButtonDiv">
-                  { isSelf &&
+                  { user._id === userInfo._id
+
+                  ?
+
                   <Link to={`/member/${userId}/edit`} >
                     <button className="profileButton">Edit profile</button>
                   </Link>
+
+                  :
+
+                  <></>
                   }
                 </div>
                 <div className="followButtonDiv">
@@ -106,14 +114,14 @@ function ProfilePage() {
 
           <hr className="profilePageDivider"/>
 
-          {user ? 
+          {userInfo ? 
           
           <div className="reviewsAndProductsDiv">
             {activeTab === "products" 
             
             ? 
             
-            <ProductsTab products={user.product}/>
+            <ProductsTab products={userInfo.product}/>
             
             :
   
