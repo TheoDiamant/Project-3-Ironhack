@@ -6,6 +6,7 @@ const Product = require("../models/Products.model")
 const User = require("../models/User.model")
 const Offer = require("../models/Offer.model")
 const Review = require("../models/Review.model")
+const Follow = require("../models/Follow.model")
 
 const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 
@@ -46,6 +47,19 @@ router.get("/member/:userId", isAuthenticated, (req, res, next) => {
         res.json(users)
       })
       .catch(err => res.json(err))
+  })
+
+  router.post("/member/:userId", isAuthenticated, (req, res, next) => {
+
+    const { userId } = req.params
+  
+
+    Follow.create({...req.body, user: req.payload._id})
+    .then(response => {
+      res.json(response)
+      console.log(reponse)
+    })
+    .catch(err => res.json(err))
   })
   
   module.exports = router;
