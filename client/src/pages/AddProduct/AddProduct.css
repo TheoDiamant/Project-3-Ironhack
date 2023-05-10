@@ -1,171 +1,84 @@
-/* .baseDiv {
+.addProductDiv {
     display: flex;
     justify-content: center;
-    background-color: #C2634B;
-    height: 92vh;
+    align-items: center;
+    min-height: 92vh;
+    background-color: #f5f6f7;
 }
 
-.baseDiv h3 {
-    text-align: left;
-    color: white
+.addProductFormDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 20px;
 }
 
 .addProductForm {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 80%;
+    font-size: 16px;
 }
 
-.addProductForm p {
-    margin: 15px 5px;
-}
-
-.imageFormDiv {
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-.imageFormDiv > input {
-    display: none;
-    flex: 1;
-    border: 1px dashed black;
-    margin: 5px;
-    height: 50px;
-}
-
-.formDiv {
-    display: flex;
-    background-color: white;
-    margin-bottom: 20px;
-}
-
-.formDiv > p {
-    text-align: left;
-    width: 50%;
-}
-
-.formDiv > input {
-    width: 50%;
-}
-
-.formDiv > textarea {
-    width: 50%;
-}
-
-.descriptionDiv {
-    flex: 2;
-}
-
-.uploadButton {
-    background: rgb(164, 142, 255);
-    border: 1px solid rgb(164, 142, 255);;
-    border-radius: 4px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-    padding: 16px;
-    text-decoration: none;
-    transition: 0.3s ease background;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.uploadButton:hover {
-    background: #fff;
-    color: #43a3e6;
-    transition: 0.3s ease background;
-} */
-
-
-.div-form {
-    background-color: #f5f6f7;
- 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.div-form .upload-file{
-    color: #09aeb7;
-    font-weight: 600;
-    margin: 0 auto;
-    border: 1px solid #09aeb7;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.div-form form {
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-    margin: 0 auto;
-    font-size: 14px;
-}
-
-.div-form form div {
-    background-color: #FFF;
-    margin-bottom: 10px;
-    width: 100%;
-    padding: 20px;
+.addProductForm div {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 20px;
+    background-color: white;
 }
 
-.div-form form input {
-    font-family: "Open Sans",sans-serif;
-    width: 300px;
-    font-size: 12px;
-    margin-left: 40%;
-    border: none;
-    border-bottom: 1.8px solid #f5f6f7;
-
-}
-
-.div-form  form textarea {
-    height: 20vh;
-    font-family: "Open Sans",sans-serif;
-    width: 300px;
-    font-size: 12px;
-    margin-left: 40%;
-    border: none;
-    border-bottom: 1.8px solid var(--light-grey);
-}
-
-.div-form label {
+.addProductFormDiv label {
     max-width: 200px;
 }
 
-
-.submit-btn {
-
-    background-color: #09aeb7;
-    color: #fff;
-    border: 1px solid #09aeb7;
-    border-radius: 5px;
+.addProductForm input {
     font-family: "Open Sans",sans-serif;
+    width: 50%;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1.8px solid #f5f6f7;
+}
+
+.addProductForm textarea {
+    font-family: "Open Sans",sans-serif;
+    height: 20vh;
+    width: 50%;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1.8px solid #f5f6f7;
+}
+
+.addProductForm select {
+    font-family: "Open Sans",sans-serif;
+    width: 50%;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1.8px solid #f5f6f7;
+    color: gray;
+    background-color: white;
+}
+
+.addProductButton {
+    font-family: "Open Sans",sans-serif;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
     padding: 10px 63px;
-    margin: 30px auto 0;
-
+    background-color: #09aeb7;
+    border: 1px solid #09aeb7;
+    color: #fff;
+    transition: 0.3s ease;
 }
 
-.input-img {
-    display: none;
+.addProductButton:hover {
+    background-color: white;
+    color: #09aeb7;
 }
 
-.wrapper {
-    height: 120vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: none;
+@media only screen and (min-width: 1920px) {
+    .addProductForm {
+        width: 50%;
+    }
 }
