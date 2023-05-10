@@ -21,6 +21,7 @@ function ProfilePage() {
   const { userId } = useParams()
 
   const [user, setUser] = useState(null)
+
   const [activeTab, setActiveTab] = useState("products")
   const [loaded, setLoaded] = useState(false)
   const [newfollow, setNewFollow] = useState({
@@ -34,8 +35,7 @@ function ProfilePage() {
   function getUser() {
     axios.get(`${API_URL}/api/member/${userId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
     .then(response => {
-      const uniqueUser = response.data
-      setUser(uniqueUser)
+      setUser(response.data)
       setLoaded(true)
     })
   }
@@ -98,9 +98,11 @@ function ProfilePage() {
           </div>
 
           <hr className="profilePageDivider"/>
-  
+
+          {user ? 
+          
           <div className="reviewsAndProductsDiv">
-            {/* {activeTab === "products" 
+            {activeTab === "products" 
             
             ? 
             
@@ -110,9 +112,13 @@ function ProfilePage() {
   
             <ReviewsTab />
             
-            } */}
+            }
           </div>
-  
+          
+          :
+
+          <p>Loading</p>
+          }
         </div>
     </div>
   );

@@ -1,13 +1,5 @@
-.reviewTabsDiv {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid red;
-}
-
 .reviewDiv {
-    flex: 1;
-    height: 120px;
-    margin: 20px 0;
+    height: 140px;
     display: flex;
 }
 
@@ -15,6 +7,7 @@
     display: flex;
     flex-direction: column;
     width: 10%;
+    padding: 10px;
 }
 
 .reviewerDiv > div {
@@ -42,6 +35,7 @@
 .reviewTextDiv {
     width: 30%;
     text-align: left;
+    padding: 10px 0;
 }
 
 .reviewImagesDiv {
@@ -52,7 +46,7 @@
 }
 
 .reviewImagesDiv > img {
-    height: 100%;
+    height: 90%;
 }
 
 .noReviewsDiv {
@@ -76,4 +70,8 @@
     margin: 0;
     width: 95%;
     margin-left: 2.5%;
+}
+
+.reviewDivider:last-child {
+    display: none;
 }

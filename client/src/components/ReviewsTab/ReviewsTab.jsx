@@ -22,37 +22,35 @@ function ReviewsTab({reviews}) {
             
             ?
 
-            <div className="reviewsTabDiv">
-                {reviews.map(review => {
-                    return(
-                        <>
-                            <div className="reviewDiv">
-                                <div className="reviewerDiv">
-                                    <div>
-                                        <img src="https://www.vinted.es/assets/no-photo/user-empty-state.svg" alt="" />
-                                    </div>
-                                    <div className="usernameStarsDiv">
-                                        <p>username</p>
-                                        <p>stars</p>
-                                    </div>
+            reviews.map(review => {
+                return(
+                    <>
+                        <div key={review._id} className="reviewDiv">
+                            <div className="reviewerDiv">
+                                <div>
+                                    <img src="https://www.vinted.es/assets/no-photo/user-empty-state.svg" alt="" />
                                 </div>
-                                <div className="reviewTextDiv">
-                                    <h4>{review.title}</h4>
-                                    <p>{review.message}</p>
-                                </div>
-                                <div className="reviewImagesDiv">
-                                    {review.img.map(image => {
-                                        return(
-                                            <img src={image} alt="" />
-                                        )
-                                    })}
+                                <div className="usernameStarsDiv">
+                                    <p>username</p>
+                                    <p>stars</p>
                                 </div>
                             </div>
-                            <hr className="reviewDivider"/>
-                        </>
-                    )
-                })}
-            </div>
+                            <div className="reviewTextDiv">
+                                <h4>{review.title}</h4>
+                                <p>{review.message}</p>
+                            </div>
+                            <div className="reviewImagesDiv">
+                                {review.img.map(image => {
+                                    return(
+                                        <img src={image} alt="" />
+                                    )
+                                })}
+                            </div>
+                        </div>
+                        <hr className="reviewDivider"/>
+                    </>
+                )
+            })
 
             :
 
