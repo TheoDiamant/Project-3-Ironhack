@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/auth.context";
 import axios from "axios";
 
 import SearchPreview from "../SearchPreview/SearchPreview"
+import SearchUserPreview from "../SearchUserPreview/SearchUserPreview";
 
 const API_URL = "http://localhost:5005";     
 
@@ -25,38 +26,38 @@ function Navbar() {
     setProducts([])
   }, [location])
 
-  function handleChange(e) {
-    if (e.target.value === "") {
-      setTimeout(() => {
-        setProducts([])
-      }, 500);
-    }
-    else {
-      axios.get(`${API_URL}/api/preview?q=${e.target.value}`, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(response => {
-          setProducts(response.data)
-        })
-        .catch(err => console.log(err))
-    }
-  }
-
-  /////// THIS HANDLECHANGEUSER RETRIVE ALL THE USER FROM THE DATABASE AND IT WORKING
-
-  // function handleChangeUser(e) {
-  //   console.log("handleChange triggered, query is:", e.target.value)
+  // function handleChange(e) {
   //   if (e.target.value === "") {
   //     setTimeout(() => {
-  //       setUsers([])
+  //       setProducts([])
   //     }, 500);
   //   }
   //   else {
-  //     axios.get(`${API_URL}/api/memberpreview?q=${e.target.value}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+  //     axios.get(`${API_URL}/api/preview?q=${e.target.value}`, { headers: { Authorization: `Bearer ${storedToken}` } })
   //       .then(response => {
-  //         setUsers(response.data)
+  //         setProducts(response.data)
   //       })
   //       .catch(err => console.log(err))
   //   }
   // }
+
+  /////// THIS HANDLECHANGEUSER RETRIVE ALL THE USER FROM THE DATABASE AND IT WORKING
+
+  function handleChangeUser(e) {
+    console.log("handleChange triggered, query is:", e.target.value)
+    if (e.target.value === "") {
+      setTimeout(() => {
+        setUsers([])
+      }, 500);
+    }
+    else {
+      axios.get(`${API_URL}/api/memberpreview?q=${e.target.value}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+        .then(response => {
+          setUsers(response.data)
+        })
+        .catch(err => console.log(err))
+    }
+  }
 
 
 
@@ -72,14 +73,14 @@ function Navbar() {
           <div className="searchBar">
             <img className="glass" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/magnifying-glass-icon.png" alt=""/>
            
-           <input type="text" className="searchBarInput" placeholder="Search for products" onChange={handleChange} /> 
+           {/* <input type="text" className="searchBarInput" placeholder="Search for products" onChange={handleChange} />  */}
 
             {/* ////INPUT FOR THE USERS RESEARCH */}
-            {/* <input type="text" className="searchBarInput" placeholder="Search for users" onChange={handleChangeUser} /> */}
+            <input type="text" className="searchBarInput" placeholder="Search for users" onChange={handleChangeUser} />
          
           </div>
             
-          {products.length === 0 ? <></> :
+          {/* {products.length === 0 ? <></> :
           
 
           <>
@@ -87,10 +88,10 @@ function Navbar() {
             <SearchPreview products={products}/>
           </>
            
-          }
+          } */}
 
           {/* SEARCH PREVIEW FOR THE USERS */}
-          {/* {users.length === 0 ? <></> : <SearchPreview products={users}/>} */}
+          {users.length === 0 ? <></> : <SearchUserPreview user={users}/>}
           
 
         </form>

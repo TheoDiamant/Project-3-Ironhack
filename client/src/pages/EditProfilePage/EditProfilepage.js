@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { useParams, Link } from 'react-router-dom';
 import "./EditProfilepage.css"
 
 import ImageInput from "../../components/ImageInput/ImageInput"
@@ -11,15 +11,17 @@ const API_URL = "http://localhost:5005";
 
 function EditProfilepage() {
 
-
-
+	
+	
 	const storedToken = localStorage.getItem("authToken");
-
+	
+	const { userId } = useParams()
 
 	const [user, setUser] = useState(null)
+	console.log(user)
 
 	const getUser = () => {
-		axios.get(`${API_URL}/api/member`, { headers: { Authorization: `Bearer ${storedToken}` } })
+		axios.get(`${API_URL}/api/member/${userId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
 		.then(response => {
 		  const uniqueUser = response.data
 		  setUser(uniqueUser)
@@ -46,10 +48,10 @@ function EditProfilepage() {
             <div class="col-md-4 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
 				<img class="rounded-circle mt-5" src="https://i.imgur.com/0eg0aG0.jpg" width="90"/>
-				{user === null ? <p>Loading name</p> : <span class="font-weight-bold">{user.name}</span>}
+				 {user === null ? <p>Loading name</p> : <span class="font-weight-bold">{user.name}</span>}
 				{user === null ? <p>Loading name</p> : <span class="text-black-50">{user.email}</span>}
 			
-				{user === null ? <p>Loading name</p> : <span class="text-black-50">{user.country}</span>}
+				{user === null ? <p>Loading name</p> : <span class="text-black-50">{user.country}</span>} 
 				</div>
 
 				<i>Add a quote</i>
@@ -65,7 +67,7 @@ function EditProfilepage() {
                     <div class="row mt-2">
                         <div class="col-md-6">
 						<label>FirstName</label>
-						<input type="text" class="form-control" placeholder="first name" value={user.name}/>
+						{user === null ? <p>Loding name </p> :<input type="text" class="form-control" placeholder="first name" value={user.name}/>}
 						</div>
                         <div class="col-md-6">
 						<label>LastName</label>
@@ -75,7 +77,7 @@ function EditProfilepage() {
                     <div class="row mt-3">
                         <div class="col-md-6">
 						<label>Email</label>
-						<input type="text" class="form-control" placeholder="Email" value={user.email}/>
+						{user === null ? <p>Loding name </p> :<input type="text" class="form-control" placeholder="Email" value={user.email}/>}
 						</div>
                         <div class="col-md-6">
 						<label>Mobile Number</label>

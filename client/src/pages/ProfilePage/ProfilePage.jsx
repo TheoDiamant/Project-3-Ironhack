@@ -2,7 +2,7 @@ import "./ProfilePage.css";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 
 
@@ -14,8 +14,14 @@ const API_URL = "http://localhost:5005";
 function ProfilePage() {
 
   const storedToken = localStorage.getItem("authToken");
+   console.log(storedToken)
+
+  const currentUserID = JSON.parse(atob(storedToken.split('.')[1]))._id;
+
+  console.log(currentUserID)
 
   const { userId } = useParams()
+  console.log(userId)
 
   const [user, setUser] = useState(null)
   const [activeTab, setActiveTab] = useState("products")
@@ -59,6 +65,13 @@ function ProfilePage() {
                   </div>
 
                   <div className="informationDiv">
+
+                  { userId === currentUserID &&
+                  <Link to={`/member/${userId}/edit`} >
+                    <button>Edit profile</button>
+                  </Link>
+                }
+
 
                     <div className="infoTextDiv">
                       {/* <h1>{user.name}</h1>

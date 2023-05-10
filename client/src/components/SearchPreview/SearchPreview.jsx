@@ -2,7 +2,10 @@ import { Link } from "react-router-dom"
 import "./SearchPreview.css"
 
 function SearchPreview({ products }) {
+  
   return (
+
+
     <div className="searchPreviewDiv">
       {products.map(product => {
         return(

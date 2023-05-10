@@ -24,7 +24,7 @@ router.get("/member/:userId", isAuthenticated, (req, res, next) => {
 
   })
 
-  router.get("member/edit", isAuthenticated, (req, res , next) => {
+  router.get("member/:userId/edit", isAuthenticated, (req, res , next) => {
 
     const { userId } = req.payload._id 
 
