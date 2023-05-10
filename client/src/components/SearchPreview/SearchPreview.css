@@ -1,4 +1,46 @@
 .searchPreviewDiv {
-    border: 1px solid black;
-    z-index: 100;
+    z-index: 2000;
+    border-radius: 0 0 3px 3px;
+}
+
+.previewLink {
+    text-decoration: none;
+    color: black;
+}
+
+.previewLink:hover {
+    color: black;
+}
+
+.previewDiv {
+    background-color:  	#DCDCDC;
+    display: flex;
+    height: 150px;
+}
+
+.previewImageDiv {
+    height: 100%;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.previewImage {
+    height: 90%;
+}
+
+.previewTitleDiv {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.previewDescriptionDiv {
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

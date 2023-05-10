@@ -12,27 +12,17 @@ function LatestProducts() {
   const [latestProducts, setLatestProducts] = useState([])
 
   useEffect(() => {
-    console.log("this is the useEffect requests")
     axios.get(`${API_URL}/api/products`)
       .then(response => {setLatestProducts(response.data)})
       .catch(err => console.log(err))
       
   }, [])
 
-  const testProduct = {
-    _id: 1001,
-    img: ["https://www.cityoftaylor.org/wp-content/uploads/2014/02/500X50032.gif"],
-    title: "Test product",
-    price: 120,
-    description: "This is a test product"
-  }
-
-
   return (
         <div className="latestProductsDiv">
           {latestProducts.map(product => {
             return(
-              <ProductCard product={product} />
+              <ProductCard key={product._id} product={product} />
             )
           })}
         </div>

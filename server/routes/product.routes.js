@@ -11,22 +11,7 @@ const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 
 const fileUploader = require("../config/cloudinary.config");
 
-// Route to upload images om cloud //////// WORK  ////////
-router.post("/upload", fileUploader.single("image"), (req, res, next) => {
-    console.log("file is: ", req.file)
-   
-    if (!req.file) {
-      next(new Error("No file uploaded!"));
-      return;
-    }
-    
-    // Get the URL of the uploaded file and send it as a response.
-    // 'fileUrl' can be any name, just make sure you remember to use the same when accessing it on the frontend
-    
-    res.json({ fileUrl: req.file.path });
-  });
-
-// TEST ROUTE, MAY BE DELETED
+// Route to upload several images at once to the cloud //////// WORK  ////////
 router.post("/uploadmany", fileUploader.array("image"), (req, res, next) => {
   const images = req.files
   const imagePaths = []
@@ -72,7 +57,7 @@ router.get("/preview", (req, res, next) => {
   Product.find({ $or: [{ title: {$regex: q, $options: "i" } }, { description: {$regex: q, $options: "i" } } ] })
     .populate("user")
     .then(allProducts => {
-      allProducts.slice(0, 3) 
+      allProducts = allProducts.slice(0, 3) 
       res.json(allProducts)
     })
     .catch(err => res.json(err))

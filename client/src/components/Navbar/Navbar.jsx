@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, Location, useLocation } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/auth.context";
 
@@ -13,11 +13,16 @@ function Navbar() {
 
   const storedToken = localStorage.getItem("authToken");
   const { isLoggedIn, logOutUser, user } = useContext(AuthContext)
+  const location = useLocation()
 
   const [products, setProducts] = useState([])
 
+  // If the user changes location we set products to an empty array to remove the preview to avoid ugly overflows
+  useEffect(() => {
+    setProducts([])
+  }, [location])
+
   function handleChange(e) {
-    console.log("handleChange triggered, query is:", e.target.value)
     if (e.target.value === "") {
       setTimeout(() => {
         setProducts([])
@@ -47,7 +52,17 @@ function Navbar() {
             <input type="text" className="searchBarInput" placeholder="Search for products" onChange={handleChange} />
           </div>
             
-          {products.length === 0 ? <></> : <SearchPreview products={products}/>}
+          {products.length === 0 ? <></> :
+          
+
+          <>
+            <hr className="previewDivider"/>
+            <SearchPreview products={products}/>
+          </>
+           
+          }
+
+
           
 
         </form>

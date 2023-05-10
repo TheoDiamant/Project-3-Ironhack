@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "./SearchPreview.css"
 
 function SearchPreview({ products }) {
@@ -5,7 +6,19 @@ function SearchPreview({ products }) {
     <div className="searchPreviewDiv">
       {products.map(product => {
         return(
-          <div className="previewDiv">{product.title}</div>
+          <Link className="previewLink" to={`/product/${product._id}`}>
+            <div key={product._id} className="previewDiv">
+              <div className="previewImageDiv">
+                <img src={product.img[0]} alt="" className="previewImage"/>
+              </div>
+              <div className="previewTitleDiv">
+                {product.title}
+              </div>
+              <div className="previewDescriptionDiv">
+                {product.description}
+              </div>
+            </div>
+          </Link>
         )
       })}
     </div>
