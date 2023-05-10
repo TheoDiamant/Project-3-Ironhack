@@ -1,11 +1,7 @@
 import "./UnderNavbar.css";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../context/auth.context";
 
 function UnderNavBar() {
-  
-  const { isLoggedIn, logOutUser } = useContext(AuthContext);
 
   return (
     <nav className="underNavbar">
@@ -22,7 +18,7 @@ function UnderNavBar() {
 
       <Link to="/products/women">
         <p>Women</p>
-        </Link>
+      </Link>
         <p>Kids</p>
         <p>Home</p>
         <p>Accesories</p>

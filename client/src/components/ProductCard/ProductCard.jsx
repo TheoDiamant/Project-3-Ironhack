@@ -3,6 +3,25 @@ import "./ProductCard.css"
 import { Link } from "react-router-dom"
 
 function ProductCard({product}) {
+
+    // shorterns description/title to avoid text overflow on the cards
+    let title = product.title.split(" ")
+    if(title.length > 5) {
+        title = title.slice(0, 5).join(" ") + "..."
+    }
+    else {
+        title = title.join(" ")
+    }
+
+    let description = product.description.split(" ")
+    if(description.length > 10) {
+        description = description.slice(0, 10).join(" ") + "..."
+    }
+    else {
+        description = description.join(" ")
+    }
+    
+
     return(
         <div className="newCard">
             <Link to={`/products/${product._id}`}>
@@ -15,11 +34,13 @@ function ProductCard({product}) {
                 <button className="cardButton addCardButton">Add to cart</button>
                 <button className="cardButton makeOfferButton">Make an offer</button>
             </div>
-            <div className="titlePriceDiv">
-                <p>{product.title}</p>
-                <p>{product.price}</p>
+            <div className="titleDiv">
+                <p>{title}</p>
             </div>
-            <p className="cardDescription">{product.description}</p>
+            <div className="priceDiv">
+                <p>€{product.price}</p>
+            </div>
+            <p className="cardDescription">{description}</p>
         </div>
     )
 }

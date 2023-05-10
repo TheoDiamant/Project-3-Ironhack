@@ -23,18 +23,29 @@
     transition: filter 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-.newCard:hover .titlePriceDiv {
-    transform: translateY(-300%);
+.newCard:hover .titleDiv {
+    transform: translateY(-350%);
     transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-.newCard:not(:hover) .titlePriceDiv {
+.newCard:not(:hover) .titleDiv {
+    transform: translateY(0%);
+    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.newCard:hover .priceDiv {
+    transform: translateY(-300%);
+    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition-delay: 0.1s;
+}
+
+.newCard:not(:hover) .priceDiv {
     transform: translateY(0%);
     transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .newCard:hover .cardDescription {
-    transform: translateY(-150%);
+    transform: translateY(-120%);
     transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
     transition-delay: 0.3s;
 }
@@ -89,28 +100,40 @@
     transition: all 0.3s ease-in-out;
 }
 
-.titlePriceDiv {
+.titleDiv {
     position: absolute;
     top: 80%;
     height: calc(20% - 14px);
-    width: 50%;
-    margin: 0 25%;
+    width: 70%;
+    margin: 0 15%;
     pointer-events: none;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-.titlePriceDiv > p {
+.titleDiv > p {
+    margin: 0;
+}
+
+.priceDiv {
+    position: absolute;
+    top: 80%;
+    height: calc(20% - 14px);
+    width: 70%;
+    margin: 0 15%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.priceDiv > p {
     margin: 0;
 }
 
 .cardDescription {
     top: 80%;
     height: calc(20% - 14px);
-    width: 50%;
-    margin: 0 25%;
+    width: 70%;
+    margin: 0 15%;
     position: absolute;
     pointer-events: none;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
