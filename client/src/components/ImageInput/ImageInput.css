@@ -2,14 +2,12 @@
     position: relative;
     border: 2px dashed grey;
     margin: 5px;
-    flex: 1;
     display: flex;
 }
 
 .imageInputHalfDiv {
     border: 1px solid red;
     flex-basis: calc(50% - 15%/2);
-    margin: 0;
 }
 
 .canvasDiv {

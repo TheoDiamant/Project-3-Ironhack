@@ -1,11 +1,10 @@
 .firstSection {
-    position: relative;
-}
-
-.firstSection .banner {
-    width: 100vw;
-    height: 490px;
-    object-fit: cover;
+    border: 1px solid black;
+    height: 450px;
+    background-image: url("https://myvinted-lereacteur-2021.netlify.app/static/media/hero-banner.bebb87dd.jpg");
+    background-repeat: no-repeat;
+    background-position: center 20%;
+    background-size: cover;
 }
 
 .secondSection {
