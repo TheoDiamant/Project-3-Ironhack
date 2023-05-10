@@ -70,19 +70,19 @@ router.get("/preview", (req, res, next) => {
 
 router.get("/products/:productId", (req, res, next) => {
 
-    const { productId } = req.params
+  const { productId } = req.params
 
-    if (!mongoose.Types.ObjectId.isValid(productId)) {
-        res.status(400).json({ message: 'Specified id is not valid' });
-        return;
-      }
+  if (!mongoose.Types.ObjectId.isValid(productId)) {
+      res.status(400).json({ message: 'Specified id is not valid' });
+      return;
+    }
 
-    Product.findById(productId)
-    .populate("user")
-    .then(product => {
-      res.status(200).json(product)
-    })
-    .catch(error => res.json(error));
+  Product.findById(productId)
+  .populate("user")
+  .then(product => {
+    res.status(200).json(product)
+  })
+  .catch(error => res.json(error));
 
 })
 
