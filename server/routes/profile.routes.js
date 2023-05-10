@@ -16,50 +16,52 @@ router.get("/member/:userId", isAuthenticated, (req, res, next) => {
 
   const { userId } = req.params
 
-    User.findById(userId)
-    .populate("review")
-    .populate("product")
-    .then(response => {
-      res.json(response)
+  User.findById(userId)
+  .populate("review")
+  .populate("product")
+  .then(response => {
+    res.json(response)
+  })
+
+})
+
+router.get("/member/:userId/edit", isAuthenticated, (req, res , next) => {
+
+  const { userId } = req.payload._id 
+
+  User.findById(userId)
+  .then(response => {
+    res.json(response)
+  })
+
+})
+
+router.post("/member/:userId", isAuthenticated, (req, res, next) => {
+
+  const { userId } = req.params
+
+
+  Follow.create({...req.body, user: req.payload._id})
+  .then(response => {
+    res.json(response)
+    console.log(reponse)
+  })
+  .catch(err => res.json(err))
+})
+
+module.exports = router;
+
+
+// Route to get 3 members info for previewing
+router.get("/member-preview", (req, res, next) => {
+
+  const { q } = req.query
+
+  User.find({ name: {$regex: q, $options: "i" } })
+    .then(users => {
+      users = users.slice(0, 3) 
+      res.json(users)
     })
+    .catch(err => console.log(err))
+})
 
-  })
-
-  router.get("member/:userId/edit", isAuthenticated, (req, res , next) => {
-
-    const { userId } = req.payload._id 
-
-    User.findById(userId)
-    .then(response => {
-      res.json(response)
-    })
-
-  })
-
-
-  router.get("/memberpreview", (req, res, next) => {
-
-    const { q } = req.query
-  
-    User.find({ $or: [{ name: {$regex: q, $options: "i" } }, { description: {$regex: q, $options: "i" } }] })
-      .then(users => {
-        users.slice(0, 3) 
-        res.json(users)
-      })
-      .catch(err => res.json(err))
-  })
-
-  router.post("/member/:userId", isAuthenticated, (req, res, next) => {
-
-    const { userId } = req.params
-  
-
-    Follow.create({...req.body, user: req.payload._id})
-    .then(response => {
-      res.json(response)
-      console.log(reponse)
-    })
-    .catch(err => res.json(err))
-  })
-  
-  module.exports = router;

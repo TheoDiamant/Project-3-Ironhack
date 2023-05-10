@@ -18,11 +18,27 @@
     margin-right: 10%;
 }
 
-.searchBarDiv {
+.searchDiv {
+    flex: 1;
     display: flex;
+    justify-content: center;
     align-items: center;
+    height: 100%;
+}
+
+.searchDivWrapper {
+    display: flex;
     height: 65%;
-    width: 38%;
+    width: 95%;
+}
+
+.navSelection {
+    background-color: #E0E0E0;
+    cursor: pointer;
+    padding: 0 10px;
+    border: none;
+    border-right: 2px solid grey;
+    box-sizing: content-box !important;
 }
 
 .searchBarForm {
@@ -38,14 +54,14 @@
     display: flex;
     align-items: center;
     border-radius: 3px;
-    background-color: #DCDCDC;
+    background-color: #E0E0E0;
 }
 
 .searchBarInput {
     height: 100%;
     width: 100%;
     font-size: 1rem;
-    background-color: #DCDCDC;
+    background-color: #E0E0E0;
     border: 0;
     outline: none;
     margin: 0;
@@ -70,7 +86,6 @@
     align-items: center;
     height: 100%;
     width: 30%;
-    margin-left: 20px;
     box-sizing: border-box;
 }
 

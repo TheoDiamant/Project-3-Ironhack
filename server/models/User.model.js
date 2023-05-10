@@ -18,15 +18,16 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Name is required."],
     },
+    profilePicture: {
+      type: String,
+      default: "https://www.vinted.es/assets/no-photo/user-empty-state.svg",
+    },
     follow: {
       type: Number,
     },
     followers: {
       type: Number,
     },
-
-    
-
     review: [{type: Schema.Types.ObjectId, ref: "Review"}],
     offer: [{type: Schema.Types.ObjectId, ref: "Offer"}],
     product: [{type: Schema.Types.ObjectId, ref: "Product"}]

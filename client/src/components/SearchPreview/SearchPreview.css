@@ -1,6 +1,7 @@
 .searchPreviewDiv {
     z-index: 2000;
     border-radius: 0 0 3px 3px;
+    background-color: #E0E0E0;
 }
 
 .previewLink {
@@ -13,14 +14,15 @@
 }
 
 .previewDiv {
-    background-color:  	#DCDCDC;
+    background-color: white;
     display: flex;
-    height: 150px;
+    height: 140px;
+    margin: 10px;
 }
 
 .previewImageDiv {
     height: 100%;
-    width: 150px;
+    width: 140px;
     display: flex;
     justify-content: center;
     align-items: center;
