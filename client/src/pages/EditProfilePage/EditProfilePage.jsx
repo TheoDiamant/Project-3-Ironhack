@@ -1,15 +1,15 @@
+import "./EditProfilePage.css"
+
+import axios from "axios";
 
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, Link } from 'react-router-dom';
-import "./EditProfilePage.css"
 
 import ImageInput from "../../components/ImageInput/ImageInput"
 
 const API_URL = "http://localhost:5005"; 
 
-
-function EditProfilepage() {
+function EditProfilePage() {
 
 	
 	
@@ -209,4 +209,4 @@ function EditProfilepage() {
   )
 }
 
-export default EditProfilepage
+export default EditProfilePage
