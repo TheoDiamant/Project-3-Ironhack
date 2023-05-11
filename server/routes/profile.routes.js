@@ -35,17 +35,42 @@ router.get("/member/:userId/edit", isAuthenticated, (req, res , next) => {
 
 })
 
-// Route to create a follow
-router.post("/member/:userId", isAuthenticated, (req, res, next) => {
+// Route to follow someone
+router.post("/follow/:userId", isAuthenticated, (req, res, next) => {
 
-  const { userId } = req.params
+  const userFollowed = req.params.userId
+  const userFollowing = req.payload._id
 
-  Follow.create({...req.body, user: req.payload._id})
+  Follow.find({user: new ObjectId(userFollowing)}) //Search the database for the Follow document belonging to the user who is following 
   .then(response => {
-    res.json(response)
-    console.log(response)
+
+    if (response.length === 0) { //If it doesn't exist (first time following), create it
+      Follow.create({user: new ObjectId(userFollowing), userFollows: [new ObjectId(userFollowed)]})
+      .then(response => {
+        res.json(response)
+      })
+      .catch(err => res.json(err))
+    }
+    else { //If it does exist, add the new person being followed to the array
+      response.userFollows.push(new ObjectId(userFollowed))
+      response.save()
+        .then(() => { //Then search the database for the Follow document belonging to the user being followed
+          Follow.find({user: new ObjectId(userFollowed)})
+            .then(response => {
+
+              if(response.length === 0) { //If it doesn't exist, create it and set "followers" to 1
+                Follow.create({user: new ObjectId(userFollowed), followers: 1})
+                  .then(() => res.json(response))
+              }
+              else { //If it does exist, update the follower count
+                response.followers += 1
+                response.save()
+                  .then(() => res.json(response))
+              }
+            })
+        })
+    }
   })
-  .catch(err => res.json(err))
 })
 
 module.exports = router;

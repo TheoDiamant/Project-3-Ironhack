@@ -16,15 +16,11 @@ function ProfilePage() {
 
   const storedToken = localStorage.getItem("authToken");
 
-  const { user } = useContext(AuthContext)
-  const { userId } = useParams()
+  const { user } = useContext(AuthContext) //this is the logged in user
+  const { userId } = useParams() //this is the user whose profile we're looking at
 
   const [userInfo, setUserInfo] = useState(null)
   const [activeTab, setActiveTab] = useState("products")
-
-  // const [newfollow, setNewFollow] = useState({
-  //   follow: 0,
-  // })
   
   useEffect(() => {
     getUser();
@@ -37,14 +33,13 @@ function ProfilePage() {
     })
   }
 
-//   function handleSubmit(e) {
-//     e.preventDefault();
-//     axios.post(`${API_URL}/api/member/${userId}`, newfollow, { headers: { Authorization: `Bearer ${storedToken}` } })
-//         .then(() => {
-//             navigate(`${API_URL}/api/member/${userId}`)
-//         })
-//         .catch(err => console.log(err))
-// }
+  function handleFollow(e) {
+    e.preventDefault();
+    axios.post(`${API_URL}/api/follow/${userId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+        .then(() => {
+        })
+        .catch(err => console.log(err))
+}
 
   const productsButton = document.getElementById("productsTabButton")
   const reviewsButton = document.getElementById("reviewsTabButton")
@@ -101,14 +96,13 @@ function ProfilePage() {
 
                   :
 
-                  <></>
-
+                  <div className="followButtonDiv">
+                    <button className="profileButton" onClick={handleFollow}>Follow</button>
+                  </div>
+                  
                   }
                 </div>
 
-                <div className="followButtonDiv">
-                  <button className="profileButton">Follow</button>
-                </div>
 
               </div>
             </div>

@@ -3,14 +3,15 @@ const { Schema, model } = require("mongoose");
 
 const followSchema = new Schema(
     {
-      follow: {
+      user: {
+        type: Schema.Types.ObjectId, ref: "User" //user who this belongs to, the one who follows
+      },
+      followers: {
         type: Number,
       },
-
-      user: [{type: Schema.Types.ObjectId, ref: "User"}],
+      userFollows: [{type: Schema.Types.ObjectId, ref: "User"}], //array of followed users, not user who follows
     },
     {
-      // this second object adds extra properties: `createdAt` and `updatedAt`
       timestamps: true,
     }
   );
