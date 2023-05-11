@@ -1,5 +1,4 @@
 .productDetailsDiv {
-  background-color: #f7f7f7;
   min-height: 89vh;
   display: flex;
   justify-content: center;
@@ -8,6 +7,7 @@
 .productDetailsWrapper {
   width: 80%;
   display: flex;
+  margin: 20px;
 }
 
 .productDetailsMainDiv {
@@ -15,6 +15,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
 }
 
 .editProductButton {

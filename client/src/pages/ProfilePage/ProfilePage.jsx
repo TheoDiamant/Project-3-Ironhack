@@ -8,6 +8,7 @@ import { AuthContext } from "../../context/auth.context";
 
 import ProductsTab from "../../components/ProductsTab/ProductsTab";
 import ReviewsTab from "../../components/ReviewsTab/ReviewsTab";
+import Loading from "../../components/Loading/Loading";
 
 const API_URL = "http://localhost:5005"; 
 
@@ -102,7 +103,7 @@ function ProfilePage() {
 
             :
             
-            <p>Loading</p>
+            <Loading />
             }
             
           </div>
@@ -132,7 +133,8 @@ function ProfilePage() {
           
           :
 
-          <p>Loading</p>
+          <Loading />
+          
           }
         </div>
     </div>

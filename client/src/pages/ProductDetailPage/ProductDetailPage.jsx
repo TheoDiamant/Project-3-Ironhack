@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/auth.context";
 
 import Carousel from "../../components/Carousel/Carousel";
 import DetailsSidebar from "../../components/DetailsSidebar/DetailsSidebar";
+import Loading from "../../components/Loading/Loading"
 import YouMightAlsoLike from "../../components/YouMightAlsoLike/YouMightAlsoLike"
 
 import axios from "axios";
@@ -72,9 +73,9 @@ function ProductDetailPage() {
 
                 :
 
-                <p>Loading</p>
+                <Loading />
+
                 }
-                
                 
             </div>
         </div>

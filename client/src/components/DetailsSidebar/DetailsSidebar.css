@@ -1,10 +1,6 @@
-.sidebarWrapper {
-  margin: 0;
-}
-
 .detailsSidebarDiv {
   background-color: white;
-  margin: 10px;
+  margin-left: 20px;
   width: 315px;
   padding: 10px;
 }

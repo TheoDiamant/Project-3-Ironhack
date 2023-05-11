@@ -3,74 +3,72 @@ import "./DetailsSidebar.css"
 function DetailsSidebar({product, user}) {
     
     return(
-        <div className="sidebarWrapper">
-            <div className="detailsSidebarDiv">
+        <div className="detailsSidebarDiv">
 
-                <h3 className="sidebarPrice">€{product.price}</h3>
+            <h3 className="sidebarPrice">€{product.price}</h3>
 
-                <hr />
+            <hr />
 
-                <div className="detailsDiv">
+            <div className="detailsDiv">
 
-                    <p className="details">
-                        <span>Brand :</span>
-                        <span><strong>{product.brand}</strong></span>
-                    </p>
-                    <p className="details">
-                        <span>Size :</span>
-                        <span><strong>{product.size}</strong></span>
-                    </p>
-                    <p className="details">
-                        <span>State :</span>
-                        <span><strong>{product.state}</strong></span>
-                    </p>
-                    <p className="details">
-                        <span>Color :</span>
-                        <span><strong>{product.color}</strong></span>
-                    </p>
-                    <p className="details">
-                        <span>Country :</span>
-                        <span><strong>{product.country}</strong></span>
-                    </p>
-                    <p className="details">
-                        <span>Category :</span>
-                        <span><strong>{product.category}</strong></span>
-                    </p>
-                </div>
+                <p className="details">
+                    <span>Brand :</span>
+                    <span><strong>{product.brand}</strong></span>
+                </p>
+                <p className="details">
+                    <span>Size :</span>
+                    <span><strong>{product.size}</strong></span>
+                </p>
+                <p className="details">
+                    <span>State :</span>
+                    <span><strong>{product.state}</strong></span>
+                </p>
+                <p className="details">
+                    <span>Color :</span>
+                    <span><strong>{product.color}</strong></span>
+                </p>
+                <p className="details">
+                    <span>Country :</span>
+                    <span><strong>{product.country}</strong></span>
+                </p>
+                <p className="details">
+                    <span>Category :</span>
+                    <span><strong>{product.category}</strong></span>
+                </p>
+            </div>
 
-                <hr />
+            <hr />
 
-                <div className="sidebarDescriptionDiv">
-                    <p className="sidebarDescription">{product.description}</p>
-                </div>
+            <div className="sidebarDescriptionDiv">
+                <p className="sidebarDescription">{product.description}</p>
+            </div>
 
-                <hr />
+            <hr />
 
-                <div className="creatorUserDiv">
-                        <div className="sidebarProfilePicDiv">
-                            <img className="sidebarProfilePic" src="https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg" alt=""/>
-                        </div>
-                        <div className="nameReviewDiv"> 
-                            <h1 className="sidebarName">{product.user[0].name}</h1>
-                            <p className="sidebarReviews">{product.user[0].review.length === 0 ? "No reviews yet" : product.user[0].review.length} ⭐️</p>
-                        </div>
-                </div>
+            <div className="creatorUserDiv">
+                    <div className="sidebarProfilePicDiv">
+                        <img className="sidebarProfilePic" src="https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg" alt=""/>
+                    </div>
+                    <div className="nameReviewDiv"> 
+                        <h1 className="sidebarName">{product.user[0].name}</h1>
+                        <p className="sidebarReviews">{product.user[0].review.length === 0 ? "No reviews yet" : product.user[0].review.length} ⭐️</p>
+                    </div>
+            </div>
 
-                <hr />
+            <hr />
 
-                <div className="locationLastSeenDiv">
-                    <p>Country : France</p>
-                    <p>Last seen: 45 min ago..</p>
-                </div>
+            <div className="locationLastSeenDiv">
+                <p>Country : France</p>
+                <p>Last seen: 45 min ago..</p>
+            </div>
 
-                <hr className="lastDivider"/>
+            <hr className="lastDivider"/>
 
-                <div className="sidebarButtonsDiv">
-                    <button className="sidebarButton">Message</button>
-                    <button className="sidebarButtonGreen">Make an Offer</button>
-                    <button className="sidebarButtonGreen">Payment</button>
-                    <button className="sidebarButtonGreen">Add to WishList ❤️ </button>
-                </div>
+            <div className="sidebarButtonsDiv">
+                <button className="sidebarButton">Message</button>
+                <button className="sidebarButtonGreen">Make an Offer</button>
+                <button className="sidebarButtonGreen">Payment</button>
+                <button className="sidebarButtonGreen">Add to WishList ❤️ </button>
             </div>
         </div>
     )
