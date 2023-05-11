@@ -65,11 +65,21 @@ function ProfilePage() {
   return (
     <div className="profilePageDiv">
       <div className="profilePageWrapper">
-        
+
           <div className="userDiv">
             <div className="userPictureDiv">
-              <img className="profilePic" src="https://www.vinted.es/assets/no-photo/user-empty-state.svg" alt="" />
+
+              {userInfo ?
+
+              <img className="profilePic" src={userInfo.profilePicture} alt="" />
+
+              :
+
+              <Loading />
+              }
+
             </div>
+
             {userInfo ? 
             
             <div className="userInfoDiv">
@@ -92,13 +102,15 @@ function ProfilePage() {
                   :
 
                   <></>
+
                   }
                 </div>
+
                 <div className="followButtonDiv">
                   <button className="profileButton">Follow</button>
                 </div>
-              </div>
 
+              </div>
             </div>
 
             :

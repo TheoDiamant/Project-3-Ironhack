@@ -21,6 +21,12 @@ router.post("/uploadmany", fileUploader.array("image"), (req, res, next) => {
   res.json(imagePaths)
 })
 
+// Route to upload a single image to the cloud - used for profile picture change
+router.post("/upload", fileUploader.single("image"), (req, res, next) => {
+  res.json(req.file.path);
+});
+
+
 
 // Route to create a products  //////// WORK  ////////
 router.post("/products", isAuthenticated, (req, res, next) => {

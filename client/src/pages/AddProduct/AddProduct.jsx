@@ -43,7 +43,6 @@ function AddProduct() {
             imageData.append("image", files[i])
         }
         
-        console.log(imageData)
         axios.post(`${API_URL}/api/uploadmany`, imageData)
             .then(response => {
                 setImageURLs(response.data)
@@ -55,7 +54,6 @@ function AddProduct() {
     function handleChange(event) {
         const { name, value } = event.target
         setNewProduct(prevState => ({...prevState, [name]: value}))
-        console.log(newProduct)
     }
 
 
