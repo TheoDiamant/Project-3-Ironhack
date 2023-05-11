@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require('mongoose')
+const { ObjectId } = require('mongodb');
 
 const Product = require("../models/Products.model")
 const User = require("../models/User.model")
@@ -48,6 +49,9 @@ router.post("/follow/:userId", isAuthenticated, (req, res, next) => {
       Follow.create({user: new ObjectId(userFollowing), userFollows: [new ObjectId(userFollowed)]})
       .then(response => {
         res.json(response)
+        return User.findByIdAndUpdate(req.payload._id, {
+          $push: {following: response._id}},
+          {new: true})
       })
       .catch(err => res.json(err))
     }
@@ -60,7 +64,9 @@ router.post("/follow/:userId", isAuthenticated, (req, res, next) => {
 
               if(response.length === 0) { //If it doesn't exist, create it and set "followers" to 1
                 Follow.create({user: new ObjectId(userFollowed), followers: 1})
-                  .then(() => res.json(response))
+                  .then(() => {
+                    res.json(response)
+                  })
               }
               else { //If it does exist, update the follower count
                 response.followers += 1
@@ -73,19 +79,19 @@ router.post("/follow/:userId", isAuthenticated, (req, res, next) => {
   })
 })
 
-module.exports = router;
 
 
 // Route to get 3 members info for previewing
 router.get("/member-preview", (req, res, next) => {
-
+  
   const { q } = req.query
-
+  
   User.find({ name: {$regex: q, $options: "i" } })
-    .then(users => {
-      users = users.slice(0, 3) 
-      res.json(users)
-    })
-    .catch(err => console.log(err))
+  .then(users => {
+    users = users.slice(0, 3) 
+    res.json(users)
+  })
+  .catch(err => console.log(err))
 })
 
+module.exports = router;

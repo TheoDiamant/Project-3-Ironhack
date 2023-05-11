@@ -75,8 +75,9 @@ function Navbar() {
           </select>
           <form className="searchBarForm">
             <div className="searchBar">
+           
               <img className="glass" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/magnifying-glass-icon.png" alt=""/>
-
+            
               {navSelection === "Products"
               
               ?
@@ -116,14 +117,16 @@ function Navbar() {
      
       <div className="buttonsDiv">
 
-        <Link to="/">
-          <button className="button normalColors">Home</button>
-        </Link>
+       
 
         {isLoggedIn && (
           <>
+          <Link to={`/`}>
+             <button className="button normalColors">Home</button>
+           </Link>
             <button className="button invertedColors" onClick={logOutUser}>Logout</button>
 
+            
             <Link to={`/member/${user._id}`}>
              <button className="button normalColors">Profile</button>
            </Link>

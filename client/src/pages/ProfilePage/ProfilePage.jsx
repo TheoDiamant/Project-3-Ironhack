@@ -15,6 +15,7 @@ const API_URL = "http://localhost:5005";
 function ProfilePage() {
 
   const storedToken = localStorage.getItem("authToken");
+  console.log(storedToken)
 
   const { user } = useContext(AuthContext) //this is the logged in user
   const { userId } = useParams() //this is the user whose profile we're looking at
@@ -35,7 +36,7 @@ function ProfilePage() {
 
   function handleFollow(e) {
     e.preventDefault();
-    axios.post(`${API_URL}/api/follow/${userId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+    axios.post(`${API_URL}/api/follow/${userId}`, {}, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then(() => {
         })
         .catch(err => console.log(err))

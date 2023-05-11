@@ -22,15 +22,14 @@ const userSchema = new Schema(
       type: String,
       default: "https://www.vinted.es/assets/no-photo/user-empty-state.svg",
     },
-    follow: {
-      type: Number,
-    },
+    following: [{type: Schema.Types.ObjectId, ref: "Follow"}],
     followers: {
       type: Number,
     },
     review: [{type: Schema.Types.ObjectId, ref: "Review"}],
     offer: [{type: Schema.Types.ObjectId, ref: "Offer"}],
-    product: [{type: Schema.Types.ObjectId, ref: "Product"}]
+    product: [{type: Schema.Types.ObjectId, ref: "Product"}],
+  
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
