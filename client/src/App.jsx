@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage/HomePage.jsx";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
 import SignupPage from "./pages/SignupPage/SignupPage.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
-import EditProfilepage from "./pages/EditProfilePage/EditProfilepage";
+import EditProfilePage from "./pages/EditProfilePage/EditProfilePage";
 
 import Navbar from "./components/Navbar/Navbar.jsx";
 import IsPrivate from "./components/IsPrivate/IsPrivate.jsx";
@@ -46,7 +46,7 @@ function App() {
           path="/member/:userId/edit"
           element={
             <IsPrivate>
-              <EditProfilepage />
+              <EditProfilePage />
             </IsPrivate>
           }
         />

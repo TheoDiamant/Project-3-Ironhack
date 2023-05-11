@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, Link } from 'react-router-dom';
-import "./EditProfilepage.css"
+import "./EditProfilePage.css"
 
 import ImageInput from "../../components/ImageInput/ImageInput"
 
