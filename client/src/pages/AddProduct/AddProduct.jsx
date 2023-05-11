@@ -71,7 +71,6 @@ function AddProduct() {
     ///////////////////////
 
     return (
-
         <div className="addProductDiv">
             <div className="addProductFormDiv">
                 <form className="addProductForm" onSubmit={handleSubmit}>
