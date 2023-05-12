@@ -35,7 +35,6 @@ router.post("/products", isAuthenticated, (req, res, next) => {
     .then(response => {
 
       res.json(response)
-      console.log(response)
 
       return User.findByIdAndUpdate(req.payload._id, {
         $push: {product: response._id}},
@@ -90,6 +89,16 @@ router.get("/products/:productId", (req, res, next) => {
   })
   .catch(error => res.json(error));
 
+})
+
+// Route to get several products by ID for the initial cart load
+
+router.post("/cart", (req, res, next) => {
+  const productIds = req.body
+
+  Product.find({ _id: { $in: productIds } })
+    .then(response => res.json(response))
+    .catch(err => console.log(err))
 })
 
 

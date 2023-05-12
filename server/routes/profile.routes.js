@@ -29,7 +29,6 @@ router.get("/member/:userId", isAuthenticated, (req, res, next) => {
     }
   })
   .then(response => {
-    console.log(response)
     res.json(response)
   })
 

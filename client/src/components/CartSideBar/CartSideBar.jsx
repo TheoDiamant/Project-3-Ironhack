@@ -1,15 +1,23 @@
 import "./CartSideBar.css"
 
-import { useState } from "react"
-
-import cart from "../../services/cart.service"
+import { useContext } from "react"
+import { CartContext } from "../../context/cart.context"
 
 function CartSideBar() {
+    
+    const { cart, getCart, addToCart, removeFromCart } = useContext(CartContext)
 
-    const [cartContents, setCartContents] = useState(cart.getCart)
+    
 
     return(
         <div className="cartMainDiv">
+            {cart.map(item => {
+                return(
+                    <div key={item._id} className="cartItem">
+                        <p>{item.title}</p>
+                    </div>
+                )
+            })}
         </div>
     )
 }
