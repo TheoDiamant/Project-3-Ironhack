@@ -44,7 +44,7 @@
 .carouselLeft {
     background-color: rgba(211, 211, 211, 1);
     position: absolute;
-    z-index: 100;
+    z-index: 5;
     height: 25%;
     width: 10%;
     top: 37.5%;
@@ -57,7 +57,7 @@
 .carouselRight {
     background-color: rgba(211, 211, 211, 1);
     position: absolute;
-    z-index: 100;
+    z-index: 5;
     height: 25%;
     width: 10%;
     top: 37.5%;
