@@ -61,7 +61,7 @@
   .icon {
     width: 20px;
     position: absolute;
-    z-index: 99;
+    z-index: 5;
     left: 12px;
     bottom: 9px;
   }
