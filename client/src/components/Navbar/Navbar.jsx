@@ -171,6 +171,7 @@ function Navbar() {
 
       <div className={showCart ? "cartSideBarDiv slideCartIn" : "cartSideBarDiv"}>
         <CartSideBar />
+        <div className="cartSideBarDivider"></div>
       </div>
 
       <div className={showCart ? "dimmerDiv dimming" : "dimmerDiv"}></div>
