@@ -1,4 +1,4 @@
-import "./EditProfilePage.css"
+import "./EditProfilepage.css"
 
 import axios from "axios";
 

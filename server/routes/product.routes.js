@@ -6,6 +6,7 @@ const Product = require("../models/Products.model")
 const User = require("../models/User.model")
 const Offer = require("../models/Offer.model")
 const Review = require("../models/Review.model")
+const Like = require("../models/Like.model")
 
 const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 
@@ -224,6 +225,33 @@ router.get("/products/:productId/offer", (req, res, next) => {
 
 
 
+
+// Route to create an offer for a product //////// WORK  ////////
+router.post("/products/:productId/like", isAuthenticated, (req, res, next) => {
+
+  const { productId } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(productId)) {
+      res.status(400).json({ message: 'Specified id is not valid' });
+      return;
+    }
+
+    let like;
+
+    Like.create({user: req.payload._id, product: productId})
+    .then(response =>{
+      like = response
+      return User.findByIdAndUpdate(req.payload._id, {$push: {like: response._id}, },{new: true})
+      })
+      .then(() => {
+        return Product.findByIdAndUpdate(productId, {$push: {like: offer._id}, },{new: true} )
+      })
+      .then(() => {
+        res.json(response.data)
+      })
+      .catch(err => res.json(err))
+      
+})
 
 
 

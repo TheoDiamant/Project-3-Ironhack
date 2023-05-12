@@ -21,6 +21,8 @@ import UnderNavBar from "./components/UnderNavbar/UnderNavbar";
 import WomanProducts from "./pages/WomanProducts/WomanProducts";
 import MenProducts from "./pages/MenProducts/MenProducts";
 
+import FavoriteProducts from "./pages/FavoriteProducts/FavoriteProducts";
+
 /// IMPORT for New routes for chat 
 
 
@@ -78,6 +80,11 @@ function App() {
 
         <Route path="/products/women" element={<WomanProducts />} />
         <Route path="/products/men" element={<MenProducts />} />
+
+
+        <Route path="/favorite" element={<FavoriteProducts />} />
+
+      
 
       </Routes>
     </div>

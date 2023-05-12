@@ -28,6 +28,12 @@ router.get("/member/:userId", isAuthenticated, (req, res, next) => {
       }
     }
   })
+  .populate({
+    path: "like",
+    populate: {
+      path: "product",
+    }
+  })
   .then(response => {
     console.log(response)
     res.json(response)

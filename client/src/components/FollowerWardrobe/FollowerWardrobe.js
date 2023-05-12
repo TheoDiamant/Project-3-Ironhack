@@ -20,6 +20,7 @@ function FollowerWardrobe() {
       axios.get(`${API_URL}/api/member/${user._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then(response => {
           setFollowerWardrobe(response.data.following[0].userFollows[0].product);
+          console.log(response.data.following[0].userFollows[0].product)
         })
         .catch(err => console.log(err))
     }

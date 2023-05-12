@@ -8,7 +8,7 @@ import Carousel from "../../components/Carousel/Carousel";
 import DetailsSidebar from "../../components/DetailsSidebar/DetailsSidebar";
 import Loading from "../../components/Loading/Loading"
 import YouMightAlsoLike from "../../components/YouMightAlsoLike/YouMightAlsoLike"
-
+import Like from "../../components/Like/Like.js"
 import axios from "axios";
 
 const API_URL = "http://localhost:5005";     
@@ -20,6 +20,7 @@ function ProductDetailPage() {
 
     const [product, setProduct] = useState(null)
     // const [offer, setOffer] = useState(null)
+  
 
     const { productId } = useParams(); 
 
@@ -35,6 +36,8 @@ function ProductDetailPage() {
         })
         .catch(err => console.log(err))
     }
+
+   
 
     // function getOffer() {
     //     axios.get(`${API_URL}/api/products/${productId}/offer`)
@@ -76,6 +79,8 @@ function ProductDetailPage() {
                 <Loading />
 
                 }
+
+                <Like />
                 
             </div>
         </div>
