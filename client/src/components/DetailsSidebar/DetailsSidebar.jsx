@@ -56,11 +56,11 @@ function DetailsSidebar({product, user}) {
 
             <div className="creatorUserDiv">
                     <div className="sidebarProfilePicDiv">
-                        <img className="sidebarProfilePic" src="https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg" alt=""/>
+                        <img className="sidebarProfilePic" src={user.profilePicture} alt=""/>
                     </div>
                     <div className="nameReviewDiv"> 
-                        <h1 className="sidebarName">{product.user[0].name}</h1>
-                        <p className="sidebarReviews">{product.user[0].review.length === 0 ? "No reviews yet" : product.user[0].review.length} ⭐️</p>
+                        <h1 className="sidebarName">{user.name}</h1>
+                        <p className="sidebarReviews">{user.review.length === 0 ? "No reviews yet" : user.review.length.toString() + + " reviews" } ⭐️</p>
                     </div>
             </div>
 

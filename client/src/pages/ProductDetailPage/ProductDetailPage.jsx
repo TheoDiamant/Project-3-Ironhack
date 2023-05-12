@@ -16,17 +16,17 @@ const API_URL = "http://localhost:5005";
 function ProductDetailPage() {
 
     const storedToken = localStorage.getItem("authToken");
+
     const { user } = useContext(AuthContext)
-
-    const [product, setProduct] = useState(null)
-    // const [offer, setOffer] = useState(null)
-  
-
     const { productId } = useParams(); 
 
+    const [product, setProduct] = useState(null)
+    const [userInfo, setUserInfo] = useState(null) //to fetch review numbers and profile picture img
+  
+
     useEffect(() => {
-        getProduct();
-        // getOffer();
+        getProduct()
+        getUser()
     }, []);
 
     function getProduct () {
@@ -37,28 +37,25 @@ function ProductDetailPage() {
         .catch(err => console.log(err))
     }
 
-   
+    function getUser() {
+        axios.get(`${API_URL}/api/member/${user._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+        .then(response => {
+          setUserInfo(response.data)
+        })
+    }
 
-    // function getOffer() {
-    //     axios.get(`${API_URL}/api/products/${productId}/offer`)
-    //     .then(response => {
-    //         const offers = response.data
-    //         setOffer(offers)
-    //     })
-    //     .catch(err => console.log(err))
-    // }
 
     return (
         <div className="productDetailsDiv">
             <div className="productDetailsWrapper">
-                {product && user
+                {product && userInfo
                 
                 ?
 
                 <>
                     <div className="productDetailsMainDiv">
                         <Carousel images={product.img} />
-                        {user._id === product.user[0]._id
+                        {userInfo._id === product.user[0]._id
                         
                         ?
 
@@ -72,7 +69,7 @@ function ProductDetailPage() {
                         }
                     </div>
                     
-                    <DetailsSidebar product={product}/>
+                    <DetailsSidebar product={product} user={userInfo}/>
                 </>
 
                 :
