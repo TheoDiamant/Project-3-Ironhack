@@ -67,7 +67,7 @@ function DetailsSidebar({product, user}) {
             <div className="sidebarButtonsDiv">
                 <button className="sidebarButton">Message</button>
                 <button className="sidebarButtonGreen">Make an Offer</button>
-                <button className="sidebarButtonGreen">Payment</button>
+                <button className="sidebarButtonGreen">Add to cart</button>
                 <button className="sidebarButtonGreen">Add to WishList ❤️ </button>
             </div>
         </div>

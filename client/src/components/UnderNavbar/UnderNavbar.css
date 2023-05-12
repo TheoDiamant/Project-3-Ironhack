@@ -4,6 +4,7 @@
   align-items: center;
   height: 3vh;
   border-bottom: 1px solid lightgrey;
+  background-color: white;
 }
 
 .text-underNavbar {

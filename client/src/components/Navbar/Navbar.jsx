@@ -75,8 +75,10 @@ function Navbar() {
           </select>
           <form className="searchBarForm">
             <div className="searchBar">
-           
-              <img className="glass" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/magnifying-glass-icon.png" alt=""/>
+
+              <div className="glassDiv">
+                <img className="glass" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/magnifying-glass-icon.png" alt=""/>
+              </div>
             
               {navSelection === "Products"
               
@@ -87,6 +89,7 @@ function Navbar() {
               :
 
               <input type="text" className="searchBarInput" placeholder="Search for users" onChange={previewUsers} />
+
               }
 
             </div>
@@ -121,33 +124,38 @@ function Navbar() {
 
         {isLoggedIn && (
           <>
-          <Link to={`/`}>
-             <button className="button normalColors">Home</button>
+            <Link to={`/`}>
+             <button className="navbarButton normalColors">Home</button>
            </Link>
-            <button className="button invertedColors" onClick={logOutUser}>Logout</button>
-
-            
+           
+            <Link to="/new-product">
+              <button className="navbarButton invertedColors">Sell</button>
+            </Link>
+         
             <Link to={`/member/${user._id}`}>
-             <button className="button normalColors">Profile</button>
-           </Link>
+             <button className="navbarButton normalColors">Profile</button>
+            </Link>
+
+            <button className="navbarButton logOutButton invertedColors" onClick={logOutUser}>Logout</button>
+
+            <button className="shoppingCartButton normalColors">
+              <img className="shoppingCartIcon" src="https://i.imgur.com/yRpFRV5.png" alt="" />
+            </button>
           </>
         )}
 
         {!isLoggedIn && (
           <>
             <Link to="/signup">
-              <button className="button invertedColors">Sign Up</button>
+              <button className="navbarButton invertedColors">Sign Up</button>
             </Link>
             
             <Link to="/login">
-              <button className="button normalColors">Login</button>
+              <button className="navbarButton normalColors">Login</button>
             </Link>
           </>
         )}
 
-        <Link to="/new-product">
-          <button className="button invertedColors">Sell a product</button>
-        </Link>
 
       </div>
     </nav>
