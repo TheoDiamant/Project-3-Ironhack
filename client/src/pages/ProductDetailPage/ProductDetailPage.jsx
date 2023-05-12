@@ -68,6 +68,7 @@ function ProductDetailPage() {
                         <></>
                         }
                     </div>
+                    
                     <DetailsSidebar product={product}/>
                 </>
 

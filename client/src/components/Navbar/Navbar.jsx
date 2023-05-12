@@ -70,7 +70,6 @@ function Navbar() {
     setShowCart(false)
   }
 
-  console.log(showCart)
   return (
     <nav className="projectNavbar">
 

@@ -1,7 +1,13 @@
 import "./DetailsSidebar.css"
 
+import { useParams } from "react-router-dom"
+
+import cart from "../../services/cart.service"
+
 function DetailsSidebar({product, user}) {
-    
+
+    const { productId } = useParams()
+
     return(
         <div className="detailsSidebarDiv">
 
@@ -67,7 +73,7 @@ function DetailsSidebar({product, user}) {
             <div className="sidebarButtonsDiv">
                 <button className="sidebarButton">Message</button>
                 <button className="sidebarButtonGreen">Make an Offer</button>
-                <button className="sidebarButtonGreen">Add to cart</button>
+                <button className="sidebarButtonGreen" onClick={() => cart.addToCart(productId)}>Add to cart</button>
                 <button className="sidebarButtonGreen">Add to WishList ❤️ </button>
             </div>
         </div>
