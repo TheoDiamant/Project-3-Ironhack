@@ -1,7 +1,7 @@
 .productDetailsDiv {
-  min-height: 89vh;
   display: flex;
   justify-content: center;
+  min-height: 88vh;
 }
 
 .productDetailsWrapper {

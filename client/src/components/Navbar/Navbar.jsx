@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/auth.context";
 import axios from "axios";
 
 import SearchPreview from "../SearchPreview/SearchPreview"
+import CartSideBar from "../CartSideBar/CartSideBar";
 
 const API_URL = "http://localhost:5005";     
 
@@ -17,6 +18,7 @@ function Navbar() {
   const [products, setProducts] = useState([])
   const [users, setUsers] = useState([])
   const [navSelection, setNavSelection] = useState("Products")
+  const [showCart, setShowCart] = useState(false)
 
   // If the user changes location we set products/users to an empty array to remove the preview to avoid ugly overflows
   useEffect(() => {
@@ -60,9 +62,18 @@ function Navbar() {
     setNavSelection(e.target.value)
   }
 
+  function showCartSideBar() {
+    setShowCart(true)
+  }
+
+  function retractCart() {
+    setShowCart(false)
+  }
+
+  console.log(showCart)
   return (
-    
     <nav className="projectNavbar">
+
       <div className="logoDiv">
         <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Vinted_logo.png" alt=""/>
       </div>
@@ -138,7 +149,7 @@ function Navbar() {
 
             <button className="navbarButton logOutButton invertedColors" onClick={logOutUser}>Logout</button>
 
-            <button className="shoppingCartButton normalColors">
+            <button onClick={showCartSideBar} className="shoppingCartButton normalColors">
               <img className="shoppingCartIcon" src="https://i.imgur.com/yRpFRV5.png" alt="" />
             </button>
           </>
@@ -158,6 +169,14 @@ function Navbar() {
 
 
       </div>
+
+      <div className={showCart ? "cartSideBarDiv slideCartIn" : "cartSideBarDiv"}>
+        <CartSideBar />
+      </div>
+
+      <div className={showCart ? "dimmerDiv dimming" : "dimmerDiv"}></div>
+
+      {showCart && <button className="retractCartSideBarButton" onClick={retractCart}></button>}
     </nav>
   );
 }
