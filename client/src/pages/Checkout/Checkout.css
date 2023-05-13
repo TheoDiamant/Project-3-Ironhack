@@ -1,23 +1,45 @@
 .checkoutPageDiv {
-    height: 88vh;
+    min-height: 88vh;
     display: flex;
     justify-content: center;
 }
 
 .checkoutWrapper {
-    display: flex;
-    width: 80%;
+    width: 90%;
     margin: 20px;
-    padding: 20px;
 }
 
 .checkoutDetails {
+    display: flex;
+    align-items: center;
+}
+
+.checkoutDetailsWrapper {
     flex: 1;
     display: flex;
     flex-direction: column;
+    text-align: left;
 }
 
-.shippingDetails {
+.checkoutDetailsWrapper > h3 {
+    margin: 0 10px 5px;
+}
+
+.sameInfoButton {
+    height: 80px;
+    width: 8%;
+    margin: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.sameInfoButton > img {
+    padding-left: 4px;
+    height: 100%;
+}
+
+/* .shippingDetails {
     flex: 1;
 }
 
@@ -33,4 +55,4 @@
 
 .paymentTerminal {
     flex: 1;
-}
+} */
