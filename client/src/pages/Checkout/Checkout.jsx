@@ -5,7 +5,7 @@ import { useRef, useState } from "react"
 
 function Checkout() {
 
-    const buttonsRef = useRef([null, null])
+    const buttonsRef = useRef(null)
 
     const [billingInfo, setBillingInfo] = useState({
         firstName: "",
@@ -29,9 +29,10 @@ function Checkout() {
 
     function cloneAndSlide() {
         setShippingInfo(billingInfo)
-        buttonsRef.current.forEach(button => {
-            button.classList.add("slideImgsRight")
-        });
+        buttonsRef.current.classList.add("rotate")
+        setTimeout(() => {
+            
+        }, 80);
     }
 
     return(
@@ -82,16 +83,13 @@ function Checkout() {
                         </div>
                     </div>
                     
-                    {/* this is a mess, trying to do a fancy animation thing here */}
-                    <div className="checkoutButtonsDiv">
-                        <button className="showPaymentButton">
-                            <img ref={button => buttonsRef.current[0] = button} className="showPaymentImg" src="https://i.imgur.com/M57ugfv.png" alt=""/>
-                        </button>
 
-                        <button className="cloneButton">
-                            <img ref={button => buttonsRef.current[1] = button} className="cloneInfoImg" onClick={cloneAndSlide} src="https://i.imgur.com/6boB5p3.png" alt="" />
-                        </button>
-                    </div>
+                    <button className="interactiveCheckoutButton">
+                        <svg ref={buttonsRef} className="arrowCheckout" viewBox="0 0 16 16" onClick={cloneAndSlide}>
+                            <path d="M8 12L2 6h12z" transform="rotate(-90 8 8)"></path>
+                        </svg>
+                    </button>
+
 
                     <div className="checkoutDetailsWrapper">
                         <h3>Shipping information</h3>
