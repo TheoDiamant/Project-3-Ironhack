@@ -199,6 +199,8 @@
     z-index: 10;
     top: 0%;
     left: 100%;
+    display: flex;
+    flex-direction: column;
     height: 100vh;
     width: 40%;
     transform: translateX(0%);

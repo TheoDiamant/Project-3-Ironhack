@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import EditProfilePage from "./pages/EditProfilePage/EditProfilePage";
 
 import Navbar from "./components/Navbar/Navbar";
+import UnderNavBar from "./components/UnderNavbar/UnderNavbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
 
@@ -16,7 +17,7 @@ import ProductsListPage from "./pages/ProductsListPage/ProductsListPage";
 import AddProduct from "./pages/AddProduct/AddProduct"
 import ProductDetailPage from "./pages/ProductDetailPage/ProductDetailPage"
 import EditProductPage from "./pages/EditProductPage/EditProductPage"
-import UnderNavBar from "./components/UnderNavbar/UnderNavbar";
+import Checkout from "./pages/Checkout/Checkout";
 
 import WomanProducts from "./pages/WomanProducts/WomanProducts";
 import MenProducts from "./pages/MenProducts/MenProducts";
@@ -84,7 +85,7 @@ function App() {
 
         <Route path="/favorite" element={<FavoriteProducts />} />
 
-      
+        <Route path="/checkout" element={<Checkout />} />
 
       </Routes>
     </div>
