@@ -1,15 +1,25 @@
 .checkoutPageDiv {
+    z-index: -2;
     min-height: 88vh;
     display: flex;
     justify-content: center;
 }
+
 
 .checkoutWrapper {
     width: 90%;
     margin: 20px;
 }
 
+.stepsDiv {
+    height: 50px;
+    border-radius: 500px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
 .checkoutDetails {
+    position: relative;
     display: flex;
     align-items: center;
 }
@@ -18,41 +28,82 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     text-align: left;
 }
 
-.checkoutDetailsWrapper > h3 {
+.checkoutWrapper h3 {
     margin: 0 10px 5px;
 }
 
-.sameInfoButton {
-    height: 80px;
-    width: 8%;
+.checkoutButtonsDiv {
+    position: relative;
+    width: 10%;
     margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.showPaymentButton {
+    position: absolute;
+    height: 80px;
+    width: 100%;
+    left: -120%;
     border: none;
     border-radius: 5px;
     background-color: white;
 }
 
-.sameInfoButton > img {
-    padding-left: 4px;
-    height: 100%;
+.cloneButton {
+    position: relative;
+    height: 80px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
 }
 
-/* .shippingDetails {
-    flex: 1;
+.showPaymentImg {
+    position: relative;
+    height: 70%;
+    transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1)
 }
 
-.summaryAndPayment {
+.cloneInfoImg {
+    position: relative;
+    height: 70%;
+    transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1)
+}
+
+.slideImgsRight {
+    transform: translateX(100%);
+}
+
+.paymentTerminal {
+    position: absolute;
+    z-index: -1;
+    left: 20%;
     flex: 1;
+    text-align: left;
+}
+
+.paymentTerminalWrapper {
     display: flex;
     flex-direction: column;
 }
 
-.cartSummary {
-    flex: 1;
+.placeOrderButton {
+    margin: 5px 10px;
+    padding: 10px;
+    border: 1px solid #2D848A;
+    border-radius: 3px;
+    color: white;
+    background-color: #2D848A;
+    transition: 0.3s ease;
 }
 
-.paymentTerminal {
-    flex: 1;
-} */
+.placeOrderButton:hover {
+    color: #2D848A;
+    background-color: white;
+}
