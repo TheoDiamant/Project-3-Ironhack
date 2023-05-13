@@ -5,7 +5,10 @@ import { useRef, useState } from "react"
 
 function Checkout() {
 
-    const buttonsRef = useRef(null)
+    const buttonRef = useRef(null)
+    const wiperRef = useRef(null)
+    const billingWipe = useRef(null)
+    const paymentTerminalRef = useRef(null)
 
     const [billingInfo, setBillingInfo] = useState({
         firstName: "",
@@ -29,10 +32,14 @@ function Checkout() {
 
     function cloneAndSlide() {
         setShippingInfo(billingInfo)
-        buttonsRef.current.classList.add("rotate")
+        buttonRef.current.classList.add("rotate")
         setTimeout(() => {
-            
-        }, 80);
+            wiperRef.current.classList.add("wipe-away")
+            setTimeout(() => {
+                paymentTerminalRef.current.style.zIndex = "1"
+                billingWipe.current.classList.add("wipe-away")
+            }, 500);
+        }, 800);
     }
 
     return(
@@ -42,56 +49,61 @@ function Checkout() {
 
                 <div className="checkoutDetails">
 
-                    <div className="checkoutDetailsWrapper">
+                    <div ref={billingWipe} className="checkoutDetailsWrapper">
                         <h3>Billing information</h3>
                         <CheckoutInfo info={billingInfo} setInfo={setBillingInfo}/>
 
-                        <div className="paymentTerminal">
 
-                            <h3>Payment details</h3>
-                            <div className="paymentTerminalWrapper">
-
-                                <div className="checkoutGrouper">
-                                    <div className="checkoutInfoDiv">
-                                        <label className="checkoutLabel">Name on card</label>
-                                        <input className="checkoutInput" type="text" name="nameOnCard" placeholder="JOHN DOE"/>
-                                    </div>
-                                </div>
-
-                                <div className="checkoutGrouper">
-                                    <div className="checkoutInfoDiv">
-                                        <label className="checkoutLabel">Card number</label>
-                                        <input className="checkoutInput" type="number" name="nameOnCard" placeholder="XXXX - XXXX - XXXX - XXXX"/>
-                                    </div>
-                                </div>
-
-                                <div className="checkoutGrouper">
-                                    <div className="checkoutInfoDiv">
-                                        <label className="checkoutLabel">Expiration date</label>
-                                        <input className="checkoutInput" type="number" name="nameOnCard" placeholder="XX / XX"/>
-                                    </div>
-
-                                    <div className="checkoutInfoDiv">
-                                        <label className="checkoutLabel">Security code</label>
-                                        <input className="checkoutInput" type="number" name="nameOnCard" placeholder="XXX"/>
-                                    </div>
-                                </div>
-
-                                <button className="placeOrderButton">Place Order</button>
-
-                            </div>
-                        </div>
                     </div>
                     
+                    <div ref={paymentTerminalRef} className="paymentTerminal">
 
-                    <button className="interactiveCheckoutButton">
-                        <svg ref={buttonsRef} className="arrowCheckout" viewBox="0 0 16 16" onClick={cloneAndSlide}>
-                            <path d="M8 12L2 6h12z" transform="rotate(-90 8 8)"></path>
-                        </svg>
-                    </button>
+                        <h3>Payment details</h3>
+                        <div className="paymentTerminalWrapper">
+
+                            <div className="checkoutGrouper">
+                                <div className="checkoutInfoDiv">
+                                    <label className="checkoutLabel">Name on card</label>
+                                    <input className="checkoutInput" type="text" name="nameOnCard" placeholder="JOHN DOE"/>
+                                </div>
+                            </div>
+
+                            <div className="checkoutGrouper">
+                                <div className="checkoutInfoDiv">
+                                    <label className="checkoutLabel">Card number</label>
+                                    <input className="checkoutInput" type="number" name="nameOnCard" placeholder="XXXX - XXXX - XXXX - XXXX"/>
+                                </div>
+                            </div>
+
+                            <div className="checkoutGrouper">
+                                <div className="checkoutInfoDiv">
+                                    <label className="checkoutLabel">Expiration date</label>
+                                    <input className="checkoutInput" type="number" name="nameOnCard" placeholder="XX / XX"/>
+                                </div>
+
+                                <div className="checkoutInfoDiv">
+                                    <label className="checkoutLabel">Security code</label>
+                                    <input className="checkoutInput" type="number" name="nameOnCard" placeholder="XXX"/>
+                                </div>
+                            </div>
+
+                            <button className="placeOrderButton">Place Order</button>
+
+                        </div>
+                    </div>
+
+                    <div ref={wiperRef} className="wiperDiv"></div>
+
+                    <div className="interactiveCheckoutButtonDiv">
+                        <button className="interactiveCheckoutButton">
+                            <svg ref={buttonRef} className="arrowCheckout" viewBox="0 0 16 16" onClick={cloneAndSlide}>
+                                <path d="M8 12L2 6h12z" transform="rotate(-90 8 8)"></path>
+                            </svg>
+                        </button>
+                    </div>
 
 
-                    <div className="checkoutDetailsWrapper">
+                    <div className="checkoutDetailsWrapper shippingWrapper">
                         <h3>Shipping information</h3>
                         <CheckoutInfo info={shippingInfo} setInfo={setShippingInfo}/>
                     </div>
