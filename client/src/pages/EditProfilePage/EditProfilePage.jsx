@@ -3,7 +3,7 @@ import "./EditProfilePage.css"
 import axios from "axios";
 
 import { useState, useEffect } from "react";
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import Loading from "../../components/Loading/Loading";
 import ProfilePictureInput from "../../components/ProfilePictureInput/ProfilePictureInput";
@@ -13,20 +13,19 @@ const API_URL = "http://localhost:5005";
 function EditProfilePage() {
 
 	const storedToken = localStorage.getItem("authToken");
-	
 	const { userId } = useParams()
+	
 	const [user, setUser] = useState(null)
 	
-	useEffect(() => {
-		getUser();
-	}, []);
-
-	function getUser() {
-		axios.get(`${API_URL}/api/member/${userId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
-		.then(response => {
-		  setUser(response.data)
-		})
-	}
+	useEffect(
+		function getUser() {
+			axios.get(`${API_URL}/api/member/${userId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+			.then(response => {
+			  setUser(response.data)
+			})
+		},
+		[]
+	)
 	
 	return (
 		<div className="editProfilePageDiv">

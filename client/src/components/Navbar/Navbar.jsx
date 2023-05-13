@@ -1,6 +1,6 @@
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../../context/auth.context";
 
 import axios from "axios";
@@ -14,11 +14,15 @@ function Navbar() {
     
   const location = useLocation()
   const { isLoggedIn, logOutUser, user } = useContext(AuthContext)
-
+  
   const [products, setProducts] = useState([])
   const [users, setUsers] = useState([])
-  const [navSelection, setNavSelection] = useState("Products")
   const [showCart, setShowCart] = useState(false)
+
+  const [navSelection, setNavSelection] = useState("products")
+  const [optionsShown, setOptionsShown] = useState(false)
+  const navSelector = useRef(null)
+  const navOptions = useRef(null)
 
   // If the user changes location we set products/users to an empty array to remove the preview to avoid ugly overflows
   useEffect(() => {
@@ -56,10 +60,21 @@ function Navbar() {
     }
   }
 
-  function navSelect(e) {
+  
+
+  function showOptions() {
+    navSelector.current.style.borderBottomLeftRadius = "0"
+    navOptions.current.style.zIndex = 12;
+    setOptionsShown(true)
+  }
+
+  function navSelect(option) {
+    navOptions.current.style.zIndex = -1;
+    navSelector.current.style.borderBottomLeftRadius = "3px"
+    setNavSelection(option)
     setProducts([])
     setUsers([])
-    setNavSelection(e.target.value)
+    setOptionsShown(false)
   }
 
   function showCartSideBar() {
@@ -79,10 +94,24 @@ function Navbar() {
 
       <div className="searchDiv">
         <div className="searchDivWrapper">
-          <select className="navSelection" onChange={navSelect}>
-            <option>Products</option>
-            <option>Members</option>
-          </select>
+
+          <div className="navSelection" ref={navSelector} onClick={showOptions}>
+            <p>Products</p>
+            <svg className="navSelectionArrow" viewBox="0 0 16 16"><path d="M8 12L2 6h12z"></path></svg>
+          </div>
+
+          <div className="navOptions" ref={navOptions}>
+            <div className="navOption firstOption" onClick={() => navSelect("products")}>
+              <p>Products</p>
+            </div>
+
+            <div className="navOption secondOption" onClick={() => navSelect("members")}>
+              <p>Members</p>
+            </div>
+          </div>
+
+          {optionsShown && <button className="closeNavSelectorButton" onClick={() => navSelect(navSelection)}></button>}
+
           <form className="searchBarForm">
             <div className="searchBar">
 
@@ -90,7 +119,7 @@ function Navbar() {
                 <img className="glass" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/magnifying-glass-icon.png" alt=""/>
               </div>
             
-              {navSelection === "Products"
+              {navSelection === "products"
               
               ?
               

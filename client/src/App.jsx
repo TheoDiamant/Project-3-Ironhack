@@ -2,20 +2,20 @@ import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
 
-import HomePage from "./pages/HomePage/HomePage.jsx";
-import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
-import SignupPage from "./pages/SignupPage/SignupPage.jsx";
-import LoginPage from "./pages/LoginPage/LoginPage.jsx";
+import HomePage from "./pages/HomePage/HomePage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import SignupPage from "./pages/SignupPage/SignupPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
 import EditProfilePage from "./pages/EditProfilePage/EditProfilePage";
 
-import Navbar from "./components/Navbar/Navbar.jsx";
-import IsPrivate from "./components/IsPrivate/IsPrivate.jsx";
-import IsAnon from "./components/IsAnon/IsAnon.jsx";
+import Navbar from "./components/Navbar/Navbar";
+import IsPrivate from "./components/IsPrivate/IsPrivate";
+import IsAnon from "./components/IsAnon/IsAnon";
 
-import ProductsListPage from "./pages/ProductsListPage/ProductsListPage.jsx";
-import AddProduct from "./pages/AddProduct/AddProduct.jsx"
-import ProductDetailPage from "./pages/ProductDetailPage/ProductDetailPage.jsx"
-import EditProductPage from "./pages/EditProductPage/EditProductPage.jsx"
+import ProductsListPage from "./pages/ProductsListPage/ProductsListPage";
+import AddProduct from "./pages/AddProduct/AddProduct"
+import ProductDetailPage from "./pages/ProductDetailPage/ProductDetailPage"
+import EditProductPage from "./pages/EditProductPage/EditProductPage"
 import UnderNavBar from "./components/UnderNavbar/UnderNavbar";
 
 import WomanProducts from "./pages/WomanProducts/WomanProducts";
