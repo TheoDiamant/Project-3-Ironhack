@@ -13,22 +13,23 @@ function FavoriteProducts() {
   const [userInfo, setUserInfo] = useState([]);
   console.log(userInfo)
   
+
+
   useEffect(() => {
-    getUser();
+
+      if (user) {
+        axios.get(`${API_URL}/api/member/${user._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+          .then(response => {
+            console.log(response.data.like[0].product);
+            setUserInfo(response.data.like[0].product);
+          })
+          .catch(error => {
+            console.log(error);
+          })
+      }
+    
   }, []);
 
-  function getUser() {
-    if (user) {
-      axios.get(`${API_URL}/api/member/${user._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(response => {
-          console.log(response.data.like[0].product);
-          setUserInfo(response.data.like[0].product);
-        })
-        .catch(error => {
-          console.log(error);
-        })
-    }
-  }
 
   return (
     <div>
