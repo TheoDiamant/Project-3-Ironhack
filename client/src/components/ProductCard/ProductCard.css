@@ -155,7 +155,6 @@
    left: 0;
    width: 100%;
    height: 100%;
-   background: rgba(0,0,0,0.6);
    display: flex;
    align-items: center;
    justify-content: center;
@@ -181,7 +180,19 @@
    padding: 10px 0;
  }
  
- .text-decoration-line-through {
-   text-decoration: line-through;
+ .product_card .card-img-top {
+    height: 400px;
+    object-fit: cover;
  }
- 
+
+ .user-name-product {
+    text-decoration: none;
+    color: #343434;
+ }
+
+ .sub-title{
+    font-size: 15px;
+    text-decoration: none;
+    color: #4b4b4b;
+ }
+

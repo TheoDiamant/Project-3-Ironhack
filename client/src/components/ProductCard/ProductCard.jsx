@@ -24,13 +24,15 @@ function ProductCard({product}) {
     const colStyle = {
      
             flex: "0 0 auto",
-            width: "55"
-        
+            width: "55",
     }
 
 
     const cardColor = {
-        backgroundColor: "#f7f7f7"
+        backgroundColor: "#f7f7f7",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
     }
     return (
 
@@ -55,6 +57,7 @@ function ProductCard({product}) {
         // </div>
 
 
+<Link to={`/products/${product._id}`}>
 
       <div class="container py-5">
     <div class="row">
@@ -69,13 +72,13 @@ function ProductCard({product}) {
             </div>
             <div style={cardColor}>
               <small>
-                <a href="#" class="text-muted">Foundation</a>
+                <a href="#" class="user-name-product">Foundation</a>
               </small>
               <strong>
-                <a href="#" class="text-body">{product.title}</a>
+                <a href="#" class="sub-title">{product.title}</a>
               </strong>
               <div class="price">
-                <span class="text-warning">${product.price} </span>
+                <span class="">${product.price} </span>
               </div>
             </div>
           </div>
@@ -83,6 +86,7 @@ function ProductCard({product}) {
       </div>
     </div>
 </div>
+</Link>
 
 
     )
