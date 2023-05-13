@@ -115,9 +115,9 @@ function Navbar() {
           <form className="searchBarForm">
             <div className="searchBar">
 
-              <div className="glassDiv">
+              {/* <div className="glassDiv">
                 <img className="glass" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/magnifying-glass-icon.png" alt=""/>
-              </div>
+              </div> */}
             
               {navSelection === "products"
               

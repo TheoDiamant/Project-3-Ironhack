@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 8vh;
+    height: 6vh;
     border-bottom: 1px solid lightgrey;
     background-color: white;
 }
@@ -10,13 +10,12 @@
 .logoDiv {
     display: flex;
     justify-content: flex-end;
-    height: 60%;
-    width: 15%;
+    height: 50%;
+    width: 26%;
 }
 
 .logoDiv > img {
     height: 100%;
-    margin-right: 10%;
 }
 
 .searchDiv {
@@ -30,17 +29,16 @@
 .searchDivWrapper {
     position: relative;
     display: flex;
-    height: 65%;
-    width: 95%;
+    height: 45%;
+    width: 75%;
 }
 
 .navSelection {
     display: flex;
     align-items: center;
-    width: 15%;
+    width: 21%;
     padding: 0 10px;
     border: none;
-    border-right: 2px solid grey;
     border-radius: 3px 0 0 3px;
     cursor: pointer;
     background-color: rgb(239, 209, 170);
@@ -150,8 +148,9 @@
 .buttonsDiv {
     display: flex;
     align-items: center;
-    height: 100%;
-    width: 35%;
+    height: 70%;
+    width: 41%;
+    font-size: 12px;
 }
 
 .buttonsDiv > a {
