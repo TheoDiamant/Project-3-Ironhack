@@ -80,16 +80,18 @@ function ProductDetailPage() {
 
                 }
 
-                <Like />
+           
                 
             </div>
         </div>
         <div className="otherProductDiv">
-
-        <h3 className="youMightAlsoLike">You might also like...</h3>
+                <div className="youMightAlsoLikeDiv">
+                    <h3 className="youMightAlsoLike">Other products of</h3>
+                </div>
     
                     <YouMightAlsoLike />
            </div>
+
         </div>
         
     )

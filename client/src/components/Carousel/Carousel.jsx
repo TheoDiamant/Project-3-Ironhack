@@ -31,6 +31,7 @@ function Carousel({images}) {
     }
 
     return(
+        
         <div className="carouselDiv">
 
             {images.length === 1
@@ -67,8 +68,12 @@ function Carousel({images}) {
             </>
 
             }
+
+            
     
         </div>
+
+       
     )
 }
 
