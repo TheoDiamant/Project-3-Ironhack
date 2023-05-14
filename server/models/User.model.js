@@ -30,7 +30,6 @@ const userSchema = new Schema(
     offer: [{type: Schema.Types.ObjectId, ref: "Offer"}],
     product: [{type: Schema.Types.ObjectId, ref: "Product"}],
     like: [{type: Schema.Types.ObjectId, ref: "Like"}],
-  
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
