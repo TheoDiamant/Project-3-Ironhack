@@ -22,7 +22,7 @@ function YouMightAlsoLike() {
 
   return (
     <>
-        <h1 className="latestProductsText">You might also like</h1>
+        
         <div className="latestProductsDiv">
           {youMightAlsoLike.map(product => {
             return(

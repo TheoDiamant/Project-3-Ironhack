@@ -46,7 +46,9 @@ function ProductDetailPage() {
 
 
     return (
+        <div>
         <div className="productDetailsDiv">
+
             <div className="productDetailsWrapper">
                 {product && userInfo
                 
@@ -82,6 +84,14 @@ function ProductDetailPage() {
                 
             </div>
         </div>
+        <div className="otherProductDiv">
+
+        <h3 className="youMightAlsoLike">You might also like...</h3>
+    
+                    <YouMightAlsoLike />
+           </div>
+        </div>
+        
     )
 }
 

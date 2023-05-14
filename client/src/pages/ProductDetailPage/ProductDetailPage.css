@@ -1,7 +1,12 @@
 .productDetailsDiv {
   display: flex;
   justify-content: center;
-  min-height: 88vh;
+
+}
+.otherProductDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .productDetailsWrapper {
@@ -25,6 +30,10 @@
   background-color: #C2634B;
   color: white;
   border-radius: 5px;
+}
+
+.youMightAlsoLike {
+  margin-bottom: 0;
 }
 
 @media only screen and (min-width: 1920px) {
