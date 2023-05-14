@@ -58,7 +58,7 @@ function ProductCard({product}) {
 
 
 <Link to={`/products/${product._id}`}>
-
+           
       <div class="container py-5">
     <div class="row">
       <div style={colStyle} >
