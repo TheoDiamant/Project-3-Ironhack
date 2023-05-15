@@ -51,7 +51,6 @@ router.get("/products", (req, res, next) => {
   Product.find()
     .populate("user")
     .then(allProducts => {
-      console.log(allProducts[0].user)
       res.json(allProducts)
     })
     .catch(err => res.json(err))
@@ -100,7 +99,7 @@ router.post("/cart", (req, res, next) => {
 
   Product.find({ _id: { $in: productIds } })
     .then(response => res.json(response))
-    .catch(err => console.log(err))
+    .catch(err => res.json(err))
 })
 
 
