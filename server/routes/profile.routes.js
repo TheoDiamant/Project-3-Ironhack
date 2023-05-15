@@ -24,7 +24,10 @@ router.get("/member/:userId", isAuthenticated, (req, res, next) => {
     populate: {
       path: "userFollows",
       populate: {
-        path: "product"
+        path: "product",
+        populate: {
+          path: "user",
+        }
       }
     }
   })

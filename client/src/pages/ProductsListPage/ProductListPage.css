@@ -1,5 +1,13 @@
-.listDiv {
-    margin: 10px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+
+.wrapper {
+    margin: 0 auto;
+    width: 70vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+main a {
+    text-decoration: none;
+    color: black;
 }

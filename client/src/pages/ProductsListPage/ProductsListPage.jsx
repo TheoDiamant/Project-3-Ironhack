@@ -22,7 +22,7 @@ function ProductsListPage() {
 
     return (
        
-       <div className="listDiv"> 
+       <main className="wrapper"> 
             {products.map(product => {
                 const user = product.user[0]; 
                 return <ProductCard key={product._id} product={product} user={user}/>
@@ -32,7 +32,7 @@ function ProductsListPage() {
            
 
 
-        </div>
+        </main>
     )
 }
 

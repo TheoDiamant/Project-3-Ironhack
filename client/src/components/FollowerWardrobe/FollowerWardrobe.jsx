@@ -6,6 +6,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import { AuthContext } from "../../context/auth.context";
 
 import ProductCard from "../ProductCard/ProductCard";
+import ProductCardFollowersWardrobe from "../ProductCardFollowersWardrobe/ProductCardFollowersWardrobe";
 
 const API_URL = "http://localhost:5005";
 
@@ -29,16 +30,17 @@ function FollowerWardrobe() {
   }, [user, storedToken]);
 
   return (
-        <div className="latestProductsDiv">
+        <main className="wrapper">
           {followerWardrobe.map(products => {
             return (
                 <>
-                <ProductCard key={products._id} product={products} />
+                
+                <ProductCardFollowersWardrobe key={products._id} product={products} />
                 </>
             )
           })}
        
-        </div>
+        </main>
   )
 }
 

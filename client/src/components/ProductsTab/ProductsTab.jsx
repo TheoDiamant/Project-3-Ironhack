@@ -10,7 +10,7 @@ function ProductsTab({products}) {
             
             ? 
             
-            <div className="productsTabDiv">
+            <div className="wrapper">
                 {products.map(product => {
                     return(
                         <ProductCard key={product._id} product={product}/>

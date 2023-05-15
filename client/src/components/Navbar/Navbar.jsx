@@ -103,6 +103,7 @@ function Navbar() {
           <div className="navOptions" ref={navOptions}>
             <div className="navOption firstOption" onClick={() => navSelect("products")}>
               <p>Products</p>
+              <hr></hr>
             </div>
 
             <div className="navOption secondOption" onClick={() => navSelect("members")}>
@@ -167,9 +168,9 @@ function Navbar() {
              <button className="navbarButton normalColors">Home</button>
            </Link>
            
-            <Link to="/new-product">
+            {/* <Link to="/new-product">
               <button className="navbarButton invertedColors">Sell</button>
-            </Link>
+            </Link> */}
          
             <Link to={`/member/${user._id}`}>
              <button className="navbarButton normalColors">Profile</button>

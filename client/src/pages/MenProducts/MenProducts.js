@@ -31,7 +31,7 @@ const MenProducts = () => {
 
   return (
 
-<div className="listDiv"> 
+<main className="wrapper"> 
            {products.map(product => {
                 console.log(product)
                 const user = product.user[0]; 
@@ -39,7 +39,7 @@ const MenProducts = () => {
                 
             })}  
 
-    </div>
+    </main>
 
   )
 }

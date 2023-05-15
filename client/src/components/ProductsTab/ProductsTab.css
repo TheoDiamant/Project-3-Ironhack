@@ -19,3 +19,12 @@
 .noProductsDiv > p {
     font-size: 1.5rem;
 }
+
+
+.wrapper {
+    margin: 0 auto;
+    width: 70vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 27px;
+}

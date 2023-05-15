@@ -1,0 +1,13 @@
+
+.wrapper {
+    margin: 0 auto;
+    width: 90vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+main a {
+    text-decoration: none;
+    color: black;
+}

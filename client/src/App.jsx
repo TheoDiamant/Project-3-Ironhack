@@ -24,6 +24,8 @@ import MenProducts from "./pages/MenProducts/MenProducts";
 
 import FavoriteProducts from "./pages/FavoriteProducts/FavoriteProducts";
 
+import StickyButton from "./components/StickyButton/StickyButton";
+
 /// IMPORT for New routes for chat 
 
 
@@ -33,6 +35,7 @@ function App() {
     
       <Navbar />
       <UnderNavBar />
+      <StickyButton />
 
       <Routes>
         <Route path="/" element={<HomePage />} />

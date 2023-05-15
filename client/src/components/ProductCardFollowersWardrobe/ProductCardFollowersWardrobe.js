@@ -1,8 +1,8 @@
-import "./ProductCard.css"
+import "./ProductCardFollowersWardrobe.css"
 
 import { Link } from "react-router-dom"
 
-function ProductCard({product}) {
+function ProductCardFollowersWardrobe({product}) {
 
     // shorterns description/title to avoid text overflow on the cards
     let title = product.title.split(" ")
@@ -42,12 +42,15 @@ function ProductCard({product}) {
         
         
         <div className="offers">
-        <Link to={`/products/${product._id}`} className="wrap-card">
         <div className="offer-card">
+       
         <div className="avatar-card">
+         <Link to={`/member/${product.user[0]._id}`}>
         <img src={product.user[0].profilePicture} alt="Avatar" className="avatar-card" />
-            <span>{product.user[0].name}</span>
+         <span>{product.user[0].name}</span> </Link>
         </div>
+    
+        <Link to={`/products/${product._id}`} className="wrap-card">
         <div>
           <img src={product.img[0]} alt="Product" className="product-card" />
         </div>
@@ -57,8 +60,8 @@ function ProductCard({product}) {
           <p className="descriptionProduct">{product.size}</p>
           <p className="descriptionProduct">{product.brand}</p>
         </div>
-        </div>
         </Link>  
+        </div>
         </div>
        
         
@@ -67,4 +70,4 @@ function ProductCard({product}) {
     )
 }
 
-export default ProductCard
+export default ProductCardFollowersWardrobe

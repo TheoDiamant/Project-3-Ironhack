@@ -4,26 +4,23 @@ import LatestProducts from "../../components/LatestProducts/LatestProducts"
 import FollowerWardrobe from "../../components/FollowerWardrobe/FollowerWardrobe";
 
 
-function HomePage() {
+const HomePage = () => {
   return (
-    <div>
-      <div className="firstSection"> 
+    <div className="container">
+      <div className="background-image">
+        <div className="overlay">
+          <div className="text"><i>Give a second lifes<br></br>to your clothes</i></div>
+        </div>
       </div>
-       
-  
 
+      <h1 className="latestProductsText">Recommended for you</h1>
+      <LatestProducts />
 
-        <h1 className="latestProductsText">Latest Products</h1>
-        <LatestProducts />
-
-
-
-      <div className="secondSection">
-        <h1 className="latestProductsText">Wardrobe of Brea</h1>
-        <FollowerWardrobe />
-      </div>
+      <h1 className="latestProductsText">Wardrobe of Brea</h1>
+      
+      <FollowerWardrobe />
     </div>
   );
-}
+};
 
 export default HomePage;

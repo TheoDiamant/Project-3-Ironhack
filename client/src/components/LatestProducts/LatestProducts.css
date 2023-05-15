@@ -1,14 +1,26 @@
 .wrapper {
     margin: 0 auto;
-    width: 90vw;
+    width: 70vw;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 27px;
 }
 
 main a {
     text-decoration: none;
     color: black;
+}
+
+.buttonSeeMore {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 16%; /* Increase the width to make it wider */
+}
+.buttonSeeMore button{
+    height: 45vh;
+    border: none;
+    color: #999999;
 }
 
 @media only screen and (min-width: 1920px) {

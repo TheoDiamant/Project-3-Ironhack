@@ -19,3 +19,7 @@
   color: #999999;
   margin-bottom: 0;
 }
+
+.text-underNavbar a {
+  text-decoration: none;
+}

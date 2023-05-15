@@ -10,8 +10,8 @@
 .logoDiv {
     display: flex;
     justify-content: flex-end;
-    height: 50%;
-    width: 20%;
+    height: 60%;
+    width: 15%;
 }
 
 .logoDiv > img {
@@ -29,14 +29,14 @@
 .searchDivWrapper {
     position: relative;
     display: flex;
-    height: 45%;
-    width: 75%;
+    height: 59%;
+    width: 70%;
 }
 
 .navSelection {
     display: flex;
     align-items: center;
-    width: 24%;
+    width: 18%;
     padding: 0 10px;
     border: none;
     border-radius: 3px 0 0 3px;
@@ -60,7 +60,7 @@
     z-index: -1;
     top: 100%;
     height: 200%;
-    width: 15%;
+    width: 18%;
 }
 
 .navOption {
@@ -70,6 +70,8 @@
     padding: 0 10px;
     border: 1px solid rgb(239, 209, 170);
     background-color: white;
+    font-size: 12px;
+
 }
 
 .navOption > p {
@@ -150,7 +152,7 @@
 .buttonsDiv {
     display: flex;
     align-items: center;
-    height: 70%;
+    height: 83%;
     width: 41%;
     font-size: 12px;
 }
