@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
-
 import { useNavigate } from "react-router-dom"
 
+import { useGoogleLogin } from '@react-oauth/google';
 import axios from "axios"
 
 const AuthContext = React.createContext()
@@ -54,7 +54,6 @@ function AuthProviderWrapper(props) {
   }
 
   function signup(requestBody) {
-
     axios.post(`${API_URL}/auth/signup`, requestBody)
     .then((response) => {
       storeToken(response.data.authToken)
@@ -66,6 +65,21 @@ function AuthProviderWrapper(props) {
       setErrorMessage(errorDescription)
     })
   }
+
+  const googleSignup = useGoogleLogin({
+    onSuccess: codeResponse => {
+      axios.post(`${API_URL}/auth/signup-google`, { accessToken: codeResponse.access_token })
+      .then(response => {
+        storeToken(response.data.authToken)
+        authenticateUser()
+        navigate("/")
+      })
+      .catch((error) => {
+        const errorDescription = error.response.data.message
+        setErrorMessage(errorDescription)
+      })
+    }
+  })
 
   function login(requestBody) {
     axios.post(`${API_URL}/auth/login`, requestBody)
@@ -79,6 +93,21 @@ function AuthProviderWrapper(props) {
       setErrorMessage(errorDescription);
     });
   }
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: codeResponse => {
+      axios.post(`${API_URL}/auth/login-google`, { accessToken: codeResponse.access_token })
+      .then(response => {
+        storeToken(response.data.authToken)
+        authenticateUser()
+        navigate("/")
+      })
+      .catch((error) => {
+        const errorDescription = error.response.data.message
+        setErrorMessage(errorDescription)
+      })
+    }
+  })
 
   function logOutUser() {
     removeToken()
@@ -98,6 +127,8 @@ function AuthProviderWrapper(props) {
         logOutUser,
         signup,
         login,
+        googleSignup,
+        googleLogin,
       }}
     >
       {props.children}

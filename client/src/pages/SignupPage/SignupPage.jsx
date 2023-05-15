@@ -5,23 +5,15 @@ import axios from "axios"
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/auth.context"
 
-// import { useGoogleLogin } from '@react-oauth/google';
-
 const API_URL = "http://localhost:5005"
 
 function SignupPage() {
 
-  const { signup, errorMessage } = useContext(AuthContext)
+  const { signup, errorMessage, googleSignup } = useContext(AuthContext)
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  
-  // const signup = useGoogleLogin({
-  //   onSuccess: codeResponse => {
-  //     axios.post(`${API_URL}/auth/signup-google`)
-  //   },
-  // });
 
   function handleName(e) {
     setName(e.target.value)
@@ -96,7 +88,7 @@ function SignupPage() {
 
         </form>
 
-        <button className="googleSignupButton">
+        <button onClick={googleSignup} className="googleSignupButton">
           <img className="googleLogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png" alt="" />
           <span>Sign up with Google</span>
         </button>
