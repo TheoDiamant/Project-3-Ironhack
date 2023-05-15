@@ -19,13 +19,13 @@ function LatestProducts() {
   }, [])
 
   return (
-        <div className="">
+    <main className="wrapper">
           {latestProducts.map(product => {
             return(
               <ProductCard key={product._id} product={product} />
             )
           })}
-        </div>
+        </main>
   )
 }
 

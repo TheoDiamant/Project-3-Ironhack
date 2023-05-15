@@ -36,81 +36,34 @@ function ProductCard({product}) {
     }
     return (
 
-        // <div className="newCard">
-        //     <Link to={`/products/${product._id}`}>
-        //         <div className="cardImageDiv">
-        //             <img className="cardImage" src={product.img[0]} alt="" />
-        //         </div>
-        //     </Link>
-
-        //     <div className="cardButtonsDiv">
-        //         <button className="cardButton addCardButton">Add to cart</button>
-        //         <button className="cardButton makeOfferButton">Make an offer</button>
-        //     </div>
-        //     <div className="titleDiv">
-        //         <p>{title}</p>
-        //     </div>
-        //     <div className="priceDiv">
-        //         <p>€{product.price}</p>
-        //     </div>
-        //     <p className="cardDescription">{description}</p>
-        // </div>
+       
 
 
         
         
-//         <main className="wrapper">
-//   <div className="offers">
-//   <Link to={`/products/${product._id}`} className="wrap-card">
-//       <div className="offer-card">
-//         <div className="avatar-card">
-//           <img src="https://picsum.photos/id/1/200/200" alt="Avatar" className="avatar-card" />
-//           <span>Username</span>
-//         </div>
-//         <div>
-//           <img src={product.img[0]} alt="Product" className="product-card" />
-//         </div>
-//         <div>
-//           <p>${product.price}</p>
-//           <p>{product.title}</p>
-//           <p>MARQUE</p>
-//         </div>
-//       </div>
-// </Link>
-//   </div>
-// </main>
- <Link to={`/products/${product._id}`}>
-           
-      <div class="container py-5">
-    <div class="row">
-      <div style={colStyle} >
-        <div class="product_card">
-          <div class="card border-0">
-            <div class="card-header bg-transparent border-0 p-0">
-              <img class="card-img-top" src={product.img[0]} alt=""/>
-              <div class="details-btn">
-                <a href="#" class="btn btn-dark">View Details <i class="fas fa-long-arrow-alt-right"></i></a>
-              </div>
-            </div>
-            <div style={cardColor}>
-              <small>
-                <a href="#" class="user-name-product">Foundation</a>
-              </small>
-              <strong>
-                <a href="#" class="sub-title">{product.title}</a>
-              </strong>
-              <div class="price">
-                <span class="">${product.price} </span>
-              </div>
-            </div>
-          </div>
+        <div className="offers">
+        <Link to={`/products/${product._id}`} className="wrap-card">
+        <div className="offer-card">
+        <div className="avatar-card">
+          <img src="https://picsum.photos/id/1/200/200" alt="Avatar" className="avatar-card" />
+          <span>Username</span>
         </div>
-      </div>
-    </div>
-</div>
-</Link> 
+        <div>
+          <img src={product.img[0]} alt="Product" className="product-card" />
+        </div>
+        <div>
+          <p>${product.price}</p>
+          <p>{product.title}</p>
+          <p>{product.brand}</p>
+        </div>
+        </div>
+        </Link>  
+        </div>
+       
+        
 
-)
+
+    )
 }
 
 export default ProductCard

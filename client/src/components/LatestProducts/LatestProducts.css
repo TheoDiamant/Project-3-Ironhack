@@ -1,8 +1,14 @@
-.latestProductsDiv {
-    width: 70%;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0px;
+.wrapper {
+    margin: 0 auto;
+    width: 90vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+main a {
+    text-decoration: none;
+    color: black;
 }
 
 @media only screen and (min-width: 1920px) {
