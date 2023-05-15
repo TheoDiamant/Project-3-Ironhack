@@ -1,11 +1,22 @@
 import "./SignupPage.css";
+
+import axios from "axios"
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
 
+// import { useGoogleLogin } from '@react-oauth/google';
 
+const API_URL = "http://localhost:5005"
 
 function SignupPage() {
+
+  // const signup = useGoogleLogin({
+  //   onSuccess: codeResponse => {
+  //     axios.post(`${API_URL}/auth/signup-google`)
+  //   },
+  // });
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,7 +47,7 @@ function SignupPage() {
 
   return (
 
-    <div class="signupPageDiv">
+    <div className="signupPageDiv">
 
       <div className="signupFormDiv">
 
@@ -47,12 +58,12 @@ function SignupPage() {
             <p className="signupSubtitle">Get started with our app, just create an account and enjoy the experience.</p>
           </div>
 
-          <div class="signupInputDiv">
-            <label class="signupInputLabel" for="name_field">Name</label>
-            <svg fill="none" viewBox="0 0 24 24" transform="rotate(-90)" height="24" width="24" xmlns="http://www.w3.org/2000/svg" class="nameIcon">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#141B34" d="M7 8.5L9.94202 10.2394C11.6572 11.2535 12.3428 11.2535 14.058 10.2394L17 8.5"></path>
+          <div className="signupInputDiv">
+            <label className="signupInputLabel" htmlFor="name_field">Name</label>
+            <svg fill="none" viewBox="0 0 24 24" transform="rotate(-90)" height="24" width="24" xmlns="http://www.w3.org/2000/svg" className="nameIcon">
+              <path strokeLinejoin="round" strokeLinecap="round" strokeWidth="1.5" stroke="#141B34" d="M7 8.5L9.94202 10.2394C11.6572 11.2535 12.3428 11.2535 14.058 10.2394L17 8.5"></path>
             </svg>
-            <input placeholder="John Doe" name="name" value={name} onChange={handleName} type="text" class="signupInput" id="name_field"/>
+            <input placeholder="John Doe" name="name" value={name} onChange={handleName} type="text" className="signupInput" id="name_field"/>
           </div>
 
           <div className="signupInputDiv">
@@ -84,14 +95,15 @@ function SignupPage() {
             <hr className="line"></hr>
           </div>
 
-          <button type="submit" className="googleSignupButton">
-            <img className="googleLogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png" alt="" />
-            <span>Sign up with Google</span>
-          </button>
 
           {errorMessage && <p className="error-message">{errorMessage}</p>}
 
         </form>
+
+        <button className="googleSignupButton">
+          <img className="googleLogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png" alt="" />
+          <span>Sign up with Google</span>
+        </button>
 
       </div>
       

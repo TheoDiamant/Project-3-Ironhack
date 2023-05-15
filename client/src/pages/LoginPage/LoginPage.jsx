@@ -78,6 +78,10 @@ function LoginPage() {
             <hr className="line"></hr>
           </div>
 
+        </form>
+        
+        <div className="afterLoginForm">
+
           <button type="submit" className="googleLoginButton">
             <img className="googleLogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png" alt="" />
             <span>Log In with Google</span>
@@ -89,9 +93,9 @@ function LoginPage() {
             <p>Don't have an account yet?</p>
             <Link className="signUpLink" to={"/signup"}> Sign Up</Link>
           </div>
+          
+        </div>
 
-        </form>
-        
       </div>
 
     </div>

@@ -4,18 +4,26 @@
   min-height: 89vh;
 }
 
-.signupForm {
+.signupFormDiv {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
   height: 580px;
   width: 500px;
   border-radius: 10px;
   margin: 40px;
-  padding: 30px 0 20px;
   box-shadow: 0px 106px 42px rgba(0, 0, 0, 0.01), 0px 59px 36px rgba(0, 0, 0, 0.05), 0px 26px 26px rgba(0, 0, 0, 0.09), 0px 7px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
   background-color: white;
+}
+
+.signupForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 90%;
+  width: 100%;
+  padding-top: 30px;
 }
 
 .signupFormTopText {
@@ -91,12 +99,11 @@
 }
 
 .googleSignupButton {
-  height: 40px;
-  width: 80%;
-
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 40px;
+  width: 80%;
   gap: 10px;
   background: #ffffff;
   border-radius: 7px;
@@ -106,8 +113,26 @@
   filter: drop-shadow(0px 1px 0px #efefef)
     drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
   cursor: pointer;
+  margin-bottom: 25px;
 }
 
 .googleLogo {
   height: 50%;
+}
+
+.separator {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  color: #8B8E98;
+}
+
+.separator .line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  border: 0;
+  background-color: #e8e8e8;
 }
