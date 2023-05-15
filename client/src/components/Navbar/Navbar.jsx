@@ -113,11 +113,8 @@ function Navbar() {
           {optionsShown && <button className="closeNavSelectorButton" onClick={() => navSelect(navSelection)}></button>}
 
           <form className="searchBarForm">
+          
             <div className="searchBar">
-
-              {/* <div className="glassDiv">
-                <img className="glass" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/magnifying-glass-icon.png" alt=""/>
-              </div> */}
             
               {navSelection === "products"
               
