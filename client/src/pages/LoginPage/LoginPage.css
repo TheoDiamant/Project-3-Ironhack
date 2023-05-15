@@ -1,3 +1,27 @@
+.loginPageDiv {
+  display: flex;
+  min-height: 90vh;
+}
+
+.loginPageDiv > div {
+  width: 50%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginForm {
+  margin: 20px;
+  height: 600px;
+  width: 500px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+/* */
+
 .form_container {
     width: fit-content;
     height: fit-content;
@@ -156,10 +180,4 @@
     font-size: 0.75rem;
     color: #8B8E98;
     text-decoration: underline;
-  }
-
-  .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
