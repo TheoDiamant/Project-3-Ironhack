@@ -46,7 +46,7 @@ function LoginPage() {
 
           <div className="loginFormTopText">
             <p className="logInTitle">Login to your Account</p>
-            <p className="logInSubtitle">Get started with our app, just create an account and enjoy the experience.</p>
+            <p className="logInSubtitle">We're glad to see you back.</p>
           </div>
 
           <div className="loginInputDiv">
