@@ -57,7 +57,29 @@ function ProductCard({product}) {
         // </div>
 
 
-<Link to={`/products/${product._id}`}>
+        
+        
+//         <main className="wrapper">
+//   <div className="offers">
+//   <Link to={`/products/${product._id}`} className="wrap-card">
+//       <div className="offer-card">
+//         <div className="avatar-card">
+//           <img src="https://picsum.photos/id/1/200/200" alt="Avatar" className="avatar-card" />
+//           <span>Username</span>
+//         </div>
+//         <div>
+//           <img src={product.img[0]} alt="Product" className="product-card" />
+//         </div>
+//         <div>
+//           <p>${product.price}</p>
+//           <p>{product.title}</p>
+//           <p>MARQUE</p>
+//         </div>
+//       </div>
+// </Link>
+//   </div>
+// </main>
+ <Link to={`/products/${product._id}`}>
            
       <div class="container py-5">
     <div class="row">
@@ -86,10 +108,9 @@ function ProductCard({product}) {
       </div>
     </div>
 </div>
-</Link>
+</Link> 
 
-
-    )
+)
 }
 
 export default ProductCard
