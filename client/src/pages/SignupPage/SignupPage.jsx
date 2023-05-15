@@ -2,9 +2,8 @@ import "./SignupPage.css";
 
 import axios from "axios"
 
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import authService from "../../services/auth.service";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/auth.context"
 
 // import { useGoogleLogin } from '@react-oauth/google';
 
@@ -12,38 +11,35 @@ const API_URL = "http://localhost:5005"
 
 function SignupPage() {
 
+  const { signup, errorMessage } = useContext(AuthContext)
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  
   // const signup = useGoogleLogin({
   //   onSuccess: codeResponse => {
   //     axios.post(`${API_URL}/auth/signup-google`)
   //   },
   // });
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [errorMessage, setErrorMessage] = useState(undefined);
+  function handleName(e) {
+    setName(e.target.value)
+  }
 
-  const navigate = useNavigate();
+  function handleEmail(e) {
+    setEmail(e.target.value);
+  }
 
-  const handleEmail = (e) => setEmail(e.target.value);
-  const handlePassword = (e) => setPassword(e.target.value);
-  const handleName = (e) => setName(e.target.value);
+  function handlePassword(e) {
+    setPassword(e.target.value)
+  }
 
-  const handleSignupSubmit = (e) => {
+  function handleSignupSubmit(e) {
     e.preventDefault();
-
     const requestBody = { email, password, name };
-
-    authService
-      .signup(requestBody)
-      .then(() => {
-        navigate("/");
-      })
-      .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      });
-  };
+    signup(requestBody)
+  }
 
   return (
 

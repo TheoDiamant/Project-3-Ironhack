@@ -12,6 +12,7 @@ const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 const saltRounds = 10;
 
 router.post("/signup", (req, res, next) => {
+
   const { email, password, name } = req.body;
 
   if (email === "" || password === "" || name === "") {
@@ -50,9 +51,14 @@ router.post("/signup", (req, res, next) => {
       
       const { email, name, _id } = createdUser;
 
-      const user = { email, name, _id };
+      const payload = { _id, email, name }
 
-      res.status(201).json({ user: user });
+      const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {
+        algorithm: "HS256",
+        expiresIn: "6h",
+      })
+
+      res.status(200).json({ authToken: authToken });
     })
     .catch((err) => next(err));
 });
@@ -103,7 +109,7 @@ router.post("/login", (req, res, next) => {
 
 
 router.get("/verify", isAuthenticated, (req, res, next) => {
- 
+
   res.status(200).json(req.payload);
 });
 
