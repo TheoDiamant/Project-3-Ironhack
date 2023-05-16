@@ -21,6 +21,7 @@ function ProfilePage() {
   const { userId } = useParams() //this is the user whose profile we're looking at
 
   const [userInfo, setUserInfo] = useState(null)
+  console.log("THIS IS THE INFO OF THE USER : ", userInfo)
   const [activeTab, setActiveTab] = useState("products")
   
   useEffect(() => {

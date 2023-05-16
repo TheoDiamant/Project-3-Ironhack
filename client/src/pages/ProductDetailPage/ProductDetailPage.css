@@ -39,8 +39,16 @@
 .youMightAlsoLikeDiv {
  background-color: rgb(255, 255, 255);
   padding: 5px 15vh;
+  text-align: left;
   }
 
+  .wrapper {
+    margin: 0 auto;
+    width: 70vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 27px;
+}
 @media only screen and (min-width: 1920px) {
   .productDetailsWrapper {
       width: 50%;

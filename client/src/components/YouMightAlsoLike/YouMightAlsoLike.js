@@ -23,7 +23,7 @@ function YouMightAlsoLike() {
   return (
     <>
         
-        <div className="latestProductsDiv">
+        <div className="wrapper">
           {youMightAlsoLike.map(product => {
             return(
               <ProductCard product={product} />

@@ -16,7 +16,7 @@ const HomePage = () => {
       <h1 className="latestProductsText">Recommended for you</h1>
       <LatestProducts />
 
-      <h1 className="latestProductsText">Wardrobe of Brea</h1>
+      
       
       <FollowerWardrobe />
     </div>

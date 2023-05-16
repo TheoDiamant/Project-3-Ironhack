@@ -14,7 +14,6 @@ function LatestProducts() {
   useEffect(() => {
     axios.get(`${API_URL}/api/products`)
       .then(response => {
-        console.log(response.data[0].user)
         setLatestProducts(response.data)
       })
       .catch(err => console.log(err))

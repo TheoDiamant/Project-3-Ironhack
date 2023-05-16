@@ -16,6 +16,7 @@ function FollowerWardrobe() {
     const storedToken = localStorage.getItem("authToken");
 
   const [followerWardrobe, setFollowerWardrobe] = useState([]);
+
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -30,7 +31,10 @@ function FollowerWardrobe() {
   }, [user, storedToken]);
 
   return (
-        <main className="wrapper">
+      <div>
+      <h1 className="latestProductsText">Wardrobe of {followerWardrobe.name} </h1>
+      <main className="wrapper">
+       
           {followerWardrobe.map(products => {
             return (
                 <>
@@ -41,6 +45,7 @@ function FollowerWardrobe() {
           })}
        
         </main>
+        </div>
   )
 }
 
