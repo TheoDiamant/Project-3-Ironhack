@@ -11,7 +11,7 @@ router.post("/all-chats", (req, res, next) => {
     Room.find({ users: { $in: [_id] } })
     .populate({
         path: "users",
-        select: "profilePicture",
+        select: "profilePicture name"
     })
     .then(rooms => {
         if(rooms.length === 0) {

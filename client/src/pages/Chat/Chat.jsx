@@ -57,16 +57,21 @@ function Chat() {
                         {allChats ?
                         
                         allChats.map(chat => {
+                            {/* const otherUser = chat.users.find(userFromArray => userFromArray._id !== user.id) */}
                             return(
-                                <div className="singleChatDiv">
+                                <>
 
-                                </div>
+                                {/* <div className="sideBarChatDiv" onClick={setSingleChat(chat)}>
+                                    <img src={otherUser.profilePicture} alt="" />
+                                    <p>{otherUser.name}</p>
+                                </div> */}
+                                </>
                             )
                         })
 
                         :
 
-                        <Loading />
+                        <Loading className="loadingAnimation"/>
 
                         }
                     </div>
