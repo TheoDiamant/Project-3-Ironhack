@@ -1,10 +1,11 @@
 .chatPageDiv {
-    height: 89vh;
+    min-height: 89vh;
     display: flex;
     justify-content: center;
 }
 
 .chatPageWrapper {
+    height: 620px;
     width: 80%;
     margin: 20px;
     padding: 10px;
@@ -13,7 +14,7 @@
 
 .chatBoxDiv {
     display: flex;
-    height: 100%;
+    height: 600px;
     border-radius: 5px;
     border: 1px solid #c2634b;
 }
@@ -21,9 +22,23 @@
 .chatSideBar {
     height: 100%;
     width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border-right: 1px solid #c2634b;
 }
 
 .mainChatDiv {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (min-width: 1920px) {
+    .chatPageWrapper {
+        width: 50%;
+    }
 }
