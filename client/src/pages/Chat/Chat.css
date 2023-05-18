@@ -57,8 +57,10 @@
     background-color: #f7f7f7;
 }
 
-.loadingAnimation {
+.noChatsText {
     align-self: center;
+    font-style: italic;
+    color: grey;
 }
 
 .mainChatDiv {

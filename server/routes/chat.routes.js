@@ -5,7 +5,7 @@ const Room = require("../models/Room.model")
 
 //Route to fetch all existing chats from this user
 router.post("/all-chats", (req, res, next) => {
-
+    
     const { _id } = req.body
 
     Room.find({ users: { $in: [_id] } })
@@ -35,11 +35,21 @@ router.post("/single-chat", (req, res, next) => {
         select: "profilePicture",
     })
     .then(room => {
+        
         if(room.length === 0) {
+            
             Room.create({users: [chatIDs[0], chatIDs[1]]})
             .then(newRoom => {
-                res.json(newRoom)
+                return Room.populate(newRoom, {
+                    path: "users",
+                    select: "profilePicture",
+                })
             })
+            .then(newRoom => {
+                console.log(newRoom)
+                res.json([newRoom])
+            })
+            .catch(err => res.json(err))
         }
         else {
             res.json(room)
