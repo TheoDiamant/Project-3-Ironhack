@@ -12,6 +12,7 @@
 }
 
 .chatBoxDiv {
+    display: flex;
     height: 100%;
     border-radius: 5px;
     border: 1px solid #c2634b;
@@ -21,4 +22,8 @@
     height: 100%;
     width: 20%;
     border-right: 1px solid #c2634b;
+}
+
+.mainChatDiv {
+    flex: 1;
 }

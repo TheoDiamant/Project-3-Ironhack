@@ -8,6 +8,8 @@ import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProviderWrapper } from "./context/auth.context";
 import { CartProviderWrapper } from "./context/cart.context";
+import { ChatIDsProviderWrapper } from "./context/chatIDs.context";
+
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.min.css';
 import 'popper.js/dist/popper.min.js';
@@ -19,7 +21,9 @@ root.render(
     <GoogleOAuthProvider clientId="794153306196-oe751ir2bgjurclsfj3slri2dq3jfn5b.apps.googleusercontent.com">
       <AuthProviderWrapper>
         <CartProviderWrapper>
-          <App />
+          <ChatIDsProviderWrapper>
+            <App />
+          </ChatIDsProviderWrapper>
         </CartProviderWrapper>
       </AuthProviderWrapper>
     </GoogleOAuthProvider>

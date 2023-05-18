@@ -1,0 +1,14 @@
+.messagesDiv {
+    height: 90%;
+    width: 100%;
+}
+
+.messageInputDiv {
+    height: 10%;
+    width: 100%;
+}
+
+.chatInput {
+    height: 100%;
+    width: 100%;
+}
