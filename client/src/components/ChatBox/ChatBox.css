@@ -1,6 +1,8 @@
 .messagesDiv {
     height: 90%;
     width: 100%;
+    padding-top: 10px;
+    overflow-y: scroll;
 }
 
 .messageInputDiv {
@@ -11,4 +13,50 @@
 .chatInput {
     height: 100%;
     width: 100%;
+}
+
+.singleMessageDiv {
+    display: flex;
+    align-items: center;
+}
+
+.yourOwn {
+    justify-content: flex-end;
+}
+
+.yourOwn .messageText {
+    background-color: lightgreen;
+}
+
+.otherUser {
+    justify-content: flex-start;
+}
+
+.otherUser .messageText {
+    background-color: lightblue;
+}
+
+.messageWrapper {
+    max-width: 40%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.messageText {
+    margin: 0;
+    padding: 5px 20px;
+    border-radius: 50px;
+}
+
+.messageTime {
+    position: relative;
+    top: 30px;
+    color: grey;
+}
+
+.messagePFP {
+    margin: 0 10px;
+    height: 30px;
+    border-radius: 50%;
 }

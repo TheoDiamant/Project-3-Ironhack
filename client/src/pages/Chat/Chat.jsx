@@ -4,7 +4,6 @@ import axios from "axios"
 import io from "socket.io-client"
 
 import { useState, useEffect, useContext } from "react";
-import { useParams } from 'react-router-dom';
 
 import { AuthContext } from "../../context/auth.context";
 import { ChatIDsContext } from "../../context/chatIDs.context"
@@ -40,7 +39,9 @@ function Chat() {
             }
             else {
                 axios.post(`${API_URL}/chat/single-chat`, {chatIDs: chatIDs})
-                .then(response => setSingleChat(response.data[0]))
+                .then(response => {
+                    setSingleChat(response.data[0])
+                })
                 .catch(err => console.log(err))
             }
         },

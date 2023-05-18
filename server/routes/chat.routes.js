@@ -9,6 +9,10 @@ router.post("/all-chats", (req, res, next) => {
     const { _id } = req.body
 
     Room.find({ users: { $in: [_id] } })
+    .populate({
+        path: "users",
+        select: "profilePicture",
+    })
     .then(rooms => {
         if(rooms.length === 0) {
             res.json([])
@@ -26,8 +30,11 @@ router.post("/single-chat", (req, res, next) => {
     const { chatIDs } = req.body
 
     Room.find({ users: { $all: [chatIDs[0], chatIDs[1]] } })
+    .populate({
+        path: "users",
+        select: "profilePicture",
+    })
     .then(room => {
-        
         if(room.length === 0) {
             Room.create({users: [chatIDs[0], chatIDs[1]]})
             .then(newRoom => {

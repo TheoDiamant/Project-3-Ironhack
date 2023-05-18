@@ -1,5 +1,5 @@
 .chatPageDiv {
-    min-height: 89vh;
+    height: 89vh;
     display: flex;
     justify-content: center;
 }
