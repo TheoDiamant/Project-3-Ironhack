@@ -25,7 +25,8 @@ import MenProducts from "./pages/MenProducts/MenProducts";
 import FavoriteProducts from "./pages/FavoriteProducts/FavoriteProducts";
 
 import StickyButton from "./components/StickyButton/StickyButton";
-import Chat from "./components/Chat/Chat"
+import Chat from "./pages/Chat/Chat"
+
 import ChatBox from "./components/ChatBox/ChatBox"
 
 /// IMPORT for New routes for chat 

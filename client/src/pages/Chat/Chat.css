@@ -1,0 +1,24 @@
+.chatPageDiv {
+    min-height: 89vh;
+    display: flex;
+    justify-content: center;
+}
+
+.chatPageWrapper {
+    width: 80%;
+    margin: 20px;
+    padding: 10px;
+    background-color: white;
+}
+
+.chatBoxDiv {
+    height: 100%;
+    border-radius: 5px;
+    border: 1px solid #c2634b;
+}
+
+.chatSideBar {
+    height: 100%;
+    width: 20%;
+    border-right: 1px solid #c2634b;
+}
