@@ -27,7 +27,7 @@ import FavoriteProducts from "./pages/FavoriteProducts/FavoriteProducts";
 import StickyButton from "./components/StickyButton/StickyButton";
 import Chat from "./pages/Chat/Chat"
 
-import ChatBox from "./components/ChatBox/ChatBox"
+import { ChatIDsProviderWrapper } from "./context/chatIDs.context";
 
 /// IMPORT for New routes for chat 
 
@@ -91,7 +91,10 @@ function App() {
         <Route path="/favorite" element={<FavoriteProducts />} />
 
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/message" element={<Chat />} />
+
+        <ChatIDsProviderWrapper>
+          <Route path="/message" element={<Chat />} />
+        </ChatIDsProviderWrapper>
 
       </Routes>
     </div>

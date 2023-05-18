@@ -6,22 +6,22 @@ import ChatBox from "../../components/ChatBox/ChatBox"
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 
-export const socket = io.connect("http://localhost:5000");
+// export const socket = io.connect("http://localhost:5000");
 
 function Chat() {
 
-    const [username, setUsername] = useState("")
-    const [room, setRoom] = useState("")
-    const [showChat, setShowChat] = useState(false)
+    // const [username, setUsername] = useState("")
+    // const [room, setRoom] = useState("")
+    // const [showChat, setShowChat] = useState(false)
 
 
-    const joinRoom = () => {
-        if (username !== "" && room !== "") {
-            //The line below send to the backend (chat.js) the value of the room on the line 21(chat.js)
-            socket.emit("join_room", room)
-            setShowChat(true)
-        }
-    }
+    // const joinRoom = () => {
+    //     if (username !== "" && room !== "") {
+    //         //The line below send to the backend (chat.js) the value of the room on the line 21(chat.js)
+    //         socket.emit("join_room", room)
+    //         setShowChat(true)
+    //     }
+    // }
 
     return (
         <div className="chatPageDiv">
