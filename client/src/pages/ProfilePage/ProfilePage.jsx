@@ -3,8 +3,9 @@ import "./ProfilePage.css";
 import axios from "axios";
 
 import { useState, useEffect, useContext } from "react";
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from "../../context/auth.context";
+import { ChatIDsContext } from "../../context/chatIDs.context";
 
 import ProductsTab from "../../components/ProductsTab/ProductsTab";
 import ReviewsTab from "../../components/ReviewsTab/ReviewsTab";
@@ -15,13 +16,13 @@ const API_URL = "http://localhost:5005";
 function ProfilePage() {
 
   const storedToken = localStorage.getItem("authToken");
-  console.log(storedToken)
 
+  const { setChatIDs } = useContext(ChatIDsContext)
   const { user } = useContext(AuthContext) //this is the logged in user
   const { userId } = useParams() //this is the user whose profile we're looking at
+  const navigate = useNavigate()
 
   const [userInfo, setUserInfo] = useState(null)
-  console.log("THIS IS THE INFO OF THE USER : ", userInfo)
   const [activeTab, setActiveTab] = useState("products")
   
   useEffect(() => {
@@ -41,7 +42,12 @@ function ProfilePage() {
         .then(() => {
         })
         .catch(err => console.log(err))
-}
+  }
+
+  function handleChatClick() {
+    setChatIDs([user._id, userId])
+    navigate("/message")
+  }
 
   const productsButton = document.getElementById("productsTabButton")
   const reviewsButton = document.getElementById("reviewsTabButton")
@@ -86,8 +92,9 @@ function ProfilePage() {
                 <p>{userInfo.review.length === 0 ? "No reviews yet" : userInfo.review.length}</p> 
               </div>
               
-              <div className="userButtonsDiv">
-                <div className="editProfileButtonDiv">
+              <div className="userButtonsDivWrapper">
+
+                <div className="userButtonsDiv">
                   { user._id === userInfo._id
 
                   ?
@@ -97,15 +104,19 @@ function ProfilePage() {
                   </Link>
 
                   :
-
-                  <div className="followButtonDiv">
-                    <button className="profileButton" onClick={handleFollow}>Follow</button>
-                  </div>
                   
+                  <>
+                    <div className="followButtonDiv">
+                      <button className="profileButton" onClick={handleFollow}>Follow</button>
+                    </div>
+
+                    <div className="chatWithUserButton">
+                      <button className="profileButton" onClick={handleChatClick}>Chat</button>
+                    </div>
+                  </>
+
                   }
                 </div>
-
-
               </div>
             </div>
 

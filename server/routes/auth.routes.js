@@ -137,10 +137,10 @@ router.post("/login", (req, res, next) => {
 
       if (passwordCorrect) {
         
-        const { _id, email, name } = foundUser
+        const { _id, email, name, profilePicture } = foundUser
 
         
-        const payload = { _id, email, name }
+        const payload = { _id, email, name, profilePicture }
 
         
         const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {
@@ -187,9 +187,9 @@ router.post("/login-google", (req, res, next) => {
 
       if (passwordCorrect) {
         
-        const { _id, email, name } = foundUser
+        const { _id, email, name, profilePicture } = foundUser
 
-        const payload = { _id, email, name }
+        const payload = { _id, email, name, profilePicture }
 
         const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {
           algorithm: "HS256",
@@ -210,4 +210,5 @@ router.get("/verify", isAuthenticated, (req, res, next) => {
 
   res.status(200).json(req.payload)
 })
+
 module.exports = router
