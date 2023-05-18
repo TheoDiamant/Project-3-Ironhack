@@ -1,31 +1,49 @@
 import "./ChatBox.css"
 
-import React, { useState, useEffect } from 'react'
+import axios from "axios"
 
+import React, { useState, useEffect, useContext } from 'react'
 import ScrollToBottom from "react-scroll-to-bottom"
+import { AuthContext } from "../../context/auth.context"
+
 import { io } from "socket.io-client"
 
-const socket = io("http://localhost:5000")
+const API_URL = "http://localhost:5005"
 
 function ChatBox({ singleChat })  {
 
     const [newMessage, setNewMessage] = useState("")
+    const { user } = useContext(AuthContext)
 
     //This useEffect adds an event listener for the enter key to send messages and joins a socket room whose ID is determined by the MongoDB Room document - this makes each room unique and avoids user collisions
     useEffect(() => {
         document.addEventListener("keydown", handleEnterKeypress)
-        socket.emit("join_room", singleChat._id)
+        // const socket = io("http://localhost:5000")
+        // socket.emit("join_room", singleChat._id)
 
+        // return () => {
+        //     socket.emit("disconnect")
+        // }
         return () => {
-            socket.emit("disconnect")
+            document.removeEventListener("keydown", handleEnterKeypress)
         }
     })
 
     function handleEnterKeypress(e) {
-        if(e.key === "Enter") {
-            socket.emit("send_message", newMessage)
-            setNewMessage("")
+        if(newMessage === "") {
+            return
         }
+
+        if(e.key === "Enter") {
+            // socket.emit("send_message", newMessage)
+            const messageToStore = {
+                content: newMessage,
+                sender: user._id,
+            }
+            setNewMessage("")
+            axios.post(`${API_URL}/chat/append-message`, {roomID: singleChat._id, messageToStore: messageToStore})
+        }
+
     }
 
     function storeNewMesage(e) {

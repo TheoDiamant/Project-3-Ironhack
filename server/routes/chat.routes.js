@@ -27,6 +27,7 @@ router.post("/single-chat", (req, res, next) => {
 
     Room.find({ users: { $all: [chatIDs[0], chatIDs[1]] } })
     .then(room => {
+        
         if(room.length === 0) {
             Room.create({users: [chatIDs[0], chatIDs[1]]})
             .then(newRoom => {
@@ -40,4 +41,19 @@ router.post("/single-chat", (req, res, next) => {
     .catch(err => res.json(err))
 })
 
+//Route to update a specific room's messageHistory, appending messages
+router.post("/append-message", (req, res, next) => {
+
+    const { roomID, messageToStore } = req.body
+
+    Room.findById(roomID)
+    .then(room => {
+        room.messageHistory.push(messageToStore)
+        room.save()
+        res.status(200).send("Updated chat history")
+    })
+    .catch(err => res.json(err))
+})
+
 module.exports = router
+

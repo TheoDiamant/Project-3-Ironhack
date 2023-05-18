@@ -40,7 +40,7 @@ function Chat() {
             }
             else {
                 axios.post(`${API_URL}/chat/single-chat`, {chatIDs: chatIDs})
-                .then(response => setSingleChat(response.data))
+                .then(response => setSingleChat(response.data[0]))
                 .catch(err => console.log(err))
             }
         },
