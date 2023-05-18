@@ -13,11 +13,16 @@
     align-items: center;
     height: 100%;
     width: 25%;
-}
+  }
+  
+  .profile-picture {
+    width: 100%;
+  }
 
-.logoDiv > img {
-    height: 60%;
-}
+  
+  .logoImage {
+    max-width: 30%;
+  }
 
 .searchDiv {
     flex: 1;
@@ -45,10 +50,9 @@
     align-items: center;
     width: 115px;
     padding: 0 10px;
-    border: none;
-    border-radius: 3px 0 0 3px;
+    border-right: 1px solid rgb(184, 184, 184);
     cursor: pointer;
-    background-color: rgb(239, 209, 170);
+    background-color: rgb(236 236 236);
 }
 
 .navSelection > p {
@@ -157,6 +161,50 @@
     height: 65%;
 }
 
+
+
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .avatar-card2 {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: black;
+    aspect-ratio: 1/1; /* Add this line */
+  }
+  
+  .dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    text-decoration: none;
+    padding: 5px;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+
+
+
 .navbarButton {
     height: 100%;
     padding: 5px 25px;
@@ -185,7 +233,6 @@
     align-items: center;
     height: 65%;
     padding: 5px 25px;
-    border: 1px solid #c2634b;
     border-radius: 5px;
     background-color: white;
 }
@@ -199,6 +246,12 @@
 .shoppingCartIcon {
     height: 100%;
 }
+
+.wishListIcon {
+    height: 45%;
+}
+
+
 
 .cartSideBarDiv {
     position: fixed;

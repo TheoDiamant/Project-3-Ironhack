@@ -23,6 +23,11 @@ function Navbar() {
   const [optionsShown, setOptionsShown] = useState(false)
   const navSelector = useRef(null)
   const navOptions = useRef(null)
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  function toggleDropdown() {
+    setDropdownOpen(!dropdownOpen);
+  }
 
   // If the user changes location we set products/users to an empty array to remove the preview to avoid ugly overflows
   useEffect(() => {
@@ -87,10 +92,11 @@ function Navbar() {
 
   return (
     <nav className="projectNavbar">
-
-      <div className="logoDiv">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Vinted_logo.png" alt=""/>
-      </div>
+  <div className="logoDiv">
+  <Link to="/" className="logoLink">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Vinted_logo.png" alt="" className="logoImage" />
+  </Link>
+</div>
 
       <div className="searchDiv">
         <div className="searchDivWrapper">
@@ -161,19 +167,26 @@ function Navbar() {
 
         {isLoggedIn && (
           <>
-            <Link to={`/`}>
-             <button className="navbarButton normalColors">Home</button>
-           </Link>
-           
+            
             {/* <Link to="/new-product">
               <button className="navbarButton invertedColors">Sell</button>
             </Link> */}
          
-            <Link to={`/member/${user._id}`}>
-             <button className="navbarButton normalColors">Profile</button>
-            </Link>
+              <img className="wishListIcon" src="https://www.iconpacks.net/icons/2/free-heart-icon-3510-thumb.png" alt="" />
 
-            <button className="navbarButton logOutButton invertedColors" onClick={logOutUser}>Logout</button>
+            
+      <div className="profile-dropdown" onClick={toggleDropdown}>
+        <img className="avatar-card2" src={user.profilePicture} alt="Profile" />
+        {dropdownOpen && (
+          <div className="dropdown-content">
+            <Link to={`/member/${user._id}`}>Profile</Link>
+            <Link to={`/member/${user._id}`}>Edit Profile</Link>
+            <Link to={`/member/${user._id}`}>Payment</Link>
+            <Link onClick={logOutUser}>Logout</Link>
+          
+          </div>
+        )}
+      </div>
 
             <button onClick={showCartSideBar} className="shoppingCartButton normalColors">
               <img className="shoppingCartIcon" src="https://i.imgur.com/yRpFRV5.png" alt="" />
