@@ -183,7 +183,7 @@ function Navbar() {
               <img className="messageIcon" src="https://img.favpng.com/4/13/10/email-computer-icons-message-icon-design-png-favpng-Z2c8kiG21uxY3Xd63qQi3Qzb1.jpg" alt="" />
               </Link>
 
-              <Link to="/new-product">
+              <Link to="/new-product" className="sellNowButtonn">
                 <button className="sellNowButton"><span>Sell now</span></button>
               </Link>
 

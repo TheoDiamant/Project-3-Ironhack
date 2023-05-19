@@ -11,7 +11,7 @@ const HomePage = () => {
 
         <div className="overlay">
           <div className="text">
-            <i>Give a second life<br />to your clothes</i>
+            <span>Give a second life<br />to your clothes</span>
             <button className="buttonOverlay"><span>Sell now</span></button>
           </div>
         </div>
