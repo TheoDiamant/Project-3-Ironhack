@@ -31,6 +31,11 @@ const MenProducts = () => {
 
   return (
 
+
+    <div className="">
+
+    <h2 className="allProductsTitle">Men products</h2>
+    <hr className="hrDesign"></hr>
 <main className="wrapper"> 
            {products.map(product => {
                 console.log(product)
@@ -40,6 +45,7 @@ const MenProducts = () => {
             })}  
 
     </main>
+    </div>
 
   )
 }

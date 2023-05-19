@@ -11,3 +11,15 @@ main a {
     text-decoration: none;
     color: black;
 }
+
+.allProductsTitle {
+    text-align: left;
+    margin-left: 17%;
+    margin-top: 8px;
+}
+
+.hrDesign {
+   
+    width: 56%;
+    margin-left: 17%;
+}

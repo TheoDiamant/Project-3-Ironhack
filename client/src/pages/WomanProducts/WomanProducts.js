@@ -31,7 +31,10 @@ function WomanProducts() {
 
 
     return (
-       
+        <div className="">
+
+       <h2 className="allProductsTitle">Women products</h2>
+       <hr className="hrDesign"></hr>
        <main className="wrapper"> 
            {products.map(product => {
                 console.log(product)
@@ -44,6 +47,7 @@ function WomanProducts() {
 
 
         </main>
+        </div>
     )
 }
 

@@ -41,6 +41,7 @@ function SearchPreview({ data }) {
                 {product.description}
               </div>
             </div>
+          <hr></hr>
           </Link>
         )
       })

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 8vh;
+    height: 5vh;
     border-bottom: 1px solid lightgrey;
     background-color: white;
 }
@@ -58,6 +58,7 @@
 .navSelection > p {
     margin: 0;
     margin-right: 10px;
+    font-size: 15px;
 }
 
 .navSelectionArrow {
@@ -141,6 +142,7 @@
     margin: 0;
     border-radius: 3px;
     padding-left: 15px;
+    font-size: 15px;
 }
 
 .previewDivider {
@@ -179,30 +181,59 @@
     background-color: black;
     aspect-ratio: 1/1; /* Add this line */
   }
+
+  .accountTitleDropDown {
+    text-align: left;
+    font-size: 13px;
+   color: #929292;
+  } 
   
   .dropdown-content {
     position: absolute;
-    top: 100%;
-    left: 0;
+    top: 120%;
+    right: 10px;
     z-index: 1;
     display: flex;
     flex-direction: column;
-    background-color: #f9f9f9;
-    padding: 10px;
-    border: 1px solid #ddd;
+    align-items: flex-start;
+    background-color: #ffffff;
+    padding: 15px;
+    border: 1px solid #ffffff;
     border-radius: 4px;
+    width: 150px;
   }
   
   .dropdown-content a {
-    color: black;
+    color: rgb(119, 119, 119);
     text-decoration: none;
-    padding: 5px;
+    padding: 8px;
+    /* text-align: left; */
+  }
+
+  .logout {
+    color: rgb(211, 0, 0) !important
   }
   
   .dropdown-content a:hover {
     background-color: #f1f1f1;
   }
 
+
+  .sellNowButton {
+      background-color: #1bb3c3;
+      border: none;
+      padding: 0 10px;
+      border-radius: 4px;
+    }
+    .sellNowButton span {
+        font-size: 14px;
+       
+  }
+
+  
+.messageIcon {
+    height: 90%;
+}
 
 
 .navbarButton {
@@ -231,7 +262,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 65%;
+    height: 100%;
     padding: 5px 25px;
     border-radius: 5px;
     background-color: white;
@@ -248,7 +279,7 @@
 }
 
 .wishListIcon {
-    height: 45%;
+    height: 90%;
 }
 
 

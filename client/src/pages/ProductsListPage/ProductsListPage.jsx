@@ -22,7 +22,13 @@ function ProductsListPage() {
 
     return (
        
+       <div className="">
+
+       <h2 className="allProductsTitle">All products</h2>
+       <hr className="hrDesign"></hr>
+      
        <main className="wrapper"> 
+       <hr></hr>
             {products.map(product => {
                 const user = product.user[0]; 
                 return <ProductCard key={product._id} product={product} user={user}/>
@@ -33,6 +39,7 @@ function ProductsListPage() {
 
 
         </main>
+        </div>
     )
 }
 

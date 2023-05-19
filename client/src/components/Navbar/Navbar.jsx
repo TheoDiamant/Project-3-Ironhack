@@ -14,9 +14,12 @@ function Navbar() {
     
   const location = useLocation()
   const { isLoggedIn, logOutUser, user } = useContext(AuthContext)
+
+  console.log(user)
   
   const [products, setProducts] = useState([])
   const [users, setUsers] = useState([])
+  console.log(users)
   const [showCart, setShowCart] = useState(false)
 
   const [navSelection, setNavSelection] = useState("products")
@@ -93,6 +96,7 @@ function Navbar() {
   return (
     <nav className="projectNavbar">
   <div className="logoDiv">
+
   <Link to="/" className="logoLink">
     <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Vinted_logo.png" alt="" className="logoImage" />
   </Link>
@@ -171,18 +175,27 @@ function Navbar() {
             {/* <Link to="/new-product">
               <button className="navbarButton invertedColors">Sell</button>
             </Link> */}
-         
+            <Link to="/favorite">
               <img className="wishListIcon" src="https://www.iconpacks.net/icons/2/free-heart-icon-3510-thumb.png" alt="" />
+              </Link> 
 
-            
+              <Link to="/message">
+              <img className="messageIcon" src="https://img.favpng.com/4/13/10/email-computer-icons-message-icon-design-png-favpng-Z2c8kiG21uxY3Xd63qQi3Qzb1.jpg" alt="" />
+              </Link>
+
+              <Link to="/new-product">
+                <button className="sellNowButton"><span>Sell now</span></button>
+              </Link>
+
       <div className="profile-dropdown" onClick={toggleDropdown}>
         <img className="avatar-card2" src={user.profilePicture} alt="Profile" />
         {dropdownOpen && (
           <div className="dropdown-content">
+          <p className="accountTitleDropDown">Account</p>
             <Link to={`/member/${user._id}`}>Profile</Link>
-            <Link to={`/member/${user._id}`}>Edit Profile</Link>
+            <Link to={`/member/${user._id}/edit`}>Edit Profile</Link>
             <Link to={`/member/${user._id}`}>Payment</Link>
-            <Link onClick={logOutUser}>Logout</Link>
+            <Link className="logout" onClick={logOutUser}>Log out</Link>
           
           </div>
         )}

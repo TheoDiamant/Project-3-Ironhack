@@ -17,16 +17,15 @@ const StickyButton = () => {
         <>
           {isLoggedIn ? (
             <Link to="/new-product">
-              <button id="stickyButton">Sell a product</button>
+              <button id="stickyButtonLogIn">Sell a product</button>
             </Link>
           ) : (
             <Link to="/login">
-              <button id="stickyButton">Sell a product</button>
+              <button id="stickyButtonLogIn">Sell a product</button>
             </Link>
           )}
         </>
       );
     };
-
 
 export default StickyButton;
