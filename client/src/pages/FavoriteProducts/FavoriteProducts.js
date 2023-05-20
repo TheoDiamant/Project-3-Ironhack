@@ -10,6 +10,7 @@ const API_URL = "http://localhost:5005";
 function FavoriteProducts() {
   const storedToken = localStorage.getItem("authToken");
   const { user } = useContext(AuthContext);
+
   const [userInfo, setUserInfo] = useState([]);
   console.log(userInfo)
   
@@ -20,25 +21,24 @@ function FavoriteProducts() {
       if (user) {
         axios.get(`${API_URL}/api/member/${user._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
           .then(response => {
-            console.log(response.data.like[0].product);
-            setUserInfo(response.data.like[0].product);
+            setUserInfo(response.data.like);
           })
           .catch(error => {
             console.log(error);
           })
       }
     
-  }, []);
+  }, [user]);
 
 
   return (
     <div>
       <h1>WishList ❤️ </h1>
       <div className="latestProductsDiv">
-      { userInfo.map(products => {
+        {userInfo.map(likeObject => {
             return (
                 <>
-                <ProductCard key={products._id} product={products} />
+                  <ProductCard key={likeObject.product[0]._id} product={likeObject.product[0]} />
                 </>
             )
           })}

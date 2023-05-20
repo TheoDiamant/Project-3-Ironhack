@@ -5,9 +5,10 @@ const ChatIDsContext = createContext([])
 function ChatIDsProviderWrapper(props) {
 
     const [chatIDs, setChatIDs] = useState([])
+    const [offer, setOffer] = useState(null)
 
     return(
-        <ChatIDsContext.Provider value={{chatIDs, setChatIDs}}>
+        <ChatIDsContext.Provider value={{chatIDs, setChatIDs, offer, setOffer}}>
             {props.children}
         </ChatIDsContext.Provider>
     )

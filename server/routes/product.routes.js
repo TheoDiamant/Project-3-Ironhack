@@ -253,13 +253,32 @@ router.post("/products/:productId/like", isAuthenticated, (req, res, next) => {
       return User.findByIdAndUpdate(req.payload._id, {$push: {like: response._id}, },{new: true})
       })
       .then(() => {
-        return Product.findByIdAndUpdate(productId, {$push: {like: offer._id}, },{new: true} )
+        return Product.findByIdAndUpdate(productId, {$push: {like: response._id}, },{new: true} )
       })
       .then(() => {
         res.json(response.data)
       })
       .catch(err => res.json(err))
       
+})
+
+
+// Route to get the offer for a product //////// WORK  ////////
+router.get("/checkout/:productId", (req, res, next) => {
+
+  const { productId } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(productId)) {
+      res.status(400).json({ message: 'Specified id is not valid' });
+      return;
+    }
+
+    Product.findById(productId)
+    .then(response => {
+      res.json(response)
+    })
+    .catch(err => res.json(err))
+
 })
 
 

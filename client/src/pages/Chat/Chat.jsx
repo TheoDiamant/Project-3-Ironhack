@@ -88,7 +88,7 @@ function Chat() {
                     <div className="mainChatDiv">
                         {singleChat ? 
                         
-                        <ChatBox key={String(singleChat)} singleChat={singleChat}/>
+                        <ChatBox key={String(singleChat)} singleChat={singleChat} />
                         
                         :
 

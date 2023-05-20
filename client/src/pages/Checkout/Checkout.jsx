@@ -2,8 +2,22 @@ import "./Checkout.css"
 
 import CheckoutInfo from "../../components/CheckoutInfo/CheckoutInfo"
 import { useRef, useState } from "react"
+import { Link, useParams } from "react-router-dom";
+import axios from "axios"
 
+const API_URL = "http://localhost:5005";     
 function Checkout() {
+    
+    const { productId } = useParams();
+    const storedToken = localStorage.getItem("authToken");
+    const [product, setProduct] = useState(null)
+
+    const getProducts = () => {
+        axios.get(`/api/checkout/${productId}`,  { headers: { Authorization: `Bearer ${storedToken}` } })
+        .then((response) => {
+            setProduct(response.data)
+        })
+    }
 
     const buttonRef = useRef(null)
     const wiperRef = useRef(null)

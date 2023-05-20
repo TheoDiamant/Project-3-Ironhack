@@ -3,6 +3,7 @@ import "./DetailsSidebar.css"
 import { useParams } from "react-router-dom"
 import { useContext, useState } from "react"
 import { CartContext } from "../../context/cart.context"
+import Offer from "../Offer/Offer"
 import axios from "axios";
 const API_URL = "http://localhost:5005";
 
@@ -13,6 +14,7 @@ function DetailsSidebar({product, user}) {
     const storedToken = localStorage.getItem("authToken");
 
     const [like, setLike] = useState(0)
+    const [showOfferPopup, setShowOfferPopup] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -93,10 +95,16 @@ function DetailsSidebar({product, user}) {
 
             <div className="sidebarButtonsDiv">
                 <button className="sidebarButton">Message</button>
-                <button className="sidebarButtonGreen">Make an Offer</button>
+                <button className="sidebarButtonGreen" onClick={() => setShowOfferPopup(true)}>Make an Offer</button>
                 <button className="sidebarButtonGreen" onClick={() => addToCart(productId)}>Add to cart</button>
                 <button className="sidebarButtonGreen" onClick={handleSubmit}>Add to WishList ❤️ </button>
             </div>
+
+            {showOfferPopup && (
+        <div className="popupContainer">
+          <Offer productOwner={product.user[0]} />
+        </div>
+      )}
         </div>
     )
 }
