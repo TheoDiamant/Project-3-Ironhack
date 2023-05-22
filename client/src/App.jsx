@@ -37,7 +37,7 @@ function App() {
     <div className="App">
       <Navbar />
       <UnderNavBar />
-      <StickyButton />
+      {/* <StickyButton /> */}
 
       <Routes>
         <Route path="/" element={<HomePage />} />

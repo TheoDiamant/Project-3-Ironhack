@@ -3,7 +3,7 @@ import "./ChatBox.css"
 import axios from "axios"
 
 import React, { useState, useEffect, useContext, useRef } from 'react'
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/auth.context"
 import { ChatIDsContext } from "../../context/chatIDs.context"
 
@@ -17,6 +17,7 @@ const socket = io("http://localhost:5000", {
 
 function ChatBox({ singleChat })  {
     
+    const navigate = useNavigate()
     const [allMessages, setAllMessages] = useState(singleChat.messageHistory)
     const [newMessage, setNewMessage] = useState("")
     const chatBoxRef = useRef(null)
@@ -42,7 +43,7 @@ function ChatBox({ singleChat })  {
             return
         }
         
-        const offerMessage = "This user is making an offer: " + offer.price.toString();
+        const offerMessage = "This user is making an offer: " + offer.price.toString() + "€";
         const offerData = {
             room: singleChat._id,
             content: offerMessage,
@@ -121,7 +122,7 @@ function ChatBox({ singleChat })  {
         chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight
     }
 
-    //In chat offer functionality functions
+    //In-chat offer functionality
 
     function acceptOffer(index) {
         const acceptedOfferUpdate = [...allMessages]
@@ -137,7 +138,7 @@ function ChatBox({ singleChat })  {
             content: "The offer has been accepted",
             sender: user._id,
             timestamp: new Date().toISOString(),
-            
+            hasCheckoutButton: true,
         }
         setAllMessages(prevState => [...prevState, socketData])
         socket.emit("send_message", socketData)
@@ -148,6 +149,7 @@ function ChatBox({ singleChat })  {
             const messageToStore = {
                 content: "The offer has been accepted",
                 sender: user._id,
+                hasCheckoutButton: true,
             }
             axios.post(`${API_URL}/chat/append-message`, {roomID: singleChat._id, messageToStore: messageToStore})
         })
@@ -183,6 +185,10 @@ function ChatBox({ singleChat })  {
             axios.post(`${API_URL}/chat/append-message`, {roomID: singleChat._id, messageToStore: messageToStore})
         })
         .catch(err => console.log(err))
+    }
+
+    function chatCheckout() {
+        axios.post(`${API_URL}/chat/checked-out`, {roomID: singleChat._id})
     }
 
     return (
@@ -235,6 +241,7 @@ function ChatBox({ singleChat })  {
                                 <p className="messageTime">{formattedTime}</p>
                                 <p className="messageText">{message.content}</p>
                                 <img className="messagePFP" src={ownPFP} alt="" />
+                                {message.hasCheckoutButton && <button onClick={chatCheckout}>Checkout</button>}
                             </div>                               
 
                             :

@@ -12,7 +12,7 @@ const roomSchema = new Schema(
                     sender: {type: Schema.Types.ObjectId, ref: "User"},       
                     timestamp: {type: Date, default: Date.now},
                     isOffer: {type: String},
-                    hasCheckoutButton: {type: Boolean, default: false}
+                    hasCheckoutButton: {type: Boolean}
                 }
             ],
             default: []

@@ -93,5 +93,24 @@ router.post("/interact-offer", (req, res, next) => {
 
 })
 
+//Route to remove checkout button from message history once clicked
+router.post("/checked-out", (req, res, next) => {
+    
+    const { roomID } = req.body
+    
+    Room.findById(roomID)
+    .then(room => {
+        for(let i = room.messageHistory.length - 1; i >= 0; i--) {
+            if (room.messageHistory[i].hasCheckoutButton) {
+                room.messageHistory[i].isOffer = false
+                break;
+            }
+        }
+        return room.save()
+    })
+    .then(() => res.json(200))
+    .catch(err => res.json(err))
+})
+
 module.exports = router
 
