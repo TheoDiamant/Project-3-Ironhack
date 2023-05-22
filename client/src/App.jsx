@@ -91,6 +91,7 @@ function App() {
         <Route path="/favorite" element={<FavoriteProducts />} />
 
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout/:productId" element={<Checkout />} />
         
         <Route path="/message" element={<Chat />} />
 

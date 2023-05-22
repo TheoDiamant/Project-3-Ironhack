@@ -102,7 +102,7 @@ router.post("/checked-out", (req, res, next) => {
     .then(room => {
         for(let i = room.messageHistory.length - 1; i >= 0; i--) {
             if (room.messageHistory[i].hasCheckoutButton) {
-                room.messageHistory[i].isOffer = false
+                room.messageHistory[i].hasCheckoutButton = null
                 break;
             }
         }

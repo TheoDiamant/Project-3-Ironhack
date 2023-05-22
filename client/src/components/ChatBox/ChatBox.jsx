@@ -126,6 +126,9 @@ function ChatBox({ singleChat })  {
 
     function acceptOffer(index) {
         const acceptedOfferUpdate = [...allMessages]
+
+        const offerProductId = acceptedOfferUpdate[index].isOffer
+
         acceptedOfferUpdate[index] = {
             ...acceptedOfferUpdate[index], 
             isOffer: null
@@ -138,7 +141,7 @@ function ChatBox({ singleChat })  {
             content: "The offer has been accepted",
             sender: user._id,
             timestamp: new Date().toISOString(),
-            hasCheckoutButton: true,
+            hasCheckoutButton: offerProductId,
         }
         setAllMessages(prevState => [...prevState, socketData])
         socket.emit("send_message", socketData)
@@ -149,7 +152,7 @@ function ChatBox({ singleChat })  {
             const messageToStore = {
                 content: "The offer has been accepted",
                 sender: user._id,
-                hasCheckoutButton: true,
+                hasCheckoutButton: offerProductId,
             }
             axios.post(`${API_URL}/chat/append-message`, {roomID: singleChat._id, messageToStore: messageToStore})
         })
@@ -187,8 +190,11 @@ function ChatBox({ singleChat })  {
         .catch(err => console.log(err))
     }
 
-    function chatCheckout() {
+    function chatCheckout(productId) {
         axios.post(`${API_URL}/chat/checked-out`, {roomID: singleChat._id})
+        .then(() => {
+            navigate(`/checkout/${productId}`)
+        })
     }
 
     return (
@@ -241,7 +247,7 @@ function ChatBox({ singleChat })  {
                                 <p className="messageTime">{formattedTime}</p>
                                 <p className="messageText">{message.content}</p>
                                 <img className="messagePFP" src={ownPFP} alt="" />
-                                {message.hasCheckoutButton && <button onClick={chatCheckout}>Checkout</button>}
+                                {message.hasCheckoutButton && <button onClick={() => chatCheckout(message.hasCheckoutButton)}>Checkout</button>}
                             </div>                               
 
                             :
