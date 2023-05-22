@@ -41,8 +41,8 @@ function ChatBox({ singleChat })  {
         if(!offer) {
             return
         }
-        console.log(offer)
-        const offerMessage = offer.message +  "You send an offer " + offer.price.toString();
+        
+        const offerMessage = "This user is making an offer: " + offer.price.toString();
         const offerData = {
             room: singleChat._id,
             content: offerMessage,
@@ -61,7 +61,6 @@ function ChatBox({ singleChat })  {
     }, [offer])
 
     //This useEffect adds an event listener for the enter key to send messages and joins a socket room whose ID is determined by the MongoDB Room document - this makes each room unique and avoids user collisions
-    
     useEffect(() => {
         //we connect to the client, we join a room, and we set up an event listener to receive messages
         socket.connect()
@@ -74,7 +73,6 @@ function ChatBox({ singleChat })  {
                 sender: data.sender,
                 timestamp: data.timestamp,
                 isOffer: data.isOffer,
-                hasCheckoutButton: data.hasCheckoutButton,
             }
             setAllMessages(prevState => [...prevState, socketMessage])
         })
@@ -123,6 +121,8 @@ function ChatBox({ singleChat })  {
         chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight
     }
 
+    //In chat offer functionality functions
+
     function acceptOffer(index) {
         const acceptedOfferUpdate = [...allMessages]
         acceptedOfferUpdate[index] = {
@@ -137,7 +137,7 @@ function ChatBox({ singleChat })  {
             content: "The offer has been accepted",
             sender: user._id,
             timestamp: new Date().toISOString(),
-            hasCheckoutButton: true,
+            
         }
         setAllMessages(prevState => [...prevState, socketData])
         socket.emit("send_message", socketData)
@@ -148,7 +148,6 @@ function ChatBox({ singleChat })  {
             const messageToStore = {
                 content: "The offer has been accepted",
                 sender: user._id,
-                hasCheckoutButton: true,
             }
             axios.post(`${API_URL}/chat/append-message`, {roomID: singleChat._id, messageToStore: messageToStore})
         })
@@ -228,46 +227,23 @@ function ChatBox({ singleChat })  {
                         :
 
                         <>
-                            {message.hasCheckoutButton 
-
+                            {message.sender === user._id
+                            
                             ?
 
-                            <>
-
-                                {message.sender === user._id
-                                
-                                ?
-
-                                <div className="messageWrapper">
-                                    <p className="messageTime">{formattedTime}</p>
-                                    <p className="messageText">{message.content}</p>
-                                    <img className="messagePFP" src={ownPFP} alt="" />
-                                    <Link to={`/checkout/${message.isOffer}`}>
-                                        <button>Checkout</button>
-                                    </Link>
-                                </div>                               
-
-                                :
-
-                                <div className="messageWrapper">
-                                    <img className="messagePFP" src={otherUserPFP} alt="" />
-                                    <p className="messageText">{message.content}</p>
-                                    <p className="messageTime">{formattedTime}</p>
-                                </div>}
-                            
-                            </>
+                            <div className="messageWrapper">
+                                <p className="messageTime">{formattedTime}</p>
+                                <p className="messageText">{message.content}</p>
+                                <img className="messagePFP" src={ownPFP} alt="" />
+                            </div>                               
 
                             :
 
-                            <>
-                                <div className="messageWrapper">
-                                    <p className="messageTime">{formattedTime}</p>
-                                    <p className="messageText">{message.content}</p>
-                                    <img className="messagePFP" src={ownPFP} alt="" />
-                                </div>                              
-                            </>
-    
-                            } 
+                            <div className="messageWrapper">
+                                <img className="messagePFP" src={otherUserPFP} alt="" />
+                                <p className="messageText">{message.content}</p>
+                                <p className="messageTime">{formattedTime}</p>
+                            </div>}
                         </>
 
                         }
