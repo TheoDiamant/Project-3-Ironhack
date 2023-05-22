@@ -175,42 +175,35 @@ function Navbar() {
       </div>
      
       <div className="buttonsDiv">
-
-       
-
         {isLoggedIn && (
           <>
-            
-            {/* <Link to="/new-product">
-              <button className="navbarButton invertedColors">Sell</button>
-            </Link> */}
             <Link to="/favorite">
-              <img className="wishListIcon" src="https://www.iconpacks.net/icons/2/free-heart-icon-3510-thumb.png" alt="" />
-              </Link> 
+              <img className="wishListIcon" src="https://i.imgur.com/kvFcV1f.png" alt="" />
+            </Link> 
 
-              <Link to="/message">
-              <img className="messageIcon" src="https://img.favpng.com/4/13/10/email-computer-icons-message-icon-design-png-favpng-Z2c8kiG21uxY3Xd63qQi3Qzb1.jpg" alt="" />
-              </Link>
+            <Link to="/message">
+              <img className="messageIcon" src="https://i.imgur.com/qeJCkCy.png" alt="" />
+            </Link>
 
-              <Link to="/new-product" className="sellNowButtonn">
-                <button className="sellNowButton"><span>Sell now</span></button>
-              </Link>
+            <Link to="/new-product">
+              <button className="sellNowButton">Sell now</button>
+            </Link>
 
-      <div className="profile-dropdown" onClick={toggleDropdown}>
-        <img className="avatar-card2" src={user.profilePicture} alt="Profile" />
-        {dropdownOpen && (
-          <div className="dropdown-content">
-          <p className="accountTitleDropDown">Account</p>
-            <Link to={`/member/${user._id}`}>Profile</Link>
-            <Link to={`/member/${user._id}/edit`}>Edit Profile</Link>
-            <Link to={`/member/${user._id}`}>Payment</Link>
-            <Link className="logout" onClick={logOutUser}>Log out</Link>
-          
-          </div>
-        )}
-      </div>
+            <div className="profile-dropdown" onClick={toggleDropdown}>
+              <img className="avatar-card2" src={user.profilePicture} alt="" />
+              {dropdownOpen && (
+                <div className="dropdown-content">
+                  <p className="accountTitleDropDown">Account</p>
+                  <Link to={`/member/${user._id}`}>Profile</Link>
+                  <Link to={`/member/${user._id}/edit`}>Edit Profile</Link>
+                  <Link to={`/member/${user._id}`}>Payment</Link>
+                  <Link className="logout" onClick={logOutUser}>Log out</Link>
+                
+                </div>
+              )}
+            </div>
 
-            <button onClick={showCartSideBar} className="shoppingCartButton normalColors">
+            <button onClick={showCartSideBar} className="shoppingCartButton">
               <img className="shoppingCartIcon" src="https://i.imgur.com/yRpFRV5.png" alt="" />
             </button>
           </>
@@ -219,11 +212,11 @@ function Navbar() {
         {!isLoggedIn && (
           <>
             <Link to="/signup">
-              <button className="navbarButton invertedColors">Sign Up</button>
+              <button className="signUpButton">Sign Up</button>
             </Link>
             
             <Link to="/login">
-              <button className="navbarButton normalColors">Login</button>
+              <button className="logInButton">Login</button>
             </Link>
           </>
         )}

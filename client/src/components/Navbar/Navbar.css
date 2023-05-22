@@ -2,34 +2,21 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 5vh;
+    height: 6vh;
     border-bottom: 1px solid lightgrey;
     background-color: white;
 }
 
 .logoDiv {
-    flex: 1;
+    flex: 1 0 25%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     height: 100%;
-  }
-  
-  .profile-picture {
+}
+
+.profile-picture {
     width: 100%;
-  }
-
-  
-  .logoImage {
-    height: 80%;
-  }
-
-.searchDiv {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
 }
 
 .logoLink {
@@ -40,24 +27,36 @@
     height: 100%;
 }
 
+.logoImage {
+    height: 80%;
+}
+
+.searchDiv {
+    flex: 1 0 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 .searchDivWrapper {
     position: relative;
     display: flex;
-    height: 55%;
+    height: 65%;
     width: 95%;
 }
 
 @media only screen and (min-width: 1920px) {
     .searchDivWrapper, .logoDiv > img {
-        height: 45%;
+        height: 55%;
     }
 }
 
 .navSelection {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 115px;
-    padding: 0 10px;
     border-right: 1px solid rgb(184, 184, 184);
     cursor: pointer;
     background-color: rgb(236 236 236);
@@ -71,7 +70,6 @@
 }
 
 .navSelectionArrow {
-    margin-top: 2px;
     height: 50%;
 }
 
@@ -89,13 +87,7 @@
     height: 50%;
     padding: 0 10px;
     background-color: white;
-    font-size: 12px;
-
-}
-
-.sellNowButtonn {
-    display: flex;
-    text-decoration: none;
+    font-size: 13px;
 }
 
 .navOption > p {
@@ -167,135 +159,131 @@
 .buttonsDiv {
     display: flex;
     align-items: center;
-    height: 70%;
+    height: 100%;
     width: 35%;
-    font-size: 16px;
 }
 
 .buttonsDiv > a {
-    height: 65%;
-    margin: 1vh;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-right: 15px;
+    text-decoration: none;
 }
 
+.wishListIcon {
+    height: 50%;
+}
 
+.messageIcon {
+    height: 45%;
+}
 
+.sellNowButton {
+    height: 50%;
+    border: none;
+    border-radius: 3px;
+    padding: 0 20px;
+    font-size: 14px;
+    color: white;
+    background-color: #1bb3c3;
+}
+  
 .profile-dropdown {
+    display: flex;
+    align-items: center;
+    height: 100%;
     position: relative;
-    display: inline-block;
-    cursor: pointer;
-  }
-  
-  .avatar-card2 {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
     margin-right: 10px;
-    margin-left: 10px;
-    background-color: black;
-    aspect-ratio: 1/1; /* Add this line */
-  }
+    cursor: pointer;
+}
 
-  .accountTitleDropDown {
+.avatar-card2 {
+    height: 65%;
+    border-radius: 50%;
+}
+
+.accountTitleDropDown {
     text-align: left;
-    font-size: 13px;
-   color: #929292;
-  } 
-  
-  .dropdown-content {
+    font-size: 14px;
+    color: #929292;
+} 
+
+.dropdown-content {
     position: absolute;
-    top: 120%;
-    right: 10px;
     z-index: 1;
+    top: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background-color: #ffffff;
-    padding: 15px;
-    border: 1px solid #ffffff;
-    border-radius: 4px;
     width: 150px;
-  }
-  
-  .dropdown-content a {
+    padding: 15px;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.dropdown-content a {
     color: rgb(119, 119, 119);
     text-decoration: none;
     padding: 8px;
-    /* text-align: left; */
-  }
+}
 
-  .logout {
-    color: rgb(211, 0, 0) !important
-  }
-  
-  .dropdown-content a:hover {
+.logout {
+    color: rgb(211, 0, 0) !important       
+}
+
+.dropdown-content a:hover {
     background-color: #f1f1f1;
-  }
+}
 
-
-  .sellNowButton {
-      background-color: #1bb3c3;
-      border: none;
-      padding: 0 10px;
-      border-radius: 4px;
+@media only screen and (min-width: 1920px) {
+    .wishListIcon, .sellNowButton, .signUpButton, .logInButton  {
+        height: 40%;
     }
-    .sellNowButton span {
-        font-size: 14px;
-       
-  }
-
-  
-.messageIcon {
-    height: 90%;
+    .messageIcon {
+        height: 35%;
+    }
+    .avatar-card2 {
+        height: 60%;
+    }
+    .shoppingCartIcon {
+        padding: 4px;
+    }
 }
 
-
-.navbarButton {
-    height: 100%;
-    padding: 5px 25px;
-    margin-right: 16px;
-    border-radius: 5px;
-}
-
-.logOutButton {
-    height: 65%;
-}
-
-.normalColors {
+.signUpButton {
+    height: 50%;
+    padding: 0px 20px;
+    margin-right: 15px;
     border: none;
-    background-color: #efd1aa;
+    border-radius: 3px;
+    font-size: 14px;
+    background-color: white;
+    border: 1px solid #1bb3c3;
 }
 
-.invertedColors {
+.logInButton {
+    height: 50%;
+    padding: 0px 20px;
     border: none;
-    background-color: #c2634b;
+    border-radius: 3px;
+    font-size: 14px;
     color: white;
+    background-color: #1bb3c3;
 }
 
 .shoppingCartButton {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 55%;
-    border-radius: 5px;
+    height: 100%;
+    border: none;
     background-color: white;
 }
 
-@media only screen and (min-width: 1920px) {
-    .buttonsDiv > a, .logOutButton, .shoppingCartButton {
-        height: 45%;
-    }
-}
-
 .shoppingCartIcon {
-    height: 100%;
+    height: 65%;
 }
-
-.wishListIcon {
-    height: 90%;
-}
-
-
 
 .cartSideBarDiv {
     position: fixed;
