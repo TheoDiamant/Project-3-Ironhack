@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../../context/auth.context";
 
@@ -12,6 +12,7 @@ const API_URL = "http://localhost:5005";
 
 function Navbar() {
     
+  const navigate = useNavigate()
   const location = useLocation()
   const { isLoggedIn, logOutUser, user } = useContext(AuthContext)
 
@@ -93,14 +94,22 @@ function Navbar() {
     setShowCart(false)
   }
 
+  function mobileNavbarMenu() {
+    navigate("/mobile-menu")
+  }
+
   return (
     <nav className="projectNavbar">
-  <div className="logoDiv">
+      <div className="logoDiv">
 
-  <Link to="/" className="logoLink">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Vinted_logo.png" alt="" className="logoImage" />
-  </Link>
-</div>
+        <Link to="/" className="logoLink">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Vinted_logo.png" alt="" className="logoImage" />
+        </Link>
+
+      </div>
+      <div className="threeLineMenu" onClick={mobileNavbarMenu}>
+        <img className="threeLineImage" src="https://thumbs.dreamstime.com/b/three-bar-line-icon-symbol-menu-outline-modern-design-element-simple-black-flat-vector-sign-rounded-corners-three-bar-line-110910924.jpg" alt="" />
+      </div>
 
       <div className="searchDiv">
         <div className="searchDivWrapper">

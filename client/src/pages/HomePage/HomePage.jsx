@@ -7,12 +7,14 @@ import StickyButton from "../../components/StickyButton/StickyButton";
 const HomePage = () => {
   return (
     <div>
-      <div className="background-image"></div>
+      <div className="background-image"></div>\
 
         <div className="overlay">
           <div className="text">
             <span>Give a second life<br />to your clothes</span>
+            <Link to="/new-product">
             <button className="buttonOverlay"><span>Sell now</span></button>
+            </Link>
           </div>
         </div>
       <div className="container">

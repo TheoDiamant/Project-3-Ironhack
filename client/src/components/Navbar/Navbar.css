@@ -8,11 +8,11 @@
 }
 
 .logoDiv {
+    flex: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     height: 100%;
-    width: 25%;
   }
   
   .profile-picture {
@@ -21,7 +21,7 @@
 
   
   .logoImage {
-    max-width: 20%;
+    height: 80%;
   }
 
 .searchDiv {
@@ -35,7 +35,9 @@
 .logoLink {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     margin-right: 2vh;
+    height: 100%;
 }
 
 .searchDivWrapper {
@@ -345,4 +347,36 @@
     width: 60%;
     cursor: default !important;
     opacity: 0;
+}
+
+.threeLineMenu {
+    display: none;
+    height: 100%;
+    padding-right: 10px;
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.threeLineImage {
+    height: 90%;
+}
+
+@media only screen and (max-width: 768px) {
+    .searchDiv, .buttonsDiv {
+        display: none;
+    }
+    .logoDiv {
+        justify-content: center;
+    }
+    .logoLink {
+        margin: 0;
+        justify-content: center;
+        height: 90%;
+        padding-left: 40px;
+    }
+    .threeLineMenu {
+        display: flex;
+        align-items: center;
+    }
+    
 }

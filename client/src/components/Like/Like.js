@@ -14,7 +14,7 @@ function Like() {
 
     const { productId } = useParams()
 
-    const [like, setLike] = useState(0)
+    const [isLike, setIsLike] = useState(0)
 
     const handleSubmit = (e) => {
         e.preventDefault()

@@ -60,48 +60,84 @@ router.get("/member/:userId/edit", isAuthenticated, (req, res , next) => {
 })
 
 // Route to follow someone
-router.post("/follow/:userId", isAuthenticated, (req, res, next) => {
+router.post('/follow/:userId', isAuthenticated, (req, res, next) => {
+  const userFollowed = req.params.userId;
+  const userFollowing = req.payload._id;
 
-  const userFollowed = req.params.userId
-  const userFollowing = req.payload._id
+  Follow.findOne({ user: userFollowing }) // Find the Follow document belonging to the user who is following
+    .then(follow => {
+      if (!follow) {
+        // If it doesn't exist (first time following), create it
+        return Follow.create({ user: userFollowing, userFollows: [userFollowed] })
+          .then(createdFollow => {
+            return User.findByIdAndUpdate(
+              userFollowing,
+              { $push: { following: createdFollow._id } },
+              { new: true }
+            );
+          });
+      } else {
+        // If it already exists, add the new person being followed to the array
+        follow.userFollows.push(userFollowed);
+        return follow.save();
+      }
+    })
+    .then(() => {
+      // Then search the database for the Follow document belonging to the user being followed
+      return Follow.findOne({ user: userFollowed });
+    })
+    .then(follow => {
+      if (!follow) {
+        // If it doesn't exist, create it and set "followers" to 1
+        return Follow.create({ user: userFollowed, followers: 1 });
+      } else {
+        // If it already exists, update the follower count
+        follow.followers += 1;
+        return follow.save();
+      }
+    })
+    .then(() => {
+      res.json({ message: 'Follow added successfully.' });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ message: 'Internal server error.' });
+    });
+});
 
-  Follow.find({user: new ObjectId(userFollowing)}) //Search the database for the Follow document belonging to the user who is following 
-  .then(response => {
 
-    if (response.length === 0) { //If it doesn't exist (first time following), create it
-      Follow.create({user: new ObjectId(userFollowing), userFollows: [new ObjectId(userFollowed)]})
-      .then(response => {
-        res.json(response)
-        return User.findByIdAndUpdate(req.payload._id, {
-          $push: {following: response._id}},
-          {new: true})
-      })
-      .catch(err => res.json(err))
-    }
-    else { //If it does exist, add the new person being followed to the array
-      response.userFollows.push(new ObjectId(userFollowed))
-      response.save()
-        .then(() => { //Then search the database for the Follow document belonging to the user being followed
-          Follow.find({user: new ObjectId(userFollowed)})
-            .then(response => {
+router.delete('/follow/:userId/', isAuthenticated, (req, res, next) => {
+  const userFollowed = req.params.userId;
+  const userFollowing = req.payload._id;
 
-              if(response.length === 0) { //If it doesn't exist, create it and set "followers" to 1
-                Follow.create({user: new ObjectId(userFollowed), followers: 1})
-                  .then(() => {
-                    res.json(response)
-                  })
-              }
-              else { //If it does exist, update the follower count
-                response.followers += 1
-                response.save()
-                  .then(() => res.json(response))
-              }
-            })
-        })
-    }
-  })
-})
+  // Find and delete the follow document
+  Follow.findOneAndDelete({ user: userFollowing, userFollows: userFollowed })
+    .then(deletedFollow => {
+      if (!deletedFollow) {
+        // If the follow document doesn't exist, return an error
+        return res.status(404).json({ message: 'Follow document not found.' });
+      }
 
+      // Find the follow document of the user being followed
+      Follow.findOne({ user: userFollowed })
+        .then(follow => {
+          if (follow) {
+            // If the follow document exists, decrement the followers count
+            follow.followers -= 1;
+            follow.save()
+              .then(() => {
+                res.json({ message: 'Unfollowed successfully.' });
+              });
+          } else {
+            res.json({ message: 'Unfollowed successfully.' });
+          }
+        });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ message: 'Internal server error.' });
+    });
+});
 
 
 // Route to get 3 members info for previewing

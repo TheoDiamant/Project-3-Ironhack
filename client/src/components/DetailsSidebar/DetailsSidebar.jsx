@@ -13,14 +13,26 @@ function DetailsSidebar({product, user}) {
 
     const storedToken = localStorage.getItem("authToken");
 
-    const [like, setLike] = useState(0)
+    const [isLike, setIsLike] = useState(false)
     const [showOfferPopup, setShowOfferPopup] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleLike = (e) => {
         e.preventDefault()
 
         axios.post(`${API_URL}/api/products/${productId}/like`, {}, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then(response => {
+            setIsLike(true)
+            console.log("success")
+        })
+        
+    }
+
+    const handleDislike = (e) => {
+        e.preventDefault()
+
+        axios.delete(`${API_URL}/api/products/${productId}/like`, { headers: { Authorization: `Bearer ${storedToken}` } })
+        .then(response => {
+            setIsLike(true)
             console.log("success")
         })
         
@@ -97,7 +109,7 @@ function DetailsSidebar({product, user}) {
                 <button className="sidebarButton">Message</button>
                 <button className="sidebarButtonGreen" onClick={() => setShowOfferPopup(true)}>Make an Offer</button>
                 <button className="sidebarButtonGreen" onClick={() => addToCart(productId)}>Add to cart</button>
-                <button className="sidebarButtonGreen" onClick={handleSubmit}>Add to WishList ❤️ </button>
+                <button className="sidebarButtonGreen" onClick={isLike ? handleLike : handleDislike}>{ isLike ? "Add to WishList ❤️"  : "Remove from WishList ❤️" }</button>
             </div>
 
             {showOfferPopup && (

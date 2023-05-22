@@ -24,6 +24,7 @@ function ProfilePage() {
 
   const [userInfo, setUserInfo] = useState(null)
   const [activeTab, setActiveTab] = useState("products")
+  const [isFollowed, setIsFollowed] = useState(false); 
   
   useEffect(() => {
     getUser();
@@ -40,7 +41,17 @@ function ProfilePage() {
     e.preventDefault();
     axios.post(`${API_URL}/api/follow/${userId}`, {}, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then(() => {
-        })
+          setIsFollowed(true);
+                })
+        .catch(err => console.log(err))
+  }
+
+  function handleUnfollow(e) {
+    e.preventDefault();
+    axios.delete(`${API_URL}/api/follow/${userId}`,  { headers: { Authorization: `Bearer ${storedToken}` } })
+        .then(() => {
+          setIsFollowed(false);
+                })
         .catch(err => console.log(err))
   }
 
@@ -106,9 +117,11 @@ function ProfilePage() {
                   :
                   
                   <>
-                    <div className="followButtonDiv">
-                      <button className="profileButton" onClick={handleFollow}>Follow</button>
-                    </div>
+                  <div className="followButtonDiv">
+                      <button className="profileButton" onClick={isFollowed ? handleUnfollow : handleFollow}>
+                        {isFollowed ? "Unfollow" : "Follow"}
+                      </button>
+                  </div>
 
                     <div className="chatWithUserButton">
                       <button className="profileButton" onClick={handleChatClick}>Chat</button>

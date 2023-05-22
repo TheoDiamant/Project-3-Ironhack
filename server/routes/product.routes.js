@@ -245,22 +245,51 @@ router.post("/products/:productId/like", isAuthenticated, (req, res, next) => {
       return;
     }
 
-    let like;
 
-    Like.create({user: req.payload._id, product: productId})
-    .then(response =>{
-      like = response
-      return User.findByIdAndUpdate(req.payload._id, {$push: {like: response._id}, },{new: true})
-      })
-      .then(() => {
-        return Product.findByIdAndUpdate(productId, {$push: {like: response._id}, },{new: true} )
-      })
-      .then(() => {
-        res.json(response.data)
-      })
-      .catch(err => res.json(err))
+    Like.find({user: req.payload._id, product: productId})
+    .then(response => {
+      if( response.length === 0) {
+        let like;
+    
+        Like.create({user: req.payload._id, product: productId})
+        .then(response =>{
+          like = response
+          return User.findByIdAndUpdate(req.payload._id, {$push: {like: response._id}, },{new: true})
+          })
+          .then(() => {
+            return Product.findByIdAndUpdate(productId, {$push: {like: response._id}, },{new: true} )
+          })
+          .then(() => {
+            res.json(response.data)
+          })
+          .catch(err => res.json(err))
+      }
+      else{
+        console.log("Like already exist")
+      }
+    })
+
       
 })
+
+router.delete('/products/:productId/like', isAuthenticated, (req, res, next) => {
+  const { productId } = req.params;
+  const userId = req.payload._id;
+
+  Like.findOneAndDelete({ product: productId, user: userId })
+    .then(deletedLike => {
+      if (!deletedLike) {
+      
+        return res.status(404).json({ message: 'Like not found.' });
+      }
+
+      res.json({ message: 'Like deleted successfully.' });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ message: 'Internal server error.' });
+    });
+});
 
 
 // Route to get the offer for a product //////// WORK  ////////

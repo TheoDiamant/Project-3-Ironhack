@@ -1,7 +1,4 @@
 .underNavbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   height: 3vh;
   border-bottom: 1px solid lightgrey;
   background-color: white;
@@ -9,17 +6,23 @@
 
 .text-underNavbar {
   display: flex;
-  align-items: flex-start;
-  margin-left: 17vh;
+  justify-content: flex-start;
+  padding: 0 15px;
 }
 
 .text-underNavbar p {
-  margin-left: 8vh;
   font-size: 14px;
   color: #999999;
   margin-bottom: 0;
+  margin-right: 15px;
 }
 
 .text-underNavbar a {
   text-decoration: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .text-underNavbar {
+    justify-content: space-between;
+  }
 }
