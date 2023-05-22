@@ -16,11 +16,9 @@ function Navbar() {
   const location = useLocation()
   const { isLoggedIn, logOutUser, user } = useContext(AuthContext)
 
-  console.log(user)
   
   const [products, setProducts] = useState([])
   const [users, setUsers] = useState([])
-  console.log(users)
   const [showCart, setShowCart] = useState(false)
 
   const [navSelection, setNavSelection] = useState("products")

@@ -26,13 +26,9 @@ function FollowerWardrobe() {
         })
         .then((response) => {
           const following = response.data.following;
-          console.log(following[0])
           const userFollows = following.flatMap((follow) => follow.userFollows);
-          console.log(userFollows)
           const products = userFollows.flatMap((follow) => follow.product);
-          console.log(products)
           setFollowerWardrobe(products);
-          console.log("HEYEYYEYEY", userFollows);
         })
         .catch((err) => console.log(err));
     }

@@ -10,13 +10,6 @@
     margin: 20px;
 }
 
-.stepsDiv {
-    height: 50px;
-    border-radius: 500px;
-    background-color: white;
-    margin-bottom: 20px;
-}
-
 .checkoutDetails {
     position: relative;
     display: flex;
@@ -123,5 +116,44 @@
 @media only screen and (min-width: 1920px) {
     .paymentTerminal {
         left: 1.4%;
+    }
+}
+
+.orderPlacedDiv {
+    z-index: 10;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: 50%;
+    top: 25%;
+    font-size: 25px;
+    background-color: white;
+    border: 1px solid #c2634b;
+    transform: scale(0);
+    transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1)
+}
+
+.scaleUp {
+    transform: scale(1);
+}
+
+@media only screen and (max-width: 768px) {
+    .wiperDiv, .interactiveCheckoutButtonDiv {
+        display: none;
+    }
+    .checkoutDetails {
+        flex-direction: column;
+    }
+    .shippingWrapper {
+        margin-top: 30px;
+    }
+    .paymentTerminal {
+        position: static;
+        z-index: 0;
+        width: 90%;
+        margin-top: 30px;
+        padding: 0;
     }
 }

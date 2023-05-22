@@ -2,12 +2,14 @@ import "./Checkout.css"
 
 import CheckoutInfo from "../../components/CheckoutInfo/CheckoutInfo"
 import { useRef, useState } from "react"
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios"
 
-const API_URL = "http://localhost:5005";     
+const API_URL = "http://localhost:5005";
+
 function Checkout() {
     
+    const navigate = useNavigate()
     const { productId } = useParams();
     const storedToken = localStorage.getItem("authToken");
     const [product, setProduct] = useState(null)
@@ -23,6 +25,8 @@ function Checkout() {
     const wiperRef = useRef(null)
     const billingWipe = useRef(null)
     const paymentTerminalRef = useRef(null)
+    const dimmerDivRef = useRef(null)
+    const orderPlacedDivRef = useRef(null)
 
     const [billingInfo, setBillingInfo] = useState({
         firstName: "",
@@ -56,6 +60,15 @@ function Checkout() {
         }, 800);
     }
 
+    function placeOrder() {
+        localStorage.setItem("cart", "[]")
+        dimmerDivRef.current.classList.add("dimming")
+        orderPlacedDivRef.current.classList.add("scaleUp")
+        setTimeout(() => {
+            navigate("/")
+        }, 2000);
+    }
+
     return(
         <div className="checkoutPageDiv">
 
@@ -69,7 +82,22 @@ function Checkout() {
 
 
                     </div>
-                    
+
+                    <div ref={wiperRef} className="wiperDiv"></div>
+
+                    <div className="interactiveCheckoutButtonDiv">
+                        <button className="interactiveCheckoutButton">
+                            <svg ref={buttonRef} className="arrowCheckout" viewBox="0 0 16 16" onClick={cloneAndSlide}>
+                                <path d="M8 12L2 6h12z" transform="rotate(-90 8 8)"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div className="checkoutDetailsWrapper shippingWrapper">
+                        <h3>Shipping information</h3>
+                        <CheckoutInfo info={shippingInfo} setInfo={setShippingInfo}/>
+                    </div>
+                
                     <div ref={paymentTerminalRef} className="paymentTerminal">
 
                         <h3>Payment details</h3>
@@ -101,33 +129,21 @@ function Checkout() {
                                 </div>
                             </div>
 
-                            <button className="placeOrderButton">Place Order</button>
+                            <button className="placeOrderButton" onClick={placeOrder}>Place Order</button>
 
                         </div>
                     </div>
-
-                    <div ref={wiperRef} className="wiperDiv"></div>
-
-                    <div className="interactiveCheckoutButtonDiv">
-                        <button className="interactiveCheckoutButton">
-                            <svg ref={buttonRef} className="arrowCheckout" viewBox="0 0 16 16" onClick={cloneAndSlide}>
-                                <path d="M8 12L2 6h12z" transform="rotate(-90 8 8)"></path>
-                            </svg>
-                        </button>
-                    </div>
-
-
-                    <div className="checkoutDetailsWrapper shippingWrapper">
-                        <h3>Shipping information</h3>
-                        <CheckoutInfo info={shippingInfo} setInfo={setShippingInfo}/>
-                    </div>
-
+                   
 
                 </div>
 
             </div>
 
+            <div ref={orderPlacedDivRef} className="orderPlacedDiv">
+                <p>Your order has been placed!</p>
+            </div>
 
+            <div ref={dimmerDivRef} className="dimmerDiv"></div>
         </div>
     )
 }
