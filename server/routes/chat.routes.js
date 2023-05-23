@@ -112,5 +112,14 @@ router.post("/checked-out", (req, res, next) => {
     .catch(err => res.json(err))
 })
 
+router.post("/delete-chat", (req, res, next) => {
+
+    const { roomID } = req.body
+
+    Room.findByIdAndDelete(roomID)
+    .then(() => res.json(200))
+    .catch(err => res.json(err))
+})
+
 module.exports = router
 

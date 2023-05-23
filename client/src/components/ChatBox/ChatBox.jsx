@@ -28,12 +28,15 @@ function ChatBox({ singleChat })  {
     //storing other users' profile picture in a variable for display in the chat
     let ownPFP
     let otherUserPFP
+    let otherUserName
     if(singleChat.users[0]._id === user._id) {
         ownPFP = singleChat.users[0].profilePicture
         otherUserPFP = singleChat.users[1].profilePicture
+        otherUserName = singleChat.users[1].name
     }
     else {
         otherUserPFP = singleChat.users[0].profilePicture
+        otherUserName = singleChat.users[0].name
         ownPFP = singleChat.users[1].profilePicture
     }
     
@@ -190,6 +193,12 @@ function ChatBox({ singleChat })  {
         .catch(err => console.log(err))
     }
 
+    function deleteChat() {
+        axios.post(`${API_URL}/chat/delete-chat`, {roomID: singleChat._id})
+        .then(() => window.location.reload())
+        .catch(err => console.log(err))
+    }
+
     function chatCheckout(productId) {
         axios.post(`${API_URL}/chat/checked-out`, {roomID: singleChat._id})
         .then(() => {
@@ -199,6 +208,10 @@ function ChatBox({ singleChat })  {
 
     return (
         <>
+            <div className="chatHeaderDiv">
+                {otherUserName && <p className="chatHeaderText">You're talking to {otherUserName}</p>}
+                <img className="deleteChatIcon" src="https://i.imgur.com/bPjT4w5.png" alt="" onClick={deleteChat}/>
+            </div>
             <div className="messagesDiv" ref={chatBoxRef}>
                 {allMessages.map((message, index) => {
              

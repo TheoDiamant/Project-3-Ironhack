@@ -54,6 +54,7 @@
 }
 
 .noChatsText {
+    margin: 10px;
     align-self: center;
     font-style: italic;
     color: grey;
