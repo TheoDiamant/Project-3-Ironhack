@@ -21,44 +21,30 @@ function ProductCard({product}) {
         description = description.join(" ")
     }
     
-    const colStyle = {
-     
-            flex: "0 0 auto",
-            width: "55",
-    }
-
-
-    const cardColor = {
-        backgroundColor: "#f7f7f7",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-    }
     return (
-
-       
-
-
         
-        
-        <div className="offers">
-        <Link to={`/products/${product._id}`} className="wrap-card">
-        <div className="offer-card">
-        <div className="avatar-card">
-        <img src={product.user[0].profilePicture} alt="Avatar" className="avatar-card" />
-            <span>{product.user[0].name}</span>
-        </div>
-        <div>
-          <img src={product.img[0]} alt="Product" className="product-card" />
-        </div>
-        <div>
-          <p className="priceProduct">${product.price}</p>
-          <p className="descriptionProduct">{product.title}</p>
-          <p className="descriptionProduct">{product.size}</p>
-          <p className="descriptionProduct">{product.brand}</p>
-        </div>
-        </div>
-        </Link>  
+        <div className="productCardDiv">
+            <Link to={`/products/${product._id}`} className="productCardLink">
+            
+                <div className="productCard">
+
+                    <div className="productCardHeader">
+                        <img src={product.user[0].profilePicture} alt="" className="productCardHeaderPFP" />
+                        <p className="productCardHeaderUsername">{product.user[0].name}</p>
+                    </div>
+
+                    <div className="productCardImageDiv">
+                        <img src={product.img[0]} alt="" className="productCardImage" />
+                    </div>
+
+                    <div className="productCardInfoDiv">
+                        <p className="priceProduct">${product.price}</p>
+                        <p className="descriptionProduct">{product.title}</p>
+                        <p className="descriptionProduct">{product.size}</p>
+                        <p className="descriptionProduct">{product.brand}</p>
+                    </div>
+                </div>
+            </Link>  
         </div>
        
         

@@ -21,14 +21,15 @@ function LatestProducts() {
   }, [])
 
   return (
-    <main className="wrapper">
-          {latestProducts.slice(0, 4).map(product => {
-    return (
-      <ProductCard key={product._id} product={product} />
-    );
-  })}
-  {latestProducts.length > 4 && <Link to="/products" className='buttonSeeMore'><button>See more</button> </Link>}
-        </main>
+    <div className="latestProductsDiv">
+
+      {latestProducts.slice(0, 4).map(product => {
+        return (
+          <ProductCard key={product._id} product={product} />
+        )
+      })}
+
+    </div>
   )
 }
 

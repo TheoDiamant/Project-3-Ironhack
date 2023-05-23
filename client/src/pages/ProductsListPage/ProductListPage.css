@@ -1,25 +1,27 @@
-
-.wrapper {
-    margin: 0 auto;
-    width: 70vw;
+.productsListDiv {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    justify-content: center;
+    min-height: 91vh;
 }
 
-main a {
-    text-decoration: none;
-    color: black;
+.productsListWrapper {
+    width: 80%;
+    padding: 10px;
 }
 
 .allProductsTitle {
     text-align: left;
-    margin-left: 17%;
-    margin-top: 8px;
 }
 
-.hrDesign {
-   
-    width: 56%;
-    margin-left: 17%;
+.productsListGridDiv {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 10px;
+    margin: 0 -20px;
+}
+
+@media only screen and (min-width: 1920px) {
+    .productsListWrapper {
+        width: 50%;
+    }
 }

@@ -5,19 +5,16 @@ import ProductCard from "../ProductCard/ProductCard"
 function ProductsTab({products}) {
 
     return ( 
-        <>
+        <div className="productsTabDiv">
             {products
                 
             ? 
             
-            <div className="wrapper">
-                {products.map(product => {
-                    return(
-                        
-                        <ProductCard key={product._id} product={product}/>
-                    )
-                })}
-            </div>
+            products.map(product => {
+                return(                  
+                    <ProductCard key={product._id} product={product}/>
+                )
+            })           
 
             :
 
@@ -27,8 +24,11 @@ function ProductsTab({products}) {
             </div>    
                 
             }
-        </>
+        </div>
     )
 }
+
+
+
 
 export default ProductsTab

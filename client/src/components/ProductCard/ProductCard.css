@@ -1,270 +1,52 @@
-/* .newCard {
-    position: relative;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    aspect-ratio: 0.8/1;
+.productCardDiv {
+  width: 300px;
 }
 
-.newCard a {
-    display: block;
-    width: 100%;
+.productCardLink {
+  text-decoration: none;
 }
 
-.newCard:hover .cardImage {
-    filter: blur(5px) opacity(0.4);
-    transition: filter 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+.productCardHeader {
+  display: flex;
+  align-items: center;
+  margin: 5px;
 }
 
-.newCard:not(:hover) .cardImage {
-    filter: blur(0px);
-    transition: filter 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+.productCardHeaderUsername {
+  margin: 0;
+  color: #343a40;
+  font-size: 12px;
 }
 
-.newCard:hover .titleDiv {
-    transform: translateY(-350%);
-    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+.productCardHeaderPFP {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+} 
+
+.productCardImageDiv {
+  height: 300px;
 }
 
-.newCard:not(:hover) .titleDiv {
-    transform: translateY(0%);
-    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+.productCardImage {
+  height: 100%;
 }
 
-.newCard:hover .priceDiv {
-    transform: translateY(-300%);
-    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-    transition-delay: 0.1s;
+.productCardInfoDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 5px;
+  font-size: 14px;
 }
 
-.newCard:not(:hover) .priceDiv {
-    transform: translateY(0%);
-    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+.priceProduct {
+  margin: 0;
+  color: #007782a8;
 }
 
-.newCard:hover .cardDescription {
-    transform: translateY(-120%);
-    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-    transition-delay: 0.3s;
+.descriptionProduct {
+  margin: 0;
+  color: #757575;
 }
-
-.newCard:not(:hover) .cardDescription {
-    transform: translateY(0%);
-    transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.cardImageDiv {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-.cardImage {
-    aspect-ratio: 1/1;
-    width: 90%;
-}
-
-.cardButtonsDiv {
-    z-index: 5;
-    height: 20%;
-    width: 90%;
-}
-
-.cardButton {
-    height: 100%;
-    width: 50%;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)
-}
-
-.addCardButton {
-    background-color: #F9D5C7;
-}
-
-.addCardButton:hover {
-    background-color: #fbe5dc;
-    box-shadow: 0 0 5px #eacabe;
-    transition: all 0.3s ease-in-out;
-}
-
-.makeOfferButton {
-    background-color: #A7E6D7;
-}
-
-.makeOfferButton:hover {
-    background-color: #E0F8D8;
-    box-shadow: 0px 0px 5px #98FB98;
-    transition: all 0.3s ease-in-out;
-}
-
-.titleDiv {
-    position: absolute;
-    top: 80%;
-    height: calc(20% - 14px);
-    width: 70%;
-    margin: 0 15%;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.titleDiv > p {
-    margin: 0;
-}
-
-.priceDiv {
-    position: absolute;
-    top: 80%;
-    height: calc(20% - 14px);
-    width: 70%;
-    margin: 0 15%;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.priceDiv > p {
-    margin: 0;
-}
-
-.cardDescription {
-    top: 80%;
-    height: calc(20% - 14px);
-    width: 70%;
-    margin: 0 15%;
-    position: absolute;
-    pointer-events: none;
-    overflow: hidden;
-}
-
- */
-
-
-  /* .product_card small,
- .product_card strong {
-   display: block;
- }
- 
- .product_card .card-header {
-   position: relative;
-   overflow: hidden;
- }
- 
- .product_card .card-overlay {
-   position: absolute;
-   top: 100%;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   transition: top 1s ease;
- }
- .product_card .card:hover .card-overlay {
-   top: 0%;
- }
- 
- .product_card .card .details-btn .btn {
-   position: absolute;
-   bottom: -100%;
-   left: 0;
-   width: 100%;
-   border-radius: 0;
-   transition: bottom 1s ease;
- }
- .product_card .card:hover .details-btn .btn {
-   bottom: 0%;
- }
- 
- .product_card .card .card-body {
-   padding: 10px 0;
- }
- 
- .product_card .card-img-top {
-    height: 400px;
-    object-fit: cover;
- }
-
- .user-name-product {
-    text-decoration: none;
-    color: #343434;
- }
-
- .sub-title{
-    font-size: 15px;
-    text-decoration: none;
-    color: #4b4b4b;
- }  */
-
-/* Offers */
-.offers {
-    /* display: flex; */
-    /* flex-wrap: wrap; */
-    width: 18%;
-}
-  .offers .wrap-card:not(:nth-child(5n)) {
-    margin-right: 15px;
-  }
-  .offers .wrap-card {
-    margin-top: 15px;
-  }
-  .offers .wrap-card {
-    width: calc(100% / 5 - 12px);
-    cursor: pointer;
-  }
-  
-  /* Avatar - offers */
-   .offer-card div:first-child {
-    display: flex;
-    align-items: center;
-  }
-  .offer-card img {
-    object-fit: cover;
-  }
-  .offer-card span {
-    font-size: 12px;
-    color: var(--dark-grey);
-  }
-  .offer-card div.avatar-card {
-    height: 50px;
-  }
-  img.avatar-card {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 10px;
-  } 
-  
-  /* Img - offers */
-   .product-card {
-    width: 100%;
-    height: 340px;
-    object-fit: contain;
-  }
-   
-  /* Details - offers */
-   .offer-card div:last-child {
-    font-size: 14px;
-    line-height: 3px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 1vh;
-  }
-
-  .offer-card div:last-child p:first-child {
-    font-weight: 600;
-  }
-  .offer-card div:last-child p:not(:first-child) {
-    font-size: 12px;
-  }
-  
-  .priceProduct {
-    color: #007782a8;
-  }
-
-  .descriptionProduct {
-    color: #757575;
-  }
