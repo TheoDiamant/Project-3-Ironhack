@@ -20,52 +20,44 @@ function Offer({ productOwner }) {
     const navigate = useNavigate()
     const { productId } = useParams()
 
-      const [offerText, setOfferText] = useState({
-          price: 0,
-          message: "",
-          productId: productId
-      })
+    const [offerText, setOfferText] = useState({
+      price: 0,
+      message: "",
+      productId: productId
+    })
 
 
-        const handleChange = (event) => {
-            const {name, value} = event.target
-            setOfferText(prevState => ({...prevState, [name]: value}))
-        }
+    function handleChange(e) {
+      const {name, value} = e.target
+      setOfferText(prevState => ({...prevState, [name]: value}))
+    }
 
+    function handleSubmit(e) {
+      e.preventDefault()
 
-        const handleSubmit = (e) => {
-            e.preventDefault()
+      axios.post(`${API_URL}/api/products/${productId}/offer`, offerText, { headers: { Authorization: `Bearer ${storedToken}` } })
 
-            axios.post(`${API_URL}/api/products/${productId}/offer`, offerText, { headers: { Authorization: `Bearer ${storedToken}` } })
-            .then(response => {
-                console.log(response)
-                console.log("success")
-            })
+      setOffer(offerText)
+      setChatIDs([user._id, productOwner._id])
+      navigate("/message")
+    }
 
-            setOffer(offerText)
-            setChatIDs([user._id, productOwner._id])
-            navigate("/message")
+    return (
+        <div className="popupContainer">
+          <form className="offerForm" onSubmit={handleSubmit}>
+            <h1>Make an Offer</h1>
+            <input
+              name="price"
+              type="number"
+              alt=""
+              onChange={handleChange}
+            ></input>
             
-        }
-
-        return (
-            <div className="container">
-              <div className="popupContainer">
-                <form className="offerForm" onSubmit={handleSubmit}>
-                  <h1>Make an Offer</h1>
-                  <input
-                    name="price"
-                    type="number"
-                    alt=""
-                    onChange={handleChange}
-                  ></input>
-                  <textarea name="message" type="text" onChange={handleChange}></textarea>
-                  <button type="submit">Send offer</button>
-                </form>
-              </div>
-            </div>
-          );
-        }
+            <button type="submit">Send offer</button>
+          </form>
+        </div>
+    );
+  }
     
 
     export default Offer

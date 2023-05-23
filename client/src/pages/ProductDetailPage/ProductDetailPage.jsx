@@ -25,9 +25,12 @@ function ProductDetailPage() {
   
 
     useEffect(() => {
+        if(!user) {
+            return
+        }
         getProduct()
         getUser()
-    }, []);
+    }, [user]);
 
     function getProduct () {
         axios.get(`${API_URL}/api/products/${productId}`, { headers: { Authorization: `Bearer ${storedToken}` } })

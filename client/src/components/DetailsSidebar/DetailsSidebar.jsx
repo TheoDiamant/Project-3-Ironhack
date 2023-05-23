@@ -22,7 +22,6 @@ function DetailsSidebar({product, user}) {
         axios.post(`${API_URL}/api/products/${productId}/like`, {}, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then(response => {
             setIsLike(true)
-            console.log("success")
         })
         
     }
@@ -33,7 +32,6 @@ function DetailsSidebar({product, user}) {
         axios.delete(`${API_URL}/api/products/${productId}/like`, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then(response => {
             setIsLike(true)
-            console.log("success")
         })
         
     }
@@ -113,10 +111,10 @@ function DetailsSidebar({product, user}) {
             </div>
 
             {showOfferPopup && (
-        <div className="popupContainer">
-          <Offer productOwner={product.user[0]} />
-        </div>
-      )}
+                
+                <Offer productOwner={product.user[0]} />
+                
+            )}
         </div>
     )
 }
