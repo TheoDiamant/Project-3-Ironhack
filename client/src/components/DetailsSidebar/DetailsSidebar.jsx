@@ -1,7 +1,7 @@
 import "./DetailsSidebar.css"
 
 import { useParams } from "react-router-dom"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { CartContext } from "../../context/cart.context"
 import Offer from "../Offer/Offer"
 import axios from "axios";
@@ -13,8 +13,13 @@ function DetailsSidebar({product, user}) {
 
     const storedToken = localStorage.getItem("authToken");
 
-    const [isLike, setIsLike] = useState(false)
+    const { productId } = useParams()
+    const { addToCart } = useContext(CartContext)
+
+    const [isLike, setIsLike] = useState()
     const [showOfferPopup, setShowOfferPopup] = useState(false);
+
+
 
     const handleLike = (e) => {
         e.preventDefault()
@@ -26,20 +31,21 @@ function DetailsSidebar({product, user}) {
         
     }
 
+
+
+  
     const handleDislike = (e) => {
         e.preventDefault()
 
         axios.delete(`${API_URL}/api/products/${productId}/like`, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then(response => {
-            setIsLike(true)
+            setIsLike(false)
         })
         
     }
 
 
 
-    const { productId } = useParams()
-    const { addToCart } = useContext(CartContext)
 
     return(
         <div className="detailsSidebarDiv">

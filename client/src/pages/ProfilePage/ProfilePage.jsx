@@ -33,7 +33,8 @@ function ProfilePage() {
   function getUser() {
     axios.get(`${API_URL}/api/member/${userId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
     .then(response => {
-      setUserInfo(response.data)
+      setUserInfo(response.data);
+      setIsFollowed(response.data.isFollowed)
     })
   }
 

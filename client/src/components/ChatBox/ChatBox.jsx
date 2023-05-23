@@ -46,7 +46,7 @@ function ChatBox({ singleChat })  {
             return
         }
         
-        const offerMessage = "This user is making an offer: " + offer.price.toString() + "€";
+        const offerMessage = "Offer: " + offer.price.toString() + "€";
         const offerData = {
             room: singleChat._id,
             content: offerMessage,
