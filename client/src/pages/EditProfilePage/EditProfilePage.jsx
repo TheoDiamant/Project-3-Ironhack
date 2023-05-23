@@ -1,19 +1,14 @@
 import "./EditProfilePage.css"
 
-import axios from "axios";
-
-import { useState, useEffect, useContext } from "react";
-import { useParams } from 'react-router-dom';
+import { useState, useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 
 import Loading from "../../components/Loading/Loading";
 import ProfilePictureInput from "../../components/ProfilePictureInput/ProfilePictureInput";
 
-const API_URL = "http://localhost:5005"; 
-
 function EditProfilePage() {
 	
-	const { user, changePassword, errorMessage } = useContext(AuthContext)
+	const { user, changePassword, errorMessage, changePFP } = useContext(AuthContext)
 	const [currentPassword, setCurrentPassword] = useState(null)
 	const [newPassword, setNewPassword] = useState(null)
 
@@ -38,7 +33,7 @@ function EditProfilePage() {
 				<div className="changeProfilePicDiv">
 					{user ?
 
-					<ProfilePictureInput currentPFP={user.profilePicture}/> //Click on PFP
+					<ProfilePictureInput user={user} changePFP={changePFP}/> //Click on PFP
 
 					:
 

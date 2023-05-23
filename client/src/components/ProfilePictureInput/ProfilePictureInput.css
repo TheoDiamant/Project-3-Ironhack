@@ -40,6 +40,17 @@
     animation: loading 0.8s ease-in-out infinite;
 }
 
+.changePFP-success-message {
+    display: none;
+    opacity: 0;
+    color: rgb(34, 152, 34);
+    transition: opacity 3s ease-in-out
+}
+
+.show-sucess-message {
+    opacity: 1;
+}
+
 @keyframes loading {
     to {
         background-position: 20px 0;

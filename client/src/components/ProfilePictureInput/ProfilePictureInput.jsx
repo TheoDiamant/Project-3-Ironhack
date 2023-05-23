@@ -1,20 +1,27 @@
-import { useEffect, useState, useRef } from "react";
 import "./ProfilePictureInput.css"
 
+import { useEffect, useState, useRef } from "react";
 import axios from "axios"
 
 const API_URL = "http://localhost:5005";
 
-
-function ProfilePictureInput({currentPFP}) {
+function ProfilePictureInput({ changePFP, user }) {
 
     const canvasRef = useRef(null)
     const imageRef = useRef(null)
-    const [imageURL, setImageURL] = useState(null)
+    const successMessageRef = useRef(null)
+
+    const [imageURL, setImageURL] = useState(user.profilePicture)
     const [triggered, setTriggered] = useState(false)
 
     useEffect(() => {
+        if(imageURL === user.profilePicture) {
+            return
+        }
+
         loadCanvas()
+        const requestBody = {newProfilePicture: imageURL, email: user.email}
+        changePFP(requestBody)
     }, [imageURL])
 
     function loadCanvas() {
@@ -62,10 +69,11 @@ function ProfilePictureInput({currentPFP}) {
 
     return(
         <div className="profilePictureInputDiv">
-                <canvas className="profilePictureCanvas" ref={element => canvasRef.current = element}></canvas>
-                <img ref={element => imageRef.current = element} className="currentPFP" src={currentPFP} alt="" />
+                <canvas className="profilePictureCanvas" ref={canvasRef}></canvas>
+                <img ref={imageRef} className="currentPFP" src={user.profilePicture} alt="" />
                 <button className="editPFPButton" onClick={handleClick}></button>
                 <input id="fileInput" className="hiddenImageInput" type="file" onChange={handleFileInput}/>
+                <p ref={successMessageRef} className="changePFP-success-message">Profile picture changed.</p>
         </div>
     )
 }

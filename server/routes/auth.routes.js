@@ -252,4 +252,30 @@ router.post("/change-password", isAuthenticated, (req, res, next) => {
     .catch((err) => next(err)) 
 })
 
+router.post("/change-pfp", isAuthenticated, (req, res, next) => {
+  
+  const { newProfilePicture, email } = req.body
+
+  User.findOne({ email })
+    .then((foundUser) => {
+      foundUser.profilePicture = newProfilePicture
+      foundUser.save()
+      .then((response) => {
+
+        const { _id, email, name, profilePicture } = response
+
+        const payload = { _id, email, name, profilePicture }
+
+        const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {
+          algorithm: "HS256",
+          expiresIn: "6h",
+        })
+        
+        res.status(200).json({ authToken: authToken, profilePicture: profilePicture })
+      })
+      .catch(err => res.json(err))
+    })
+    .catch((err) => next(err)) 
+})
+
 module.exports = router

@@ -11,7 +11,7 @@ const API_URL = "http://localhost:5005";
 
 function DetailsSidebar({product, user}) {
 
-    const storedToken = localStorage.getItem("authToken");
+    const storedToken = localStorage.getItem("authToken")
 
     const [isLike, setIsLike] = useState(false)
     const [showOfferPopup, setShowOfferPopup] = useState(false);
