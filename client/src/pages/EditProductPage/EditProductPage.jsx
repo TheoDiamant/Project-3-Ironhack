@@ -1,10 +1,10 @@
 import "./EditProductPage.css"
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import axios from "axios";
-
+import { AuthContext } from "../../context/auth.context"
 import ImageInput from "../../components/ImageInput/ImageInput";
  
 const API_URL = "http://localhost:5005";
@@ -12,8 +12,10 @@ const API_URL = "http://localhost:5005";
  
 function EditProjectPage() {
 
-    const { productId } = useParams();   
-    const navigate = useNavigate();  
+    const { user } = useContext(AuthContext)
+
+    const { productId } = useParams()
+    const navigate = useNavigate()
 
     const [imagesLoading, setImagesLoading] = useState(false)
     const [imageURLs, setImageURLs] = useState([])
@@ -81,7 +83,7 @@ function EditProjectPage() {
     function handleDelete() {                    
         axios.delete(`${API_URL}/api/products/${productId}`)
         .then(() => {
-            navigate("/products");
+            navigate(`/member/${user._id}`);
         })
         .catch((err) => console.log(err));
     };  
@@ -140,6 +142,7 @@ function EditProjectPage() {
                     </div>
                     <button type="submit" className="submitEditsButton">EDIT PRODUCT</button>
                 </form>
+                <button className="deleteProductButton" onClick={handleDelete}>DELETE PRODUCT</button>
             </div>
         </div>
     );

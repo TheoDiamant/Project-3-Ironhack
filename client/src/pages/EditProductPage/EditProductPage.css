@@ -7,6 +7,7 @@
 
 .editProductFormDiv {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 80%;
@@ -81,4 +82,18 @@
     .editProductForm {
         width: 50%;
     }
+}
+
+.deleteProductButton {
+    width: 100%;
+    font-family: "Open Sans",sans-serif;
+    margin: 10px;
+    padding: 10px 63px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #b70909;
+    border: 1px solid #b70909;
+    color: #fff;
+    transition: 0.3s ease;
 }
