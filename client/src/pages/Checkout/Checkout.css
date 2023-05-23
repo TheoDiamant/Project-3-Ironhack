@@ -127,6 +127,10 @@
     background-color: white;
 }
 
+.checkoutProductImagesDiv {
+    height: 100%;
+}
+
 .checkoutProductImage {
     height: 100%;
     padding: 10px;
@@ -194,5 +198,14 @@
         width: 90%;
         margin-top: 30px;
         padding: 0;
+    }
+    .checkoutProductDiv {
+        flex-direction: column;
+        height: 375px;
+        width: 90%;
+        margin: 10px 5%;
+    }
+    .checkoutProductImagesDiv {
+        height: 40%;
     }
 }

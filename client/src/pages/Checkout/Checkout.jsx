@@ -148,11 +148,13 @@ function Checkout() {
                 {product && 
 
                 <div className="checkoutProductDiv">
-                    {product.img.map((image, index) => {
-                        return(
-                            <img key={index} className="checkoutProductImage" src={image} alt="" />
-                        )
-                    })}
+                    <div className="checkoutProductImagesDiv">
+                        {product.img.map((image, index) => {
+                            return(
+                                <img key={index} className="checkoutProductImage" src={image} alt="" />
+                            )
+                        })}
+                    </div>
                     <div className="checkoutProductInfo">
                         <div className="checkoutProductTitleAndPrice">
                             <div className="hackyDivider"></div>
