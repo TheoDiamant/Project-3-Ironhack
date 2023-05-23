@@ -1,12 +1,6 @@
 .productDetailsDiv {
   display: flex;
   justify-content: center;
-
-}
-.otherProductDiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .productDetailsWrapper {
@@ -16,6 +10,7 @@
 }
 
 .productDetailsMainDiv {
+  margin: 30px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -30,6 +25,12 @@
   background-color: #C2634B;
   color: white;
   border-radius: 5px;
+}
+
+.otherProductDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .youMightAlsoLike {
@@ -48,6 +49,7 @@
     flex-wrap: wrap;
     gap: 27px;
 }
+
 @media only screen and (min-width: 1920px) {
   .productDetailsWrapper {
       width: 50%;

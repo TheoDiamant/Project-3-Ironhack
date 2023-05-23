@@ -15,8 +15,6 @@ const API_URL = "http://localhost:5005";
 
 function ProductDetailPage() {
 
-    const storedToken = localStorage.getItem("authToken");
-
     const { user } = useContext(AuthContext)
     const { productId } = useParams(); 
 
@@ -25,78 +23,65 @@ function ProductDetailPage() {
   
 
     useEffect(() => {
-        if(!user) {
-            return
-        }
-        getProduct()
-        getUser()
-    }, [user]);
-
-    function getProduct () {
-        axios.get(`${API_URL}/api/products/${productId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+        
+        axios.get(`${API_URL}/api/products/${productId}`)
         .then((response) => {
             setProduct(response.data)
+            setUserInfo(response.data.user[0])
         })
         .catch(err => console.log(err))
-    }
-
-    function getUser() {
-        axios.get(`${API_URL}/api/member/${user._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(response => {
-          setUserInfo(response.data)
-        })
-    }
+        
+    }, [productId]);
 
 
     return (
         <div>
-        <div className="productDetailsDiv">
+            <div className="productDetailsDiv">
 
-            <div className="productDetailsWrapper">
-                {product && userInfo
-                
-                ?
-
-                <>
-                    <div className="productDetailsMainDiv">
-                        <Carousel images={product.img} />
-                        {userInfo._id === product.user[0]._id
-                        
-                        ?
-
-                        <Link to={`/products/${product._id}/edit`}>
-                            <button className="editProductButton">EDIT PRODUCT</button>
-                        </Link>
-
-                        :
-
-                        <></>
-                        }
-                    </div>
+                <div className="productDetailsWrapper">
+                    {product && userInfo
                     
-                    <DetailsSidebar product={product} user={userInfo}/>
-                </>
+                    ?
 
-                :
+                    <>
+                        <div className="productDetailsMainDiv">
+                            <Carousel images={product.img} />
+                            {user && userInfo._id === user._id
+                            
+                            ?
 
-                <Loading />
+                            <Link to={`/products/${product._id}/edit`}>
+                                <button className="editProductButton">EDIT PRODUCT</button>
+                            </Link>
 
-                }
+                            :
 
-           
+                            <></>
+                            }
+                        </div>
+                        
+                        <DetailsSidebar product={product} user={userInfo}/>
+                    </>
+
+                    :
+
+                    <Loading />
+
+                    }
+
                 
+                    
+                </div>
             </div>
-        </div>
-        <div className="otherProductDiv">
+            <div className="otherProductDiv">
                 <div className="youMightAlsoLikeDiv">
                     <h3 className="youMightAlsoLike">You might Also Like</h3>
                     <hr></hr>
                 </div>
                 <main className="wrapper"> 
                     <YouMightAlsoLike />
-                    </main>
-           </div>
-
+                </main>
+            </div>
         </div>
         
     )
