@@ -6,7 +6,7 @@ import axios from "axios"
 const API_URL = "http://localhost:5005";
 
 
-function ProfilePictureInput({currentPFP, setUser}) {
+function ProfilePictureInput({currentPFP}) {
 
     const canvasRef = useRef(null)
     const imageRef = useRef(null)
@@ -26,7 +26,7 @@ function ProfilePictureInput({currentPFP, setUser}) {
     
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
             canvas.classList.remove("loading")
-            canvas.classList.add("rotate")
+            canvas.classList.add("rotatePFP")
         }
     }
 
@@ -39,7 +39,7 @@ function ProfilePictureInput({currentPFP, setUser}) {
     function handleFileInput(e) {
         if(triggered === true) {
             const canvas = canvasRef.current
-            canvas.classList.remove("rotate")
+            canvas.classList.remove("rotatePFP")
             const ctx = canvas.getContext("2d")
             ctx.clearRect(0, 0, canvas.width, canvas.height)
         }
@@ -54,7 +54,6 @@ function ProfilePictureInput({currentPFP, setUser}) {
 
         axios.post(`${API_URL}/api/upload`, imageData)
             .then(response => {
-                setUser(prevState => ({...prevState, profilePicture: response.data}))
                 setImageURL(response.data)
             })
             .catch(err => console.log(err))

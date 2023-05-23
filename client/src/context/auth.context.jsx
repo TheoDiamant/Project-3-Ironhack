@@ -40,7 +40,6 @@ function AuthProviderWrapper(props) {
         setUser(user)
       })
       .catch(() => {
-
         setIsLoggedIn(false)
         setIsLoading(false)
         setUser(null)
@@ -109,6 +108,24 @@ function AuthProviderWrapper(props) {
     }
   })
 
+  function changePassword(requestBody) {
+    const storedToken = localStorage.getItem("authToken")
+
+    axios.post(`${API_URL}/auth/change-password`, requestBody,  { headers: { Authorization: `Bearer ${storedToken}` } })
+    .then((response) => {
+      const successMessage = response.data.message
+      setErrorMessage(successMessage)
+      setTimeout(() => {
+        navigate("/")
+        setErrorMessage(null)
+      }, 2000);
+    })
+    .catch((error) => {
+      const errorDescription = error.response.data.message
+      setErrorMessage(errorDescription)
+    })
+  }
+
   function logOutUser() {
     removeToken()
     authenticateUser()
@@ -129,6 +146,7 @@ function AuthProviderWrapper(props) {
         login,
         googleSignup,
         googleLogin,
+        changePassword,
       }}
     >
       {props.children}

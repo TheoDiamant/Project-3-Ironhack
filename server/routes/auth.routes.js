@@ -211,4 +211,45 @@ router.get("/verify", isAuthenticated, (req, res, next) => {
   res.status(200).json(req.payload)
 })
 
+router.post("/change-password", isAuthenticated, (req, res, next) => {
+  
+  const { currentPassword, newPassword, user } = req.body
+  const { email } = user
+
+  if (currentPassword === "" || newPassword === "") {
+    res.status(400).json({ message: "Provide both current and new passwords." })
+    return
+  }
+
+  const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/
+  if (!passwordRegex.test(newPassword)) {
+    res.status(400).json({
+      message:
+        "New password must have at least 6 characters and contain at least one number, one lowercase and one uppercase letter.",
+    })
+    return
+  }
+
+  User.findOne({ email })
+    .then((foundUser) => {
+      
+      const passwordCorrect = bcrypt.compareSync(currentPassword, foundUser.password)
+
+      if (passwordCorrect) {
+        
+        const salt = bcrypt.genSaltSync(saltRounds)
+        const hashedNewPassword = bcrypt.hashSync(newPassword, salt)
+
+        foundUser.password = hashedNewPassword
+        foundUser.save()
+        .then(() => res.status(200).json({ message: "Password was succesfully changed." }))
+        .catch(err => res.json(err))
+
+      } else {
+        res.status(401).json({ message: "Current password is incorrect." })
+      }
+    })
+    .catch((err) => next(err)) 
+})
+
 module.exports = router
