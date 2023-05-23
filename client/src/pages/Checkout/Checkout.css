@@ -119,6 +119,45 @@
     }
 }
 
+.checkoutProductDiv {
+    display: flex;
+    align-items: center;
+    height: 150px;
+    margin: 10px;
+    background-color: white;
+}
+
+.checkoutProductImage {
+    height: 100%;
+    padding: 10px;
+}
+
+.checkoutProductInfo {
+    flex: 1;
+    height: 100%;
+}
+
+.checkoutProductTitleAndPrice {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    padding: 20px 0;
+}
+
+.checkoutProductTitleAndPrice > h6 {
+    margin: 0;
+}
+
+.hackyDivider {
+    position: absolute;
+    border: 1px solid #c2634b;
+    top: 50%;
+    width: 90%;
+}
+
 .orderPlacedDiv {
     z-index: 10;
     position: fixed;

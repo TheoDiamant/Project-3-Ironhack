@@ -1,7 +1,7 @@
 import "./Checkout.css"
 
 import CheckoutInfo from "../../components/CheckoutInfo/CheckoutInfo"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios"
 
@@ -9,17 +9,24 @@ const API_URL = "http://localhost:5005";
 
 function Checkout() {
     
+    const storedToken = localStorage.getItem("authToken")
     const navigate = useNavigate()
-    const { productId } = useParams();
-    const storedToken = localStorage.getItem("authToken");
+    const { productId } = useParams()
     const [product, setProduct] = useState(null)
 
-    const getProducts = () => {
-        axios.get(`/api/checkout/${productId}`,  { headers: { Authorization: `Bearer ${storedToken}` } })
+    //UseEffect to get the product details once the params is not null
+    useEffect(() => {
+        if(!productId) {
+            return
+        }
+
+        axios.get(`${API_URL}/api/checkout/${productId}`,  { headers: { Authorization: `Bearer ${storedToken}` } })
         .then((response) => {
             setProduct(response.data)
         })
-    }
+        .catch(err => console.log(err))
+
+    }, [productId])
 
     const buttonRef = useRef(null)
     const wiperRef = useRef(null)
@@ -47,6 +54,8 @@ function Checkout() {
         city: "",
         state: "",
     })
+
+    ////////////////////
 
     function cloneAndSlide() {
         setShippingInfo(billingInfo)
@@ -133,10 +142,28 @@ function Checkout() {
 
                         </div>
                     </div>
-                   
-
+                
                 </div>
 
+                {product && 
+
+                <div className="checkoutProductDiv">
+                    {product.img.map((image, index) => {
+                        return(
+                            <img key={index} className="checkoutProductImage" src={image} alt="" />
+                        )
+                    })}
+                    <div className="checkoutProductInfo">
+                        <div className="checkoutProductTitleAndPrice">
+                            <div className="hackyDivider"></div>
+                            <h6>{product.title}</h6>
+                            <hr />
+                            <h6>{product.description}</h6>
+                        </div>
+                    </div>
+                </div>
+
+                }
             </div>
 
             <div ref={orderPlacedDivRef} className="orderPlacedDiv">

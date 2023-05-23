@@ -292,7 +292,7 @@ router.delete('/products/:productId/like', isAuthenticated, (req, res, next) => 
 });
 
 
-// Route to get the offer for a product //////// WORK  ////////
+// Route get product details for checkout by ID //////// WORK  ////////
 router.get("/checkout/:productId", (req, res, next) => {
 
   const { productId } = req.params
@@ -309,7 +309,6 @@ router.get("/checkout/:productId", (req, res, next) => {
     .catch(err => res.json(err))
 
 })
-
 
 
 
