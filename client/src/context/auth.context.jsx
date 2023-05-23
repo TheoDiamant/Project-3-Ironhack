@@ -126,6 +126,21 @@ function AuthProviderWrapper(props) {
     })
   }
 
+  function changePFP(requestBody) {
+    const storedToken = localStorage.getItem("authToken")
+
+    axios.post(`${API_URL}/auth/change-pfp`, requestBody,  { headers: { Authorization: `Bearer ${storedToken}` } })
+    .then((response) => {
+      setUser(prevState => ({...prevState, profilePicture: response.data.profilePicture}))
+      storeToken(response.data.authToken)
+    })
+    .catch((error) => {
+      const errorDescription = error.response.data.message
+      setErrorMessage(errorDescription)
+    })
+  }
+  
+
   function logOutUser() {
     removeToken()
     authenticateUser()
@@ -147,6 +162,7 @@ function AuthProviderWrapper(props) {
         googleSignup,
         googleLogin,
         changePassword,
+        changePFP,
       }}
     >
       {props.children}
