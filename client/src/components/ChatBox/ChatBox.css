@@ -61,3 +61,38 @@
     height: 30px;
     border-radius: 50%;
 }
+
+.offerMessageWrapper {
+    max-width: 40%;
+    margin-bottom: 20px;
+}
+
+.offerMessage {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.chatOfferButtons {
+    width: 100%;
+    padding: 0 40px 0 50px;
+}
+
+.chatOfferButtons > button {
+    width: 40%;
+    margin: 0 10px;
+    border: none;
+    border-radius: 3px;
+}
+
+.checkoutMessageWrapper {
+    max-width: 40%;
+    margin-bottom: 20px;
+}
+
+.checkoutMessageWrapper > button {
+    width: 40%;
+    margin: 0 10px;
+    border: none;
+    border-radius: 3px;
+}

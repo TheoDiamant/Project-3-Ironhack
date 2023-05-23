@@ -39,10 +39,6 @@
     overflow: hidden;
 }
 
-.sideBarChatDiv:first-child {
-    border: none !important;
-}
-
 .sideBarChatDiv > p {
     margin: 0;
 }

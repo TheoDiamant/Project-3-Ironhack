@@ -19,6 +19,7 @@ function Chat() {
 
     const [allChats, setAllChats] = useState(null)
     const [singleChat, setSingleChat] = useState(null)
+    const [chatId, setChatId] = useState("1")
 
     //When we get to this page, we need to do two things. We need to fetch every existing chat this user has had, and we need to fetch the specific chat the are trying to start right now OR create it if it's new
     useEffect(() => {
@@ -51,12 +52,16 @@ function Chat() {
         else {
             axios.post(`${API_URL}/chat/single-chat`, {chatIDs: chatIDs})
             .then(response => {
-                console.log(response.data[0])
                 setSingleChat(response.data[0])
             })
             .catch(err => console.log(err))
         }
     }, [chatIDs])
+
+    function changeChat(chat) {
+        setSingleChat(chat)
+        setChatId(Math.random().toString())
+    }
 
     return (
         <div className="chatPageDiv">
@@ -70,7 +75,7 @@ function Chat() {
                             const otherUser = chat.users.find(userFromArray => userFromArray._id !== user._id)
                             
                             return(
-                                <div className="sideBarChatDiv" onClick={() => setSingleChat(chat)}>
+                                <div className="sideBarChatDiv" onClick={() => changeChat(chat)}>
                                     <img src={otherUser.profilePicture} alt="" />
                                     <p>{otherUser.name}</p>
                                 </div>
@@ -87,7 +92,7 @@ function Chat() {
                     <div className="mainChatDiv">
                         {singleChat ? 
                         
-                        <ChatBox key={String(singleChat)} singleChat={singleChat} />
+                        <ChatBox key={chatId} singleChat={singleChat} />
                         
                         :
 

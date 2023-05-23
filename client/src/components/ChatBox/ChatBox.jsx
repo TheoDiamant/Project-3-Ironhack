@@ -228,11 +228,15 @@ function ChatBox({ singleChat })  {
                             :
 
                             <div className="offerMessageWrapper">
-                                <img className="messagePFP" src={otherUserPFP} alt="" />
-                                <p className="messageText">{message.content}</p>
-                                <p className="messageTime">{formattedTime}</p>
-                                <button onClick={() => acceptOffer(index)}>Accept</button>
-                                <button onClick={() => declineOffer(index)}>Decline</button>
+                                <div className="offerMessage">
+                                    <img className="messagePFP" src={otherUserPFP} alt="" />
+                                    <p className="messageText">{message.content}</p>
+                                    <p className="messageTime">{formattedTime}</p>
+                                </div>
+                                <div className="chatOfferButtons">
+                                    <button onClick={() => acceptOffer(index)}>Accept</button>
+                                    <button onClick={() => declineOffer(index)}>Decline</button>
+                                </div>
                             </div>}
                         </>
 
@@ -243,10 +247,12 @@ function ChatBox({ singleChat })  {
                             
                             ?
 
-                            <div className="messageWrapper">
-                                <p className="messageTime">{formattedTime}</p>
-                                <p className="messageText">{message.content}</p>
-                                <img className="messagePFP" src={ownPFP} alt="" />
+                            <div className="checkoutMessageWrapper">
+                                <div className="offerMessage">
+                                    <p className="messageTime">{formattedTime}</p>
+                                    <p className="messageText">{message.content}</p>
+                                    <img className="messagePFP" src={ownPFP} alt="" />
+                                </div>
                                 {message.hasCheckoutButton && <button onClick={() => chatCheckout(message.hasCheckoutButton)}>Checkout</button>}
                             </div>                               
 
