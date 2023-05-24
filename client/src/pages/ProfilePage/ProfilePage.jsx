@@ -28,7 +28,7 @@ function ProfilePage() {
   
   useEffect(() => {
     getUser();
-  }, []);
+  }, [userId]);
 
   function getUser() {
     axios.get(`${API_URL}/api/member/${userId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
