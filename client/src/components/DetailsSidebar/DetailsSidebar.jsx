@@ -1,6 +1,6 @@
 import "./DetailsSidebar.css"
 
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../context/auth.context"
 import { CartContext } from "../../context/cart.context"
@@ -19,12 +19,16 @@ function DetailsSidebar({product, ownerUser}) {
     const [isLiked, setIsLiked] = useState(false)
     const [showOfferPopup, setShowOfferPopup] = useState(false);
 
+
+
     useEffect(() => {
         if(!user) {
             return
         }
         checkLike()
     }, [user])
+
+
 
     function checkLike() {
         axios.post(`${API_URL}/api/products/${productId}/like-check`, { user })
@@ -113,7 +117,9 @@ function DetailsSidebar({product, ownerUser}) {
             <hr className="lastDivider"/>
 
             <div className="sidebarButtonsDiv">
-                <button className="sidebarButton">Message</button>
+                <Link to={`/member/${ownerUser._id}`}>
+                    <button className="sidebarButton">Profile</button>
+                </Link>
                 <button className="sidebarButtonGreen" onClick={() => setShowOfferPopup(true)}>Make an Offer</button>
                 <button className="sidebarButtonGreen" onClick={() => addToCart(productId)}>Add to cart</button>
                 <button className="sidebarButtonGreen" onClick={isLiked ? handleUnlike : handleLike}>{ isLiked ? "Remove from WishList ❤️" : "Add to WishList ❤️" }</button>

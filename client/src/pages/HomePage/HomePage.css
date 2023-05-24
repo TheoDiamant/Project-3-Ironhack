@@ -1,4 +1,5 @@
 .background-image {
+  position: relative;
   height: 700px;
   background-image: url("https://static.vinted.com/assets/seller-promotion/other/banner-wide-9b45d0aa9a311c4ff6013e9cf3bc2b6646468be3d2f553192c63598685fcc177.jpg");
   background-repeat: no-repeat;
@@ -8,35 +9,57 @@
 
 .overlay {
   position: absolute;
-  top: 295px;
-  left: 214px;
-  width: 371px;
-  height: 250px;
-  background-color: rgb(255 255 255);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.text {
-  color: rgb(0, 0, 0);
-  font-size: 31px;
-  font-weight: 500;
+  top: 15%;
+  left: 10%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  aspect-ratio: 1/0.67;
+  background-color: rgb(255 255 255);
+}
+
+
+.overlay-text {
+  color: rgb(0, 0, 0);
+  width: 70%;
+  font-size: 2vw;
+  font-weight: 500;
   font-family: "roboto";
 }
 
-.buttonOverlay {
-  border: none;
-  margin-top: 15px;
-  padding: 7px 100px;
-  background-color: #27cedd;
+.overlay-link {
+  width: 100%;
+  margin: 0;
 }
 
-.buttonOverlay span {
+@media only screen and (max-width: 1200px) {
+  
+  .overlay-text {
+    font-size: 20px;
+  }
+  .buttonOverlay span {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .overlay {
+    width: 50%;
+  }
+}
+
+
+.buttonOverlay {
+  border: 1px solid black;
+  width: 80%;
+  border: none;
+  margin-top: 15px;
+  padding: 7px 10px;
   color: #FFF;
-  font-size: 25px;
+  font-size: 1.5vw;
+  background-color: #27cedd;
 }
 
 .secondSectionHeader {

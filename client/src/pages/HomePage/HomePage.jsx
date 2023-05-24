@@ -7,17 +7,20 @@ import StickyButton from "../../components/StickyButton/StickyButton";
 function HomePage() {
   return (
 
-    <div>
-      <div className="background-image"></div>
+    <div className="homePageDiv">
+      <div className="background-image">
 
         <div className="overlay">
-          <div className="text">
+          <div className="overlay-text">
             <span>Give a second life<br />to your clothes</span>
-            <Link to="/new-product">
-              <button className="buttonOverlay"><span>Sell now</span></button>
-            </Link>
           </div>
+          <Link to="/new-product" className="overlay-link">
+            <button className="buttonOverlay">Sell now</button>
+          </Link>
         </div>
+
+      </div>
+
 
       <div className="container">
 

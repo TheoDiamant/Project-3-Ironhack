@@ -122,7 +122,7 @@ function Navbar() {
         <div className="searchDivWrapper">
 
           <div className="navSelection" ref={navSelector} onClick={showOptions}>
-            <p>Products</p>
+            {navSelection === "products" ? <p>Products</p> : <p>Members</p>}
             <svg className="navSelectionArrow" viewBox="0 0 16 16"><path d="M8 12L2 6h12z"></path></svg>
           </div>
 
@@ -151,7 +151,7 @@ function Navbar() {
 
               :
 
-              <input type="text" className="searchBarInput" placeholder="Search for users" onChange={previewUsers} />
+              <input type="text" className="searchBarInput" placeholder="Search for members" onChange={previewUsers} />
 
               }
 

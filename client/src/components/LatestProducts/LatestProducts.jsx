@@ -23,7 +23,7 @@ function LatestProducts() {
   return (
     <div className="latestProductsDiv">
 
-      {latestProducts.slice(0, 4).map(product => {
+      {latestProducts.slice(0, 10).map(product => {
         return (
           <ProductCard key={product._id} product={product} />
         )

@@ -39,7 +39,7 @@ function FollowerWardrobe() {
 
           <div className="wardrobeDiv">
             
-            {followerWardrobe.slice(0, 4).map((product) => (
+            {followerWardrobe.slice(0, 10).map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}
               
