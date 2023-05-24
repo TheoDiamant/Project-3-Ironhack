@@ -21,6 +21,7 @@ function SearchPreview({ data }) {
                 {/* Nothing to display here yet */}
               </div>
             </div>
+            <hr className="previewDivDivider"/>
           </Link>
         )
       })
@@ -41,7 +42,7 @@ function SearchPreview({ data }) {
                 {product.description}
               </div>
             </div>
-          <hr></hr>
+          <hr className="previewDivDivider"/>
           </Link>
         )
       })

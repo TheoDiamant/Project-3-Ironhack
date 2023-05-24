@@ -1,7 +1,13 @@
 .searchPreviewDiv {
+    position: absolute;
+    top: 100%;
     z-index: 5;
     border-radius: 0 0 3px 3px;
     background-color: #ffffff;
+}
+
+.previewDivDivider {
+   margin: 0;
 }
 
 .previewLink {
@@ -36,7 +42,9 @@
     width: 20%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding: 10px 0;
+    overflow: hidden;
 }
 
 .previewDescriptionDiv {
@@ -44,5 +52,6 @@
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    overflow: hidden;
 }
