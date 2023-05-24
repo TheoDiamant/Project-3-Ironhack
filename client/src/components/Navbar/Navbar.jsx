@@ -20,6 +20,7 @@ function Navbar() {
   const [products, setProducts] = useState([])
   const [users, setUsers] = useState([])
   const [showCart, setShowCart] = useState(false)
+  const [query, setQuery] = useState(null)
 
   const [navSelection, setNavSelection] = useState("products")
   const [optionsShown, setOptionsShown] = useState(false)
@@ -39,11 +40,13 @@ function Navbar() {
 
   function previewProducts(e) {
     if (e.target.value === "") {
+      setQuery(null)
       setTimeout(() => {
         setProducts([])
       }, 500);
     }
     else {
+      setQuery(e.target.value)
       axios.get(`${API_URL}/api/preview?q=${e.target.value}`)
         .then(response => {
           setProducts(response.data)
@@ -66,8 +69,6 @@ function Navbar() {
         .catch(err => console.log(err))
     }
   }
-
-  
 
   function showOptions() {
     navSelector.current.style.borderBottomLeftRadius = "0"
@@ -94,6 +95,14 @@ function Navbar() {
 
   function mobileNavbarMenu() {
     navigate("/mobile-menu")
+  }
+
+  function handleSearch(e) {
+    e.preventDefault()
+    if(query === null) {
+      return
+    }
+    navigate(`/search?q=${query}`)
   }
 
   return (
@@ -130,7 +139,7 @@ function Navbar() {
 
           {optionsShown && <button className="closeNavSelectorButton" onClick={() => navSelect(navSelection)}></button>}
 
-          <form className="searchBarForm">
+          <form className="searchBarForm" onSubmit={handleSearch}>
           
             <div className="searchBar">
             

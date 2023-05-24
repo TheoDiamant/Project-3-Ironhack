@@ -311,7 +311,17 @@ router.get("/checkout/:productId", (req, res, next) => {
 
 })
 
+// Route to get products based on query
+router.get("/search", (req, res, next) => {
 
+  const { q } = req.query
 
+  Product.find({ $or: [{ title: {$regex: q, $options: "i" } }, { description: {$regex: q, $options: "i" } }] })
+    .populate("user")
+    .then(allProducts => {
+      res.json(allProducts)
+    })
+    .catch(err => res.json(err))
+})
 
 module.exports = router;

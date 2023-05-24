@@ -28,6 +28,7 @@ import StickyButton from "./components/StickyButton/StickyButton";
 import Chat from "./pages/Chat/Chat"
 
 import MobileNavbarMenu from "./pages/MobileNavbarMenu/MobileNavbarMenu"
+import SearchResults from "./pages/SearchResults/SearchResults";
 
 /// IMPORT for New routes for chat 
 
@@ -96,6 +97,8 @@ function App() {
         <Route path="/message" element={<Chat />} />
 
         <Route path="/mobile-menu" element={<MobileNavbarMenu />} />
+
+        <Route path="/search" element={<SearchResults />} />
 
       </Routes>
     </div>
