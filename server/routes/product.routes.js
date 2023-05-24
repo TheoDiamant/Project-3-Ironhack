@@ -332,17 +332,34 @@ router.post('/products/:productId/unlike', (req, res, next) => {
   const { user } = req.body
 
   Like.findOne({ user: user._id })
-    .then((response) => {
-      response.products = response.products.filter(product => product != productId)
-      response.save()
-      .then(() => {
-        res.status(200).json({ message: 'Product un-liked successfully.' })
-      })
-      .catch(err => res.json(err))
+  .then((response) => {
+    response.products = response.products.filter(product => product != productId)
+    response.save()
+    .then(() => {
+      res.status(200).json({ message: 'Product un-liked successfully.' })
     })
     .catch(err => res.json(err))
+  })
+  .catch(err => res.json(err))
 })
 
+// Route to get a user's Like document
+router.post("/all-likes", (req, res, next) => {
 
+  const { user } = req.body
+
+  Like.findOne({ user: user._id })
+  .populate({
+    path: "products",
+    populate: {
+      path: "user",
+    }
+  })
+  .then((response) => {
+    res.json(response)
+  })
+  .catch(err => res.json(err))
+})
 
 module.exports = router;
+
