@@ -2,6 +2,7 @@ import "./DetailsSidebar.css"
 
 import { useParams } from "react-router-dom"
 import { useContext, useEffect, useState } from "react"
+import { AuthContext } from "../../context/auth.context"
 import { CartContext } from "../../context/cart.context"
 import Offer from "../Offer/Offer"
 import axios from "axios";
@@ -9,43 +10,45 @@ const API_URL = "http://localhost:5005";
 
 
 
-function DetailsSidebar({product, user}) {
-
-    const storedToken = localStorage.getItem("authToken")
+function DetailsSidebar({product, ownerUser}) {
 
     const { productId } = useParams()
+    const { user } = useContext(AuthContext)
     const { addToCart } = useContext(CartContext)
 
-    const [isLike, setIsLike] = useState()
+    const [isLiked, setIsLiked] = useState(false)
     const [showOfferPopup, setShowOfferPopup] = useState(false);
 
+    useEffect(() => {
+        if(!user) {
+            return
+        }
+        checkLike()
+    }, [user])
 
-
-    const handleLike = (e) => {
-        e.preventDefault()
-
-        axios.post(`${API_URL}/api/products/${productId}/like`, {}, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(response => {
-            setIsLike(true)
+    function checkLike() {
+        axios.post(`${API_URL}/api/products/${productId}/like-check`, { user })
+        .then((response) => {
+            setIsLiked(response.data.likes)
         })
-        
+        .catch(err => console.log(err))
     }
 
-
-
+    function handleLike() {
+        axios.post(`${API_URL}/api/products/${productId}/like`, { user })
+        .then(() => {
+            setIsLiked(true)
+        })
+        .catch(err => console.log(err))
+    }
   
-    const handleDislike = (e) => {
-        e.preventDefault()
-
-        axios.delete(`${API_URL}/api/products/${productId}/like`, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(response => {
-            setIsLike(false)
+    function handleUnlike() {
+        axios.post(`${API_URL}/api/products/${productId}/unlike`, { user })
+        .then(() => {
+            setIsLiked(false)
         })
-        
+        .catch(err => console.log(err))
     }
-
-
-
 
     return(
         <div className="detailsSidebarDiv">
@@ -92,11 +95,11 @@ function DetailsSidebar({product, user}) {
 
             <div className="creatorUserDiv">
                     <div className="sidebarProfilePicDiv">
-                        <img className="sidebarProfilePic" src={user.profilePicture} alt=""/>
+                        <img className="sidebarProfilePic" src={ownerUser.profilePicture} alt=""/>
                     </div>
                     <div className="nameReviewDiv"> 
-                        <h1 className="sidebarName">{user.name}</h1>
-                        <p className="sidebarReviews">{user.review.length === 0 ? "No reviews yet" : user.review.length.toString() + + " reviews" } ⭐️</p>
+                        <h1 className="sidebarName">{ownerUser.name}</h1>
+                        <p className="sidebarReviews">{ownerUser.review.length === 0 ? "No reviews yet" : ownerUser.review.length.toString() + + " reviews" } ⭐️</p>
                     </div>
             </div>
 
@@ -113,7 +116,7 @@ function DetailsSidebar({product, user}) {
                 <button className="sidebarButton">Message</button>
                 <button className="sidebarButtonGreen" onClick={() => setShowOfferPopup(true)}>Make an Offer</button>
                 <button className="sidebarButtonGreen" onClick={() => addToCart(productId)}>Add to cart</button>
-                <button className="sidebarButtonGreen" onClick={isLike ? handleLike : handleDislike}>{ isLike ? "Add to WishList ❤️"  : "Remove from WishList ❤️" }</button>
+                <button className="sidebarButtonGreen" onClick={isLiked ? handleUnlike : handleLike}>{ isLiked ? "Remove from WishList ❤️" : "Add to WishList ❤️" }</button>
             </div>
 
             {showOfferPopup && (

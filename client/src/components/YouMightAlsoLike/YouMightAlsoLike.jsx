@@ -12,7 +12,6 @@ function YouMightAlsoLike() {
   const [youMightAlsoLike, setYouMightAlsoLike] = useState([])
 
   useEffect(() => {
-    console.log("this is the useEffect requests")
     axios.get(`${API_URL}/api/products`)
       .then(response => {setYouMightAlsoLike(response.data)})
       .catch(err => console.log(err))
@@ -26,7 +25,7 @@ function YouMightAlsoLike() {
         <div className="wrapper">
           {youMightAlsoLike.map(product => {
             return(
-              <ProductCard product={product} />
+              <ProductCard key={product._id} product={product} />
 
             )
           })}
