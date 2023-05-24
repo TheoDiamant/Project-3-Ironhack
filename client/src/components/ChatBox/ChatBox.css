@@ -56,6 +56,22 @@
     background-color: lightblue;
 }
 
+.offerMessageText {
+    display: flex;
+    flex-direction: column;
+    background-color: lightcoral !important;
+}
+
+.offerTitle {
+    margin: 10px 0 5px;
+}
+
+.offerMessageTime {
+    position: relative;
+    top: 130px;
+    color: grey;
+}
+
 .messageWrapper {
     max-width: 40%;
     display: flex;
@@ -72,7 +88,7 @@
 
 .messageTime {
     position: relative;
-    top: 30px;
+    top: 35px;
     color: grey;
 }
 
@@ -93,8 +109,12 @@
     margin-bottom: 2px;
 }
 
+.offerImage {
+    height: 150px;
+}
+
 .chatOfferButtons {
-    width: 100%;
+    display: flex;
     padding: 0 40px 0 50px;
 }
 

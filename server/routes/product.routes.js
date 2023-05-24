@@ -86,6 +86,7 @@ router.get("/products/:productId", (req, res, next) => {
   Product.findById(productId)
   .populate("user")
   .then(product => {
+    console.log(product)
     res.status(200).json(product)
   })
   .catch(error => res.json(error));
