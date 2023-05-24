@@ -27,33 +27,41 @@ function ProfilePage() {
   const [isFollowed, setIsFollowed] = useState(false); 
   
   useEffect(() => {
-    getUser();
+    getUser()
+    checkFollow()
   }, [userId]);
 
   function getUser() {
     axios.get(`${API_URL}/api/member/${userId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
     .then(response => {
-      setUserInfo(response.data);
-      setIsFollowed(response.data.isFollowed)
+      setUserInfo(response.data)
     })
+  }
+
+  function checkFollow() {
+    axios.post(`${API_URL}/api/follow-check/`, {user: user._id, userToCheck: userId})
+    .then((response) => {
+      setIsFollowed(response.data.following)
+    })
+    .catch(err => console.log(err))
   }
 
   function handleFollow(e) {
     e.preventDefault();
     axios.post(`${API_URL}/api/follow/${userId}`, {}, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(() => {
-          setIsFollowed(true);
-                })
-        .catch(err => console.log(err))
+    .then(() => {
+      setIsFollowed(true)
+    })
+    .catch(err => console.log(err))
   }
 
   function handleUnfollow(e) {
     e.preventDefault();
     axios.delete(`${API_URL}/api/follow/${userId}`,  { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(() => {
-          setIsFollowed(false);
-                })
-        .catch(err => console.log(err))
+    .then(() => {
+      setIsFollowed(false)
+    })
+    .catch(err => console.log(err))
   }
 
   function handleChatClick() {

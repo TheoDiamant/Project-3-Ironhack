@@ -139,6 +139,23 @@ router.delete('/follow/:userId/', isAuthenticated, (req, res, next) => {
     });
 });
 
+// Route to check if a user is following another
+router.post("/follow-check", (req, res, next) => {
+
+  const { user, userToCheck } = req.body
+
+  Follow.findOne({user: user})
+  .then((response) => {
+    if(response.userFollows.includes(userToCheck)) {
+      res.json({following: true})
+    }
+    else {
+      res.json({following: false})
+    }
+  })
+  .catch(err => res.json(err))
+})
+
 
 // Route to get 3 members info for previewing
 router.get("/member-preview", (req, res, next) => {
