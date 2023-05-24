@@ -86,7 +86,6 @@ router.get("/products/:productId", (req, res, next) => {
   Product.findById(productId)
   .populate("user")
   .then(product => {
-    console.log(product)
     res.status(200).json(product)
   })
   .catch(error => res.json(error));
@@ -233,66 +232,6 @@ router.get("/products/:productId/offer", (req, res, next) => {
 
 })
 
-
-
-
-// Route to create an offer for a product //////// WORK  ////////
-router.post("/products/:productId/like", isAuthenticated, (req, res, next) => {
-
-  const { productId } = req.params
-
-  if (!mongoose.Types.ObjectId.isValid(productId)) {
-      res.status(400).json({ message: 'Specified id is not valid' });
-      return;
-    }
-
-
-    Like.find({user: req.payload._id, product: productId})
-    .then(response => {
-      if( response.length === 0) {
-        let like;
-    
-        Like.create({user: req.payload._id, product: productId})
-        .then(response =>{
-          like = response
-          return User.findByIdAndUpdate(req.payload._id, {$push: {like: response._id}, },{new: true})
-          })
-          .then(() => {
-            return Product.findByIdAndUpdate(productId, {$push: {like: response._id}, },{new: true} )
-          })
-          .then(() => {
-            res.json(response.data)
-          })
-          .catch(err => res.json(err))
-      }
-      else{
-        console.log("Like already exist")
-      }
-    })
-
-      
-})
-
-router.delete('/products/:productId/like', isAuthenticated, (req, res, next) => {
-  const { productId } = req.params;
-  const userId = req.payload._id;
-
-  Like.findOneAndDelete({ product: productId, user: userId })
-    .then(deletedLike => {
-      if (!deletedLike) {
-      
-        return res.status(404).json({ message: 'Like not found.' });
-      }
-
-      res.json({ message: 'Like deleted successfully.' });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({ message: 'Internal server error.' });
-    });
-});
-
-
 // Route get product details for checkout by ID //////// WORK  ////////
 router.get("/checkout/:productId", (req, res, next) => {
 
@@ -323,5 +262,87 @@ router.get("/search", (req, res, next) => {
     })
     .catch(err => res.json(err))
 })
+
+// Route to check whether a user likes a product already or not
+router.post("/products/:productId/like-check", (req, res, next) => {
+
+  const { productId } = req.params
+  const { user } = req.body
+
+  Like.findOne({user: user._id})
+  .then((response) => {
+    if(!response) {
+      res.json({likes: false})
+    }
+    else {
+      if(response.products.includes(productId)) {
+        res.json({likes: true})
+      }
+      else {
+        res.json({likes: false})
+      }
+    }
+  })
+  .catch(err => res.json(err))
+      
+})
+
+// Route to add a like to the user's Like document (and create it on the very first like event)
+router.post("/products/:productId/like", (req, res, next) => {
+
+  const { productId } = req.params
+  const { user } = req.body
+
+  Like.findOne({user: user._id})
+  .then((response) => {
+
+    if(!response) {
+
+      Like.create({ user: user })
+      .then((createdResponse) => {
+        createdResponse.products.push(productId)
+        createdResponse.save()
+        .then(() => {
+          res.status(200).json({ message: 'Product liked successfully.' })
+        })
+        .catch(err => res.json(err))
+      })
+      .catch(err => res.json(err))
+
+    }
+    else {
+
+      response.products.push(productId)
+      response.save()
+      .then(() => {
+        res.status(200).json({ message: 'Product liked successfully.' })
+      })
+      .catch(err => res.json(err))
+
+    }
+  })
+  .catch(err => res.json(err))
+      
+})
+
+// Route to un-like a product
+router.post('/products/:productId/unlike', (req, res, next) => {
+
+  const { productId } = req.params
+  const { user } = req.body
+
+  Like.findOne({ user: user._id })
+    .then((response) => {
+      response.products = response.products.filter(product => product != productId)
+      response.save()
+      .then(() => {
+        res.status(200).json({ message: 'Product un-liked successfully.' })
+      })
+      .catch(err => res.json(err))
+    })
+    .catch(err => res.json(err))
+})
+
+
 
 module.exports = router;

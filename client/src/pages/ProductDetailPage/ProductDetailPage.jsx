@@ -8,7 +8,6 @@ import Carousel from "../../components/Carousel/Carousel";
 import DetailsSidebar from "../../components/DetailsSidebar/DetailsSidebar";
 import Loading from "../../components/Loading/Loading"
 import YouMightAlsoLike from "../../components/YouMightAlsoLike/YouMightAlsoLike"
-import Like from "../../components/Like/Like.js"
 import axios from "axios";
 
 const API_URL = "http://localhost:5005";     
@@ -23,7 +22,6 @@ function ProductDetailPage() {
   
 
     useEffect(() => {
-        
         axios.get(`${API_URL}/api/products/${productId}`)
         .then((response) => {
             setProduct(response.data)
@@ -60,7 +58,7 @@ function ProductDetailPage() {
                             }
                         </div>
                         
-                        <DetailsSidebar product={product} user={userInfo}/>
+                        <DetailsSidebar product={product} ownerUser={userInfo}/>
                     </>
 
                     :
