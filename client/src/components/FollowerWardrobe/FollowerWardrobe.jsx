@@ -4,11 +4,8 @@ import axios from "axios";
 
 import React, { useEffect, useContext, useState } from 'react';
 import { AuthContext } from "../../context/auth.context";
-import { Link } from "react-router-dom"
-
 
 import ProductCard from "../ProductCard/ProductCard";
-import ProductCardFollowersWardrobe from "../ProductCardFollowersWardrobe/ProductCardFollowersWardrobe";
 
 const API_URL = "http://localhost:5005";
 
@@ -35,30 +32,23 @@ function FollowerWardrobe() {
   }, [user, storedToken]);
 
   return (
-    <div>
+    <>
       {followerWardrobe.length > 0 && (
-        <h1 className="latestProductsText">
-          Wardrobe of Followers
-        </h1>
-      )}
-      <main className="wrapper">
-        {followerWardrobe.slice(0, 4).map((product) => (
-          <ProductCardFollowersWardrobe
-            key={product._id}
-            product={product}
-          />
-        ))}
-        {followerWardrobe.length > 0 && (
-          <Link
-            to={`/member/${followerWardrobe[0].user[0]._id}`}
-            className="buttonSeeMore"
-          >
-            <button>See more</button>{" "}
-          </Link>
+        <>
+          <h1 className="wardrobeText">Wardrobe of Followers</h1>
+
+          <div className="wardrobeDiv">
+            
+            {followerWardrobe.slice(0, 4).map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
+              
+            
+          </div>
+        </>
         )}
-      </main>
-    </div>
-  );
+    </>
+  )
 }
 
 export default FollowerWardrobe;

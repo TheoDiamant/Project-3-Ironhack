@@ -75,7 +75,7 @@ function ProductDetailPage() {
             </div>
             <div className="otherProductDiv">
                 <div className="youMightAlsoLikeDiv">
-                    <h3 className="youMightAlsoLike">You might Also Like</h3>
+                    <h3 className="youMightAlsoLike">You Might Also Like</h3>
                     <hr></hr>
                 </div>
                 <main className="wrapper"> 

@@ -1,11 +1,14 @@
-
-.wrapper {
-    margin: 0 auto;
-
-    gap: 10px;
+.wardrobeDiv {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 10px;
 }
 
-main a {
-    text-decoration: none;
-    color: black;
+@media only screen and (max-width: 768px) {
+    .wardrobeDiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
 }
