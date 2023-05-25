@@ -1,3 +1,5 @@
+import "./YouMightAlsoLike.css"
+
 import React, { useEffect } from 'react'
 import axios from "axios"
 
@@ -13,24 +15,19 @@ function YouMightAlsoLike() {
 
   useEffect(() => {
     axios.get(`${API_URL}/api/products`)
-      .then(response => {setYouMightAlsoLike(response.data)})
-      .catch(err => console.log(err))
-      
+    .then(response => {setYouMightAlsoLike(response.data)})
+    .catch(err => console.log(err))
   }, [])
 
 
-  return (
-    <>
-        
-        <div className="wrapper">
-          {youMightAlsoLike.map(product => {
-            return(
-              <ProductCard key={product._id} product={product} />
-
-            )
-          })}
-        </div>
-    </>
+  return (      
+    <div className="youMightAlsoLike">
+      {youMightAlsoLike.map(product => {
+        return(
+          <ProductCard key={product._id} product={product} />
+        )
+      })}
+    </div>
   )
 }
 

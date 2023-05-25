@@ -33,52 +33,52 @@ function ProductDetailPage() {
 
 
     return (
-        <div>
-            <div className="productDetailsDiv">
+        <div className="productDetailsDiv">
 
-                <div className="productDetailsWrapper">
-                    {product && userInfo
-                    
-                    ?
-
-                    <>
-                        <div className="productDetailsMainDiv">
-                            <Carousel images={product.img} />
-                            {user && userInfo._id === user._id
-                            
-                            ?
-
-                            <Link to={`/products/${product._id}/edit`}>
-                                <button className="editProductButton">EDIT PRODUCT</button>
-                            </Link>
-
-                            :
-
-                            <></>
-                            }
-                        </div>
-                        
-                        <DetailsSidebar product={product} ownerUser={userInfo}/>
-                    </>
-
-                    :
-
-                    <Loading />
-
-                    }
-
+            <div className="productDetailsWrapper">
+                {product && userInfo
                 
+                ?
+
+                <>
+                    <div className="productDetailsMainDiv">
+                        <Carousel images={product.img} />
+                        {user && userInfo._id === user._id
+                        
+                        ?
+
+                        <Link to={`/products/${product._id}/edit`}>
+                            <button className="editProductButton">EDIT PRODUCT</button>
+                        </Link>
+
+                        :
+
+                        <></>
+                        }
+                    </div>
                     
-                </div>
+                    <DetailsSidebar product={product} ownerUser={userInfo}/>
+                </>
+
+                :
+
+                <Loading />
+
+                }
+
+            
+                
             </div>
-            <div className="otherProductDiv">
-                <div className="youMightAlsoLikeDiv">
-                    <h3 className="youMightAlsoLike">You Might Also Like</h3>
-                    <hr></hr>
+            
+            
+            <div className="youMightAlsoLikeWrapper">
+                <div className="secondSectionHeader">
+                    <h1 className="youMightAlsoLikeText">You Might Also Like</h1>
+                    <Link to="/products" className='buttonSeeMore'>
+                        <button>See more</button> 
+                    </Link>
                 </div>
-                <main className="wrapper"> 
-                    <YouMightAlsoLike />
-                </main>
+                <YouMightAlsoLike />
             </div>
         </div>
         

@@ -1,6 +1,7 @@
 .productDetailsDiv {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .productDetailsWrapper {
@@ -27,31 +28,27 @@
   border-radius: 5px;
 }
 
-.otherProductDiv {
+.youMightAlsoLikeWrapper {
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.youMightAlsoLike {
-  margin-bottom: 0;
+.youMightAlsoLikeText {
+  font-size: 30px;
+  font-weight: 300;
+  margin: 0;
+  margin-right: 20px;
 }
 
 .youMightAlsoLikeDiv {
   padding: 5px 15vh;
   text-align: left;
-  }
-
-  .wrapper {
-    margin: 0 auto;
-    width: 70vw;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 27px;
 }
 
 @media only screen and (min-width: 1920px) {
-  .productDetailsWrapper {
+  .productDetailsWrapper, .youMightAlsoLikeWrapper {
       width: 50%;
   }
 }
