@@ -18,6 +18,8 @@ Thumbs.db:encryptable
 ehthumbs.db
 *.lnk
 
-
 # VS Code
 .vscode/*
+
+# Added so that in the future we may uncomment the socket.io server code without changing the remote repository
+server.js

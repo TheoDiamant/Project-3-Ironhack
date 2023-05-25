@@ -9,6 +9,8 @@ app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);
 });
 
+// Chat server deployed to a separate backend - for local testing if necessary, uncomment this code
+
 // io.listen(5000, () => {
 //   console.log(`CHAT listening on http://localhost:${5000}`);
 // })
