@@ -32,7 +32,7 @@ router.post("/single-chat", (req, res, next) => {
     Room.find({ users: { $all: [chatIDs[0], chatIDs[1]] } })
     .populate({
         path: "users",
-        select: "profilePicture",
+        select: "name profilePicture",
     })
     .then(room => {
         
@@ -42,7 +42,7 @@ router.post("/single-chat", (req, res, next) => {
             .then(newRoom => {
                 return Room.populate(newRoom, {
                     path: "users",
-                    select: "profilePicture",
+                    select: "name profilePicture",
                 })
             })
             .then(newRoom => {
