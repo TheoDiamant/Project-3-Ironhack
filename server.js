@@ -9,6 +9,6 @@ app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);
 });
 
-io.listen(443, () => {
-  console.log(`CHAT listening on http://localhost:${443}`);
+io.listen(5000, () => {
+  console.log(`CHAT listening on http://localhost:${5000}`);
 })
