@@ -21,27 +21,28 @@ function MobileNavbarMenu() {
         
         <div className="mobileNavbarMenuDiv">
             {user &&
-                <div className="mobileMenuProfileDiv" onClick={goToProfile}>
+                <div className="mobileMenuRow" onClick={goToProfile}>
                     <div className="mobileMenuImageDiv">
-                        <img src={user.profilePicture} alt="" />
+                        <img className="mobileMenuProfilePic" src={user.profilePicture} alt="" />
                     </div>
                     <p>{user.name}</p>
                 </div>
             }
-
-            <div className="mobileMenuFavouritesDiv">
+            <hr />
+            <div className="mobileMenuRow">
                 <div className="mobileMenuImageDiv">
-                    <img src="https://www.iconpacks.net/icons/2/free-heart-icon-3510-thumb.png" alt="" />
+                    <img className="mobileMenuFavouritesIcon" src="https://i.imgur.com/kvFcV1f.png" alt="" />
                 </div>
                 <p>Favourites</p>
             </div>
-
-            <div className="mobileMenuMessagesDiv" onClick={goToMesages}>
+            <hr />
+            <div className="mobileMenuRow" onClick={goToMesages}>
                 <div className="mobileMenuImageDiv">
-                    <img src="https://img.favpng.com/4/13/10/email-computer-icons-message-icon-design-png-favpng-Z2c8kiG21uxY3Xd63qQi3Qzb1.jpg" alt="" />
+                    <img className="mobileMenuMessagesIcon" src="https://i.imgur.com/qeJCkCy.png" alt="" />
                 </div>
                 <p>Messages</p>
             </div>
+            <hr />
             <button className="mobileMenuButton" onClick={logOutUser}>Logout</button>
         </div>
     )
