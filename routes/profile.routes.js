@@ -1,11 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require('mongoose')
-const { ObjectId } = require('mongodb');
 
-const Product = require("../models/Products.model")
 const User = require("../models/User.model")
-const Offer = require("../models/Offer.model")
 const Review = require("../models/Review.model")
 const Follow = require("../models/Follow.model")
 
@@ -168,6 +164,27 @@ router.get("/member-preview", (req, res, next) => {
     res.json(users)
   })
   .catch(err => console.log(err))
+})
+
+// Route to create a review
+router.post("/create-review", (req, res, next) => {
+  
+  const { reviewText, userReviewing, userReviewed } = req.body
+  
+  Review.create({ reviewText, userReviewing })
+  .then((createdReview) => {
+    User.findById(userReviewed)
+    .then((foundUser) => {
+      foundUser.review.push(createdReview._id)
+      foundUser.save()
+      .then(() => {
+        res.status(200).json("Review created succesfully")
+      })
+      .catch(err => res.json(err))
+    })
+    .catch(err => res.json(err))
+  })
+  .catch(err => res.json(err))
 })
 
 module.exports = router;

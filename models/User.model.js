@@ -26,7 +26,7 @@ const userSchema = new Schema(
     followers: {
       type: Number,
     },
-    review: [{type: Schema.Types.ObjectId, ref: "Review"}],
+    review: [{type: Schema.Types.ObjectId, ref: "Review"}], //this holds all the reviews this user has received
     offer: [{type: Schema.Types.ObjectId, ref: "Offer"}],
     product: [{type: Schema.Types.ObjectId, ref: "Product"}],
     like: [{type: Schema.Types.ObjectId, ref: "Like"}],

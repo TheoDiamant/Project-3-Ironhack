@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const Product = require("../models/Products.model")
 const User = require("../models/User.model")
 const Offer = require("../models/Offer.model")
-const Review = require("../models/Review.model")
 const Like = require("../models/Like.model")
 
 const { isAuthenticated } = require("../middleware/jwt.middleware.js");
@@ -26,8 +25,6 @@ router.post("/uploadmany", fileUploader.array("image"), (req, res, next) => {
 router.post("/upload", fileUploader.single("image"), (req, res, next) => {
   res.json(req.file.path);
 });
-
-
 
 // Route to create a products  //////// WORK  ////////
 router.post("/products", isAuthenticated, (req, res, next) => {
@@ -167,53 +164,6 @@ router.post("/products/:productId/offer", isAuthenticated, (req, res, next) => {
       
 })
 
-
-// Route to create a review for a product //////// WORK  ////////
-router.post("/products/:productId/review", isAuthenticated, (req, res, next) => {
-
-  const { productId } = req.params
-
-  const { title, message, img } = req.body
-
-  if (!mongoose.Types.ObjectId.isValid(productId)) {
-      res.status(400).json({ message: 'Specified id is not valid' });
-      return;
-    }
-
-    let review;
-
-    Review.create({ title, message, img, user: req.payload._id, product: productId })
-      .then(response => {
-        review = response;
-        return User.findByIdAndUpdate(req.payload._id, { $push: { review: response._id } }, { new: true });
-      })
-      .then(() => {
-        return Product.findByIdAndUpdate(productId, { $push: { review: review._id } }, { new: true });
-      })
-      .then(() => {
-        res.json(review);
-      })
-      .catch(err => res.json(err));
-  });
-
-// Route to get the review for a product //////// WORK  ////////
-router.get("/products/:productId/review", (req, res, next) => {
-
-  const { productId } = req.params
-
-  if (!mongoose.Types.ObjectId.isValid(productId)) {
-      res.status(400).json({ message: 'Specified id is not valid' });
-      return;
-    }
-
-    Review.find()
-    .then(response => {
-      res.json(response)
-    })
-    .catch(err => res.json(err))
-
-})
-
 // Route to get the offer for a product //////// WORK  ////////
 router.get("/products/:productId/offer", (req, res, next) => {
 
@@ -237,16 +187,12 @@ router.get("/checkout/:productId", (req, res, next) => {
 
   const { productId } = req.params
 
-  if (!mongoose.Types.ObjectId.isValid(productId)) {
-      res.status(400).json({ message: 'Specified id is not valid' });
-      return;
-    }
-
-    Product.findById(productId)
-    .then(response => {
-      res.json(response)
-    })
-    .catch(err => res.json(err))
+  Product.findById(productId)
+  .populate("user")
+  .then(response => {
+    res.json(response)
+  })
+  .catch(err => res.json(err))
 
 })
 
