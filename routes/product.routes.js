@@ -76,16 +76,15 @@ router.get("/products/:productId", (req, res, next) => {
 
   Product.findById(productId)
   .populate({
-    path: "products",
+    path: "user",
     populate: {
-      path: "user",
+      path: "review",
     }
   })
   .then(product => {
     res.status(200).json(product)
   })
-  .catch(error => res.json(error));
-
+  .catch(error => res.json(error))
 })
 
 
@@ -104,8 +103,6 @@ router.post("/cart", (req, res, next) => {
 router.post("/products/:productId/edit", (req, res, next) => {
 
   const { productId } = req.params
-
-  
 
   Product.findByIdAndUpdate(productId, req.body, { new: true })
   .then((updateProduct) => res.json(updateProduct))
