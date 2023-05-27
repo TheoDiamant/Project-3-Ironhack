@@ -8,6 +8,7 @@ const followSchema = new Schema(
       },
       followers: {
         type: Number,
+        default: 0,
       },
       userFollows: [{type: Schema.Types.ObjectId, ref: "User"}], //array of followed users, not user who follows
     },
