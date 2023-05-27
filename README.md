@@ -1,6 +1,8 @@
 # Project3 - Backend
 
-This repository contains the backend for the third Ironhack project developed by Theo Diamant and Brea. It is a RESTful API written in the Node.js server runtime which handles long term data storage and fetching between the React frontend and the MongoDB database.
+This repository contains the backend for the third Ironhack project developed by Theo Diamant and Brea. It is a RESTful API written in the Node.js server runtime which handles long term data storage and fetching between the React frontend and the MongoDB database. 
+
+Additionally, it contains the code necessary to implement and run a websockets-based server for real-time communication between users. However, in the last version of this repository the server was extracted to it's own repo - located [here](https://github.com/FakeJoanna/Project3-Ironhack-Chat) - due to hosting necessities. All information regarding this function of the backend will be covered in this README.
 
 ## Features
 
@@ -8,7 +10,8 @@ This repository contains the backend for the third Ironhack project developed by
 - Graceful error handling
 - Fitting of input data to predetermined database schema
 - Fully implemented CRUD operations for various models
-- Automatic handling of file uploads to a dedicated server
+- Automatic handling of image uploads
+- Real-time bi-directional communication between users with persistent message history
 
 ## Technical specifications
 
@@ -20,10 +23,12 @@ This project uses the following technologies, frameworks, and libraries:
 - Cloudinary + Multer: A cloud based service for serving and uploading uploaded images, and its corresponding middleware
 - bcrypt: A library that handles secure password hashing and salting for authentification purposes
 - ExpressJWT + JSONWebToken: Middleware for implementing the JWT standard to handle persistent sessions
+- Socket.io: Event driven library for web applications which powers a real-time chat
 
 ## Configurations
 
 Neccessary configurations for the proper functioning of this API include:
+
 - Cloudinary account, with its corresponding API Key and secret
 - JWT Token secret
 - URI to your MongoDB database
