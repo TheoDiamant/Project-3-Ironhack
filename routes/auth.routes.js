@@ -97,9 +97,9 @@ router.post("/signup-google", (req, res, next) => {
       })
       .then((createdUser) => {
         
-        const { email, name, _id } = createdUser
+        const { email, name, _id, profilePicture } = createdUser
 
-        const payload = { _id, email, name }
+        const payload = { _id, email, name, profilePicture }
 
         const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {
           algorithm: "HS256",
