@@ -1,5 +1,7 @@
 # Project3 - Backend
 
+Link to the website : https://project3-theo-brea.netlify.app/ (Wait 30 sec for the database to update)
+
 This repository contains the backend for the third Ironhack project developed by Theo Diamant and Brea. It is a RESTful API written in the Node.js server runtime which handles long term data storage and fetching between the React frontend and the MongoDB database. 
 
 Additionally, it contains the code necessary to implement and run a websockets-based server for real-time communication between users. However, in the last version of this repository the server was extracted to it's own repo - located [here](https://github.com/FakeJoanna/Project3-Ironhack-Chat) - due to hosting necessities. All information regarding this function of the backend will be covered in this README.
